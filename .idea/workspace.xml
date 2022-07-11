@@ -4,24 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a6c0e6a-a401-40d6-9b9f-4578b19f0734" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RandomAdventureDungonSim.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/GameModel.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/MapModel/Location.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/MapModel/MapController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/RoomEntity/RoomEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/BasicRoom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/Room.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/StartingRoom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/src/EntityController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameModel/src/RoomController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Run.java" afterDir="false" />
+    <list default="true" id="2a6c0e6a-a401-40d6-9b9f-4578b19f0734" name="Changes" comment="Corrected missed semicollon.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameModel/MapModel/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/MapModel/MapController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,14 +33,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "openjdk-18"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-18&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -75,6 +59,14 @@
       <option name="presentableId" value="Default" />
       <updated>1657572184657</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial design work">
+      <created>1657580660320</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657580660320</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -87,5 +79,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial design work" />
+    <MESSAGE value="Corrected missed semicollon." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected missed semicollon." />
   </component>
 </project>
