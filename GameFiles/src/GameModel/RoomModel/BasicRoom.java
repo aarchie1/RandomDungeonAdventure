@@ -2,11 +2,9 @@ package RoomModel;
 
 import RoomEntity.RoomEntity;
 import RoomEntity.EmptyRoom;
-import RoomModel.Room;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * This is a basic room, and is here for inheritance purposes.
