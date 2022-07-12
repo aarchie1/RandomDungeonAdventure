@@ -1,8 +1,6 @@
 package MapModel;
 
 import RoomModel.Room;
-import MapModel.Location;
-import RoomModel.StartingRoom;
 
 import java.util.HashMap;
 
