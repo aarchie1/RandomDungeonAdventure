@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a6c0e6a-a401-40d6-9b9f-4578b19f0734" name="Changes" comment="Corrected missed semicollon.">
+      <change afterPath="$PROJECT_DIR$/src/GameModel/RoomEntity/EmptyRoom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameModel/MapModel/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/MapModel/MapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameModel/RoomEntity/RoomEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomEntity/RoomEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameModel/RoomModel/BasicRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/BasicRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameModel/RoomModel/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameModel/RoomModel/StartingRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/StartingRoom.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657580660320</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Corrected missed semicollon.">
+      <created>1657581335888</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657581335888</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
