@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a6c0e6a-a401-40d6-9b9f-4578b19f0734" name="Changes" comment="Corrected missed semicollon.">
-      <change afterPath="$PROJECT_DIR$/src/GameModel/RoomEntity/EmptyRoom.java" afterDir="false" />
+    <list default="true" id="2a6c0e6a-a401-40d6-9b9f-4578b19f0734" name="Changes" comment="Added Comments to the Room class, built a basic RoomEntity for test use.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameModel/RoomEntity/RoomEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomEntity/RoomEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameModel/RoomModel/BasicRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/BasicRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameModel/RoomModel/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameModel/RoomModel/StartingRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/StartingRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameModel/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameModel/src/EntityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomEntity/EntityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameModel/src/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameModel/RoomModel/RoomController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +25,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Rowan_Branch" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -77,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657581335888</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added Comments to the Room class, built a basic RoomEntity for test use.">
+      <created>1657662760073</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1657662760073</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,7 +96,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Rowan_Branch" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -94,6 +117,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial design work" />
     <MESSAGE value="Corrected missed semicollon." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected missed semicollon." />
+    <MESSAGE value="Added Comments to the Room class, built a basic RoomEntity for test use." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Comments to the Room class, built a basic RoomEntity for test use." />
   </component>
 </project>
