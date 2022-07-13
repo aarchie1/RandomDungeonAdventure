@@ -4,6 +4,9 @@ import MapModel.MapController;
 import RoomEntity.EntityController;
 import RoomModel.RoomController;
 
+/**
+ * This Class will control and consolidate all the game models into the game logic
+ */
 public class GameController {
 
     private MapController myMap;
