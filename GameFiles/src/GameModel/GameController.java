@@ -1,3 +1,5 @@
+package GameModel;
+
 import MapModel.MapController;
 import RoomEntity.EntityController;
 import RoomModel.RoomController;
