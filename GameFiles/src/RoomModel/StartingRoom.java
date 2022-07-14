@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * This class is a special Room placed only when a new game is called.
- * It should contain the player, and any starting RoomEntitys.
+ * It should contain the player, and any starting RoomEntities.
  * It must have at least 1 door.
  * It should not contain a trap, monster, objective, exit, or item.
  */

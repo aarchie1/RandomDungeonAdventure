@@ -1,5 +1,12 @@
 package RoomEntity;
 
+/**
+ * An Item is a room entity that can be carried by the player
+ * This class is intended to be the basis of inheritance for all
+ * Item type objects
+ * It is currently stubbed out for testing purposes
+ * @author Rowan W Osmon
+ */
 public class Item implements RoomEntity {
     private final String myName;
 

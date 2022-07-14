@@ -1,7 +1,5 @@
 package RoomModel;
 
-//This is used to test the BasicRoom Class
-
 import RoomEntity.*;
 
 
@@ -10,6 +8,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * This is used to test the BasicRoom Class
+ * @author Rowan W Osmon
+ * @version 0.01
+ */
 class BasicRoomTest {
     Room myRoom = new BasicRoom();
     Item myDevAmulet = new DevAmulet();
@@ -57,6 +60,6 @@ class BasicRoomTest {
     @org.junit.jupiter.api.Test
     void testToString() {
         System.out.println(myRoom.toString());
-        assertEquals("Empty Room", myRoom.toString());
+        assertEquals("EmptyRoom", myRoom.toString());
     }
 }

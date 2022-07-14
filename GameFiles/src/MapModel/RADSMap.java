@@ -11,6 +11,7 @@ import java.util.HashMap;
  * A Map should have a RoomController that manages its rooms.
  * Maps make use of the Location class for its X/Y input
  * Maps do not track the player, they just display
+ * @author Rowan W Osmon
  *
  */
 public interface RADSMap {
@@ -57,5 +58,7 @@ public interface RADSMap {
      * @returnString representing 9x9 rooms.
      */
     String localMap(Location theLocation);
+
+
 
 }

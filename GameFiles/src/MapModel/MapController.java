@@ -1,15 +1,25 @@
 package MapModel;
 
 import RoomModel.Room;
+import RoomModel.RoomController;
 
 /**
- *This class is used to control all Maps.
+ * This class is used to control all RADSMaps.
+ * It will be used whenever a RADSMap operation is needed.
+ *
+ *
+ * @author Rowan W Osmon
+ *
+ *
+ * Rowan's Notes: This class needs more features and a tester to be implemented.
+ *
  */
 public class MapController {
 
     RADSMap myMap = new BasicMap();
     Location myLocal = new Location(0,0);
 
+    RoomController myRoom = new RoomController();
     Room myCurrentRoom;
 
     MapController(){

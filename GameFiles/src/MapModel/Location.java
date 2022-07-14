@@ -2,6 +2,8 @@ package MapModel;
 
 /**
  * This class is used as an X/Y coordinate system.
+ * @author Rowan W Osmon
+ *
  */
 public class Location {
 

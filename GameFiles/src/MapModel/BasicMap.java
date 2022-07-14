@@ -6,6 +6,15 @@ import RoomModel.RoomController;
 /**
  * A basic map. It implements the methods in the RADSMap
  * It may be used for inheritance, testing, and modeling a Map class.
+ * @author Rowan W Osmon
+ * @version 0.01
+ *
+ * Rowan's notes:
+ * This class has a tester.
+ * This class needs to be refactored.
+ * It should use RoomController for its Room operations.
+ * This class (or an extension of it) should also
+ *      place a starting room, the 4 objectives, and the ExitRoom
  */
 public class BasicMap implements RADSMap {
 
@@ -13,11 +22,20 @@ public class BasicMap implements RADSMap {
         generateRoom(myCoordinate);
     }
 
+    /**
+     *
+     * @param theLocation The X/Y coordinate of the room.
+     * @param theRoom A Room to be placed at that location.
+     */
     @Override
     public void replaceRoom(Location theLocation, Room theRoom) {
         myMap.put(theLocation, theRoom);
     }
 
+    /**
+     *
+     * @param theLocation
+     */
     @Override
     public void generateRoom(Location theLocation) {
         if (!myMap.containsKey(theLocation)) {
@@ -26,6 +44,10 @@ public class BasicMap implements RADSMap {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String fullMap() {
         StringBuilder sb = new StringBuilder();
@@ -35,6 +57,11 @@ public class BasicMap implements RADSMap {
         return sb.toString();
     }
 
+    /**
+     *
+     * @param theLocation
+     * @return
+     */
     @Override
     public Room getRoomAt(Location theLocation) {
         Room r;
