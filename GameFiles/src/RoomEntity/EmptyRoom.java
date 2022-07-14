@@ -4,7 +4,7 @@ public class EmptyRoom implements RoomEntity {
 
     final private String myContents;
     public EmptyRoom(){
-        myContents = "E";
+        myContents = "Empty Room";
     }
 
     @Override

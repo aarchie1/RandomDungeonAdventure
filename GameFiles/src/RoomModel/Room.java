@@ -12,6 +12,8 @@ import java.util.List;
  */
 public interface Room {
 
+
+
     /**
      * Adds a Room Entity to the List.
      */
@@ -25,9 +27,9 @@ public interface Room {
 
     /**
      * Removes the targeted RoomEntity from the list.
-     * @param theTarget
+     * @param theTargetName
      */
-    void removeEntity(RoomEntity theTarget);
+    void removeEntity(String theTargetName);
     
     public String toString();
 

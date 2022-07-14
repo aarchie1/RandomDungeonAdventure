@@ -8,16 +8,23 @@ import java.util.List;
 
 /**
  * This is a basic room, and is here for inheritance purposes.
+ * @author Rowan W Osmon
+ * @version 0.01
  */
 public class BasicRoom implements Room {
     /**
      * This list holds the contents of the room.
      */
     List<RoomEntity> myEntitys = null;
+    /**
+     * This Boolean is used to quickly determine if the room is empty or not.
+     */
+    Boolean isEmpty = false;
+
 
     BasicRoom(){
         myEntitys = new ArrayList<RoomEntity>();
-        myEntitys.add(new EmptyRoom());
+        isEmpty = true;
     }
 
     /**
@@ -26,6 +33,8 @@ public class BasicRoom implements Room {
      */
     BasicRoom(List<RoomEntity> arr){
         myEntitys = arr;
+        checkIfEmpty();
+
     }
 
     /**
@@ -34,6 +43,7 @@ public class BasicRoom implements Room {
      */
     public void setMyEntitys(List<RoomEntity> arr) {
         myEntitys = arr;
+        checkIfEmpty();
     }
 
     /**
@@ -46,11 +56,20 @@ public class BasicRoom implements Room {
 
     /**
      * Removes the target RoomEntity.
-     * @param theTarget
+     * @param theTargetName
      */
     @Override
-    public void removeEntity(RoomEntity theTarget) {
-        myEntitys.remove(theTarget);
+    public void removeEntity(final String theTargetName) {
+        for (RoomEntity r : myEntitys){
+            if (r.toString().equals(theTargetName)) {
+                myEntitys.remove(r);
+                break;
+            }
+
+
+        }
+        checkIfEmpty();
+
     }
 
     /**
@@ -60,6 +79,20 @@ public class BasicRoom implements Room {
     @Override
     public void addEntity(RoomEntity e) {
         myEntitys.add(e);
+        checkIfEmpty();
+    }
+
+    /**
+     * Checks if this room is empty or not
+     * @return true if it is, false if not.
+     */
+    public void checkIfEmpty(){
+        if (myEntitys.isEmpty()) {
+            isEmpty = true;
+        } else {
+            isEmpty = false;
+        }
+
     }
 
     /**
@@ -67,6 +100,10 @@ public class BasicRoom implements Room {
      * @return
      */
     public String toString(){
+        if (isEmpty){
+            return new EmptyRoom().toString();
+        }
+
         StringBuilder sb = new StringBuilder();
         for (RoomEntity r : myEntitys) {
             sb.append(r.toString());
