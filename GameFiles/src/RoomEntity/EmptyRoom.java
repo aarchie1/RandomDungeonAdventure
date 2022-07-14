@@ -7,4 +7,9 @@ public class EmptyRoom implements RoomEntity {
         myContents = "E";
     }
 
+    @Override
+    public String toString() {
+        return myContents;
+    }
+
 }
