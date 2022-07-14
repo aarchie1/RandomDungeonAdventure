@@ -2,9 +2,8 @@ package RoomModel;
 
 //This is used to test the BasicRoom Class
 
-import RoomEntity.DevAmulet;
-import RoomEntity.Item;
-import RoomEntity.RoomEntity;
+import RoomEntity.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ class BasicRoomTest {
     }
 
     @org.junit.jupiter.api.Test
-    void setMyEntitys() {
+    void setMyEntities() {
         List <RoomEntity> arr = new ArrayList<>();
         arr.add(myDevAmulet);
         myRoom = new BasicRoom(arr);
@@ -29,7 +28,7 @@ class BasicRoomTest {
     }
 
     @org.junit.jupiter.api.Test
-    void getMyEntitys() {
+    void getMyEntities() {
         List <RoomEntity> arr;
         myRoom.addEntity(myDevAmulet);
         arr = myRoom.getMyEntitys();

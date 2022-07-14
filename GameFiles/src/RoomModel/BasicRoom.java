@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * This is a basic room, and is here for inheritance purposes.
+ *
  * @author Rowan W Osmon
  * @version 0.01
  */
@@ -16,20 +17,24 @@ public class BasicRoom implements Room {
      * This list holds the contents of the room.
      */
     List<RoomEntity> myEntitys = null;
+
     /**
      * This Boolean is used to quickly determine if the room is empty or not.
      */
     Boolean isEmpty = false;
 
-
+    /**
+     * Constructs a basic room.
+     * This Room has an ArrayList<RoomEntity> that is empty
+     */
     BasicRoom(){
         myEntitys = new ArrayList<RoomEntity>();
         isEmpty = true;
     }
 
     /**
-     * Constructs a basic room.
-     * @param arr the RoomEntitys in the room.
+     * Constructs a basic room with a List of RoomEntities.
+     * @param arr the RoomEntities in the room.
      */
     BasicRoom(List<RoomEntity> arr){
         myEntitys = arr;
@@ -39,7 +44,7 @@ public class BasicRoom implements Room {
 
     /**
      * Sets new contents to the room.
-     * @param arr the List of RoomEntitys
+     * @param arr the List of RoomEntities
      */
     public void setMyEntitys(List<RoomEntity> arr) {
         myEntitys = arr;
@@ -47,7 +52,7 @@ public class BasicRoom implements Room {
     }
 
     /**
-     * Gets a copy of the List of RoomEntiys.
+     * Gets a copy of the List of RoomEntities.
      * @return the RoomEntityList
      */
     public List<RoomEntity> getMyEntitys(){
@@ -55,7 +60,10 @@ public class BasicRoom implements Room {
     }
 
     /**
-     * Removes the target RoomEntity.
+     * Removes the Named RoomEntity.
+     * This method iterates through the array of objects in the room
+     * It does this to check the Name of each RoomEntity.
+     * If it finds the correct name, it removes that RoomEntity from the List
      * @param theTargetName
      */
     @Override
@@ -65,8 +73,6 @@ public class BasicRoom implements Room {
                 myEntitys.remove(r);
                 break;
             }
-
-
         }
         checkIfEmpty();
 
