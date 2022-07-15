@@ -1,1 +1,0 @@
-This file is soley for pushing from my local machine to the remote. This is for TCSS 360 Summer 22 Git Basics Assignment.
