@@ -8,9 +8,11 @@ import java.util.List;
  * A room is a list of RoomEntitys.
  * A Room should be able to provide the list of entitys, add to it, or remove an element from it.
  * A Room's toString should be a list of its contents.
- *
+ * @author Rowan W Osmon
  */
 public interface Room {
+
+
 
     /**
      * Adds a Room Entity to the List.
@@ -25,9 +27,9 @@ public interface Room {
 
     /**
      * Removes the targeted RoomEntity from the list.
-     * @param theTarget
+     * @param theTargetName
      */
-    void removeEntity(RoomEntity theTarget);
+    void removeEntity(String theTargetName);
     
     public String toString();
 
