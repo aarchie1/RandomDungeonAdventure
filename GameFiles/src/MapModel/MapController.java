@@ -49,6 +49,10 @@ public class MapController {
 
     }
 
+    public String localMap() {
+        return
+    }
+
 
 
 
