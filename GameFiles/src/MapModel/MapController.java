@@ -7,7 +7,7 @@ import RoomModel.RoomController;
  * This class is used to control all RADSMaps.
  * It will be used whenever a RADSMap operation is needed.
  *
- *
+ * 
  * @author Rowan W Osmon
  *
  *
