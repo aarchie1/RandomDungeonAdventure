@@ -1,6 +1,7 @@
 package RoomModel;
 
-import RoomEntity.EmptyRoom;
+
+import RoomEntity.EntityController;
 
 /**
  * This class is used to control all Rooms
@@ -16,11 +17,17 @@ import RoomEntity.EmptyRoom;
  */
 public class RoomController {
 
+    EntityController myRoomEditer = new EntityController();
     /**
      *
      */
     public RoomController(){
 
+    }
+
+    public Room startRoom() {
+
+        return new StartingRoom(myRoomEditer.getStartingRoom());
     }
 
     /**

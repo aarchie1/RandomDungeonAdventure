@@ -7,6 +7,12 @@ import RoomModel.RoomController;
 /**
  * This class is used to control all RADSMaps.
  * It will be used whenever a RADSMap operation is needed.
+ * Maps should hold a Location as a key, and a room as a value.
+ * Maps should display a single room, a 9x9 of rooms,
+ *      and/or all rooms.
+ * Maps should take locations or strings as input.
+ * Maps should output Rooms or Strings.
+ *
  *
  * 
  * @author Rowan W Osmon
@@ -23,7 +29,7 @@ public class MapController {
     RoomController myRoom = new RoomController();
     Room myCurrentRoom;
 
-    MapController(){
+    public MapController(){
 
     }
     public void setLocal(Location theLocation) {
@@ -32,27 +38,12 @@ public class MapController {
         myCurrentRoom = myMap.getRoomAt(myLocal);
     }
 
-    public void moveLocal(String theDirection){
-        int theX = myLocal.getMyX();
-        int theY = myLocal.getMyY();
-        switch(theDirection) {
-            case "up":      theY++;
-                            break;
-            case "down":    theY--;
-                            break;
-            case "left":    theX--;
-                            break;
-            case "right":   theX++;
-                            break;
-            default:        throw new RuntimeException("Not a valid input!");
-        }
-        setLocal(new Location(theX, theY));
 
+
+    public Room getRoomAt(Location theCoordinates){
+        return myMap.getRoomAt(theCoordinates);
     }
 
-    public String getRoomCurrent(){
-        return myCurrentRoom.toString();
-    }
 
 
 

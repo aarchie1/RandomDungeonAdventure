@@ -2,6 +2,8 @@ package MapModel;
 
 import GameModel.Location;
 import RoomModel.Room;
+import RoomModel.RoomController;
+import RoomModel.StartingRoom;
 
 /**
  * A basic map. It implements the methods in the RADSMap
@@ -18,9 +20,11 @@ import RoomModel.Room;
  */
 public class BasicMap implements RADSMap {
 
+    RoomController myRoomControl = new RoomController();
 
     BasicMap(){
         generateRoom(myCoordinate);
+        replaceRoom(myCoordinate, myRoomControl.startRoom());
     }
 
     /**
@@ -39,6 +43,7 @@ public class BasicMap implements RADSMap {
      */
     @Override
     public void generateRoom(Location theLocation) {
+
         if (!myMap.containsKey(theLocation)) {
             myMap.put(theLocation, myRoomControl.genericRoom());
         }

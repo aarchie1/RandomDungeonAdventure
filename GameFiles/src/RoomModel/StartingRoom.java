@@ -13,9 +13,9 @@ import java.util.ArrayList;
  * It should not contain a trap, monster, objective, exit, or item.
  */
 public class StartingRoom extends BasicRoom {
-    private Boolean isStartTile = true;
 
     StartingRoom(ArrayList<RoomEntity> arr) {
+
         super(arr);
 
     }

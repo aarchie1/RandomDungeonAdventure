@@ -1,5 +1,7 @@
 package RoomEntity;
 
+import java.util.ArrayList;
+
 /**
  * This Class is used to control all RoomEntity's
  * It needs all methods stubbed out
@@ -13,4 +15,11 @@ package RoomEntity;
  */
 public class EntityController {
 
+    EntityController(){
+
+    }
+
+    public ArrayList<RoomEntity> getStartingRoom() {
+        return new ArrayList<RoomEntity>();
+    }
 }
