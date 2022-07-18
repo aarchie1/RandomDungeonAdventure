@@ -75,7 +75,6 @@ public class BasicRoom implements Room {
             }
         }
         checkIfEmpty();
-
     }
 
     /**

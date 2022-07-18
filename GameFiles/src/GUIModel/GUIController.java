@@ -1,4 +1,7 @@
 package GUIModel;
 
-public class GUIController {
+import javax.swing.*;
+
+public class GUIController{
+
 }
