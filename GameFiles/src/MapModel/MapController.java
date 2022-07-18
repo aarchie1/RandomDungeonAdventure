@@ -50,6 +50,10 @@ public class MapController {
 
     }
 
+    public String getRoomCurrent(){
+        return myCurrentRoom.toString();
+    }
+
 
 
 

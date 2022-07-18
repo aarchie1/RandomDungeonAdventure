@@ -79,6 +79,14 @@ public class GameController {
 
     }
 
+    /**
+     * Returns the contents of the current room
+     * @return
+     */
+    public String showTheRoom(){
+        return myMap.getRoomCurrent();
+    }
+
     public String toString(){
         return "";
     }
