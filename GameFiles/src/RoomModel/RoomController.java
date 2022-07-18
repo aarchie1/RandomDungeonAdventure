@@ -16,12 +16,34 @@ import RoomEntity.EmptyRoom;
  */
 public class RoomController {
 
+    /**
+     *
+     */
     public RoomController(){
 
     }
 
-
+    /**
+     * Generates a basic room
+     * @return
+     */
     public Room genericRoom() {
         return new BasicRoom();
+    }
+
+    public PreSetRoom generateRoom(final char theRoom) {
+        PreSetRoom specialRoom = PreSetRoom.GENERIC;
+        switch(theRoom) {
+            case 's':
+                specialRoom = PreSetRoom.START;
+                break;
+            case 'e':
+                specialRoom = PreSetRoom.EXIT;
+                break;
+            case 'o':
+                specialRoom = PreSetRoom.OBJECTIVE;
+                break;
+        }
+        return specialRoom;
     }
 }

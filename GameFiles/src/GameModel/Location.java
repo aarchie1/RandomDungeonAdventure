@@ -1,4 +1,4 @@
-package MapModel;
+package GameModel;
 
 /**
  * This class is used as an X/Y coordinate system.
@@ -23,3 +23,4 @@ public class Location {
         return myX;
     }
 }
+

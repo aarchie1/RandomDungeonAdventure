@@ -1,5 +1,6 @@
 package MapModel;
 
+import GameModel.Location;
 import RoomModel.Room;
 import RoomModel.RoomController;
 

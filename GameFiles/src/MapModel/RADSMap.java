@@ -1,4 +1,5 @@
 package MapModel;
+import GameModel.Location;
 import RoomModel.*;
 
 import java.util.HashMap;

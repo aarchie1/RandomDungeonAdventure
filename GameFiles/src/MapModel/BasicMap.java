@@ -1,7 +1,7 @@
 package MapModel;
 
+import GameModel.Location;
 import RoomModel.Room;
-import RoomModel.RoomController;
 
 /**
  * A basic map. It implements the methods in the RADSMap
@@ -10,13 +10,14 @@ import RoomModel.RoomController;
  * @version 0.01
  *
  * Rowan's notes:
- * This class has a tester.
+ * This class needs a tester.
  * This class needs to be refactored.
  * It should use RoomController for its Room operations.
  * This class (or an extension of it) should also
  *      place a starting room, the 4 objectives, and the ExitRoom
  */
 public class BasicMap implements RADSMap {
+
 
     BasicMap(){
         generateRoom(myCoordinate);
