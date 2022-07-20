@@ -22,10 +22,12 @@ class BasicMapTest {
 
     @org.junit.jupiter.api.Test
     void generateRoom() {
+
     }
 
     @org.junit.jupiter.api.Test
     void fullMap() {
+
     }
 
     @org.junit.jupiter.api.Test
@@ -36,6 +38,7 @@ class BasicMapTest {
 
     @org.junit.jupiter.api.Test
     void localMap() {
+        System.out.println(myMap.localMap(myStart));
     }
 
 }

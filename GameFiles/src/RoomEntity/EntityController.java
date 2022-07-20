@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class EntityController {
 
-    EntityController(){
+    public EntityController(){
 
     }
 

@@ -28,7 +28,9 @@ public class BasicMap implements RADSMap {
     }
 
     /**
-     *
+     * This method is used to replace a Room at a Location.
+     * It takes the desired Location and
+     * the Room that you want placed as inputs.
      * @param theLocation The X/Y coordinate of the room.
      * @param theRoom A Room to be placed at that location.
      */
@@ -38,7 +40,8 @@ public class BasicMap implements RADSMap {
     }
 
     /**
-     *
+     * This method uses the Room Controller to generate a generic room.
+     * It takes as input the Location that you want a room at.
      * @param theLocation
      */
     @Override
@@ -51,7 +54,8 @@ public class BasicMap implements RADSMap {
     }
 
     /**
-     *
+     * This Method is used to return all explored rooms.
+     * Tt returns strings.
      * @return
      */
     @Override
@@ -64,7 +68,10 @@ public class BasicMap implements RADSMap {
     }
 
     /**
-     *
+     * This Method is used to return a Room out of the map
+     * It takes the room location as input.
+     * If no Room exits at that location, a room is generated at that location.
+     * It returns the Room object.
      * @param theLocation
      * @return
      */
@@ -78,6 +85,13 @@ public class BasicMap implements RADSMap {
         return r;
     }
 
+    /**
+     * This method is used to return a 9x9 string of the rooms around the target
+     * It takes as input the location to be at the center of the 9x9
+     * It returns a string representing the contents of the room.
+     * @param theLocation
+     * @return
+     */
     @Override
     public String localMap(Location theLocation) {
         Location l;
@@ -88,8 +102,9 @@ public class BasicMap implements RADSMap {
                 if(!myMap.containsKey(l)){
                     myMap.put(l, myRoomControl.genericRoom());
                 }
-                sb.append(myMap.get(l));
+                sb.append("[" + myMap.get(l) + "]");
             }
+            sb.append("\n");
         }
         return sb.toString();
     }
