@@ -1,5 +1,6 @@
 package RoomModel;
 
+import RoomEntity.EntityController;
 import RoomEntity.RoomEntity;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public interface Room {
 
-
+    EntityController myContentsEdit = new EntityController();
 
     /**
      * Adds a Room Entity to the List.

@@ -20,6 +20,8 @@ public class EntityController {
     }
 
     public ArrayList<RoomEntity> getStartingRoom() {
-        return new ArrayList<RoomEntity>();
+        ArrayList<RoomEntity> arr = new ArrayList<>();
+        arr.add(new DevAmulet());
+        return arr;
     }
 }

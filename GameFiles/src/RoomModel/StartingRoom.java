@@ -3,6 +3,7 @@ package RoomModel;
 
 
 import RoomEntity.RoomEntity;
+import RoomEntity.DevAmulet;
 
 import java.util.ArrayList;
 

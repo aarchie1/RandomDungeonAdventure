@@ -20,8 +20,6 @@ import RoomModel.StartingRoom;
  */
 public class BasicMap implements RADSMap {
 
-    RoomController myRoomControl = new RoomController();
-
     BasicMap(){
         generateRoom(myCoordinate);
         replaceRoom(myCoordinate, myRoomControl.startRoom());
@@ -36,6 +34,7 @@ public class BasicMap implements RADSMap {
      */
     @Override
     public void replaceRoom(Location theLocation, Room theRoom) {
+
         myMap.put(theLocation, theRoom);
     }
 
