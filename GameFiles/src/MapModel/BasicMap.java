@@ -5,6 +5,11 @@ import RoomModel.Room;
 import RoomModel.RoomController;
 import RoomModel.StartingRoom;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Set;
+
 /**
  * A basic map. It implements the methods in the RADSMap
  * It may be used for inheritance, testing, and modeling a Map class.
@@ -23,6 +28,7 @@ public class BasicMap implements RADSMap {
     BasicMap(){
         generateRoom(myCoordinate);
         replaceRoom(myCoordinate, myRoomControl.startRoom());
+        generateLocalRooms(myCoordinate);
     }
 
     /**
@@ -48,22 +54,38 @@ public class BasicMap implements RADSMap {
 
         if (!myMap.containsKey(theLocation)) {
             myMap.put(theLocation, myRoomControl.genericRoom());
+
         }
 
     }
 
     /**
      * This Method is used to return all explored rooms.
-     * Tt returns strings.
+     * it returns a string.
+     *
+     * Rowan's notes:
+     * would like to refactor this to not use a 2d String array
+     *
      * @return
      */
     @Override
     public String fullMap() {
-        StringBuilder sb = new StringBuilder();
-        for (Location l : myMap.keySet()){
-            sb.append(myMap.get(l).toString());
+        int rowOffset = -10;
+        int columnOffset = -10;
+        String[][] arr = new String[20][20];
+        Location theCoord = new Location(rowOffset,columnOffset);
+        for (int i = 0; i < arr.length; i++){
+           for (int j = 0; j < arr[i].length; j++){
+               theCoord = new Location(rowOffset+i,columnOffset+j);
+               if(myMap.containsKey(theCoord)){
+                   arr[i][j] = "(" + myMap.get(theCoord)+")";
+               } else {
+                   arr[i][j] = "()";
+               }
+            }
         }
-        return sb.toString();
+
+        return Arrays.deepToString(arr).replace("], ", "\n");
     }
 
     /**
@@ -106,5 +128,15 @@ public class BasicMap implements RADSMap {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    private void generateLocalRooms(Location theLocation){
+        Location l;
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                l = new Location(theLocation.getMyX()+i, theLocation.getMyY()+j);
+                generateRoom(l);
+            }
+        }
     }
 }
