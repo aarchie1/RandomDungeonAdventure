@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class needs to be implemented!
+ */
 class GameControllerTest {
 
     GameController testGame = new GameController();

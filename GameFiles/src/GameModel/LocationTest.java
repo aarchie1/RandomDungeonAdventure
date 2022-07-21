@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class tests the Location class.
+ * @author Rowan W Osmon
+ * @version 0.01
+ */
 class LocationTest {
 
     @Test

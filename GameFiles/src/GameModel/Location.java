@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * This class is used as an X/Y coordinate system.
  * @author Rowan W Osmon
- *
+ * @version 0.01
  */
 public class Location implements Comparator<Location>{
 

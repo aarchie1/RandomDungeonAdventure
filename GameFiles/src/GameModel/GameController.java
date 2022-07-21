@@ -22,14 +22,20 @@ public class GameController {
      * This controls RoomEntitys
      */
     private CreatureEntityController myCreatures;
-
+    /**
+     * This stores the start location
+     */
     private final Location theStart;
+
+    /**
+     * This stores the currentLocation
+     */
     private Location myCurrentLocation;
 
     /**
-     * The constructor creates a new GameControler
+     * The constructor creates a new GameController
      */
-    GameController(){
+    public GameController(){
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
         myMap.setLocal(theStart);
@@ -53,7 +59,7 @@ public class GameController {
      * @param save A save string created by the save game method
      */
     public void loadGame(final String save){
-
+    //insert code here!
     }
 
     /**
@@ -62,6 +68,7 @@ public class GameController {
      * @return
      */
     public String saveGame() {
+        //insert code here!
         return "";
     }
 
@@ -73,7 +80,7 @@ public class GameController {
      * @param theDirection UP,DOWN,LEFT,RIGHT are the only accepted inputs.
      */
     public void enterDirection(final String theDirection){
-
+        //insert code here!
     }
 
     /**
@@ -83,7 +90,7 @@ public class GameController {
      * @param theAction an accepted input TBD
      */
     public void actionMenu(final String theAction){
-
+        //insert code here!
     }
 
     /**
@@ -124,7 +131,16 @@ public class GameController {
         return myMap.getRoomAt(myCurrentLocation).toString();
     }
 
-    public String toString(){
-        return "This is the GameControl";
+    /**
+     * This method should check for the end game condition.
+     * It returns false when the condition is set, true otherwise.
+     * @return
+     */
+    public boolean hasWon() {
+        //code to check for endgame, return false if game is won
+        //insert code here!
+        return true;
     }
+
+
 }

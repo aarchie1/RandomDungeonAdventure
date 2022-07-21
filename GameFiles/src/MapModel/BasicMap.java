@@ -130,6 +130,10 @@ public class BasicMap implements RADSMap {
         return sb.toString();
     }
 
+    /**
+     * This method is used to generate the rooms surrounding the input location.
+     * @param theLocation
+     */
     private void generateLocalRooms(Location theLocation){
         Location l;
         for (int i = -1; i < 2; i++) {

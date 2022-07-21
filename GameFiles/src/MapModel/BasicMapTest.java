@@ -6,6 +6,7 @@ import RoomModel.Room;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class BasicMapTest {
     BasicMap myMap = new BasicMap();
@@ -26,17 +27,17 @@ class BasicMapTest {
     void replaceRoom() {
         System.out.println("\n***Begin replaceRoom test***\n");
         System.out.println(myMap.getRoomAt(myStart).toString());
-
+        fail("Not finished!");
     }
 
     @org.junit.jupiter.api.Test
     void generateRoom() {
         System.out.println("\n***Begin generateRoom test***\n");
-
-
         moveOffset(1,0);
-    myMap.generateRoom(myCurrent);
-    myMap.replaceRoom(myCurrent, new BasicRoom());
+        myMap.generateRoom(myCurrent);
+        myMap.replaceRoom(myCurrent, new BasicRoom());
+        fail("Not finished!");
+
     }
 
     @org.junit.jupiter.api.Test
@@ -47,6 +48,8 @@ class BasicMapTest {
             myMap.generateRoom(myCurrent);
             System.out.println(myMap.fullMap() + "\n");
         }
+        fail("Not finished!");
+
     }
 
     @org.junit.jupiter.api.Test
@@ -61,6 +64,7 @@ class BasicMapTest {
         test1 = myMap.getRoomAt(myCurrent);
         System.out.println(test1.toString());
         assertEquals(expectedOut, test1.toString());
+        System.out.println("getRoomAt test passed!");
     }
 
     @org.junit.jupiter.api.Test
@@ -82,7 +86,7 @@ class BasicMapTest {
         theMapOutput = myMap.localMap(myCurrent);
         System.out.println(myMap.localMap(myCurrent));
         assertEquals(theExpectedString, theMapOutput);
-        System.out.println("Map test passed!");
+        System.out.println("Map test finished!");
     }
 
 }
