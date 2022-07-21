@@ -1,5 +1,7 @@
 package RoomEntity;
 
+import java.util.ArrayList;
+
 /**
  * This Class is used to control all RoomEntity's
  * It needs all methods stubbed out
@@ -12,5 +14,26 @@ package RoomEntity;
  *
  */
 public class EntityController {
+    private boolean areMonstersDefeated;
+    private ArrayList<RoomEntity> myContents = new ArrayList<>();
+    public EntityController(){
+        areMonstersDefeated = false;
+    }
+
+
+    public RoomEntity addMonster(){
+        RoomEntity myCreature = new CreatureCrossover();
+        return myCreature;
+    }
+
+    public ArrayList<RoomEntity> getStartingRoom(){
+        myContents = new ArrayList<>();
+        myContents.add(new DevAmulet());
+        return myContents;
+    }
+
+
+
+
 
 }

@@ -27,7 +27,7 @@ public class BasicRoom implements Room {
      * Constructs a basic room.
      * This Room has an ArrayList<RoomEntity> that is empty
      */
-    BasicRoom(){
+    public BasicRoom(){
         myEntitys = new ArrayList<RoomEntity>();
         isEmpty = true;
     }
