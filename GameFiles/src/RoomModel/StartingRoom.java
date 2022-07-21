@@ -3,7 +3,7 @@ package RoomModel;
 
 
 import RoomEntity.RoomEntity;
-import RoomEntity.DevAmulet;
+
 
 import java.util.ArrayList;
 
@@ -16,10 +16,10 @@ import java.util.ArrayList;
 public class StartingRoom extends BasicRoom {
 
     StartingRoom(ArrayList<RoomEntity> arr) {
-
         super(arr);
-
     }
+
+
 
 
 

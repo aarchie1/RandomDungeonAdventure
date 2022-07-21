@@ -14,14 +14,26 @@ import java.util.ArrayList;
  *
  */
 public class EntityController {
-
+    private boolean areMonstersDefeated;
+    private ArrayList<RoomEntity> myContents = new ArrayList<>();
     public EntityController(){
-
+        areMonstersDefeated = false;
     }
 
-    public ArrayList<RoomEntity> getStartingRoom() {
-        ArrayList<RoomEntity> arr = new ArrayList<>();
-        arr.add(new DevAmulet());
-        return arr;
+
+    public RoomEntity addMonster(){
+        RoomEntity myCreature = new CreatureCrossover();
+        return myCreature;
     }
+
+    public ArrayList<RoomEntity> getStartingRoom(){
+        myContents = new ArrayList<>();
+        myContents.add(new DevAmulet());
+        return myContents;
+    }
+
+
+
+
+
 }

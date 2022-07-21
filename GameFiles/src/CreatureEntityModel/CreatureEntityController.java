@@ -10,4 +10,16 @@ package CreatureEntityModel;
  */
 public class CreatureEntityController {
 
+    public CreatureEntityController(){
+
+    }
+
+    /**
+     * Need to make this iterate over the list of monster names.
+     * @return
+     */
+    public String getCreatureName(){
+        Monster m = new Gremlin();
+        return m.getMyName();
+    }
 }

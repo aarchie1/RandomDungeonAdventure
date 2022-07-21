@@ -17,7 +17,7 @@ import RoomEntity.EntityController;
  */
 public class RoomController {
 
-    EntityController myRoomEditer = new EntityController();
+    EntityController myEntityEditor = new EntityController();
     /**
      *
      */
@@ -26,8 +26,8 @@ public class RoomController {
     }
 
     public Room startRoom() {
-
-        return new StartingRoom(myRoomEditer.getStartingRoom());
+        Room start = new StartingRoom(myEntityEditor.getStartingRoom());
+        return start;
     }
 
     /**
@@ -35,20 +35,25 @@ public class RoomController {
      * @return
      */
     public Room genericRoom() {
-        return new BasicRoom();
+        Room theRoom = new BasicRoom();
+        //theRoom.addEntity(myRoomEditer.addMonster());
+        return theRoom;
     }
 
-    public PreSetRoom generateRoom(final char theRoom) {
+
+    public PreSetRoom generateRoom(final String theRoom) {
         PreSetRoom specialRoom = PreSetRoom.GENERIC;
         switch(theRoom) {
-            case 's':
+            case "start":
                 specialRoom = PreSetRoom.START;
                 break;
-            case 'e':
+            case "exit":
                 specialRoom = PreSetRoom.EXIT;
                 break;
-            case 'o':
+            case "object":
                 specialRoom = PreSetRoom.OBJECTIVE;
+                break;
+            default:
                 break;
         }
         return specialRoom;

@@ -97,6 +97,17 @@ public class DungeonCharacter implements CreatureEntity {
     }
 
     /**
+     * Used to get the string myName by itself.
+     * @return String the contents of myName.
+     */
+    @Override
+    public String getMyName() {
+        return myName;
+    }
+
+
+
+    /**
      * This method will retrieve a Characters attack speed
      * @return int representing the attack speed of a Dungeon Character.
      */

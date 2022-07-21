@@ -8,8 +8,8 @@ package CreatureEntityModel;
  * @version 1.0
  */
 public interface CreatureEntity {
-
+    String myName = "";
     public String toString();
 
-
+    String getMyName();
 }
