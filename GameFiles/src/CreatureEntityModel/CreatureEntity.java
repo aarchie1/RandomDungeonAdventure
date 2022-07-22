@@ -12,4 +12,5 @@ public interface CreatureEntity {
     public String toString();
 
     String getMyName();
+
 }
