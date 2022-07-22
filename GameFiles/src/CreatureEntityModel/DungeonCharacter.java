@@ -10,15 +10,19 @@ import java.util.*;
  * and Attack Accuracy.
  * Methods from specs include: getters/setters for fields, attack behaviour method.
  * @author Anthony Archie
- * @version 1.0
+ * @version .02
  */
 public class DungeonCharacter implements CreatureEntity {
+    private static final int VISION_POTION_VALUE = 20;
     private final String myName;
     private int myHitPoints;
     private final int myDamageRangeMin;
     private final int myDamageRangeMax;
-    private int myAttackSpeed;
-    private double myAttackAccuracy;
+    private final int myAttackSpeed;
+    private final double myAttackAccuracy;
+    private int myHealthPotions;
+    private int myVisionPotions;
+    private ArrayList<String> myItems;
 
     /**
      *
@@ -35,9 +39,13 @@ public class DungeonCharacter implements CreatureEntity {
         myName = theName;
         myHitPoints = theHitPoints;
         myDamageRangeMin = theDamageRangeMin;
-        myDamageRangeMax = theDamageRangeMin;
+        myDamageRangeMax = theDamageRangeMax;
         myAttackSpeed = theAttackSpeed;
         myAttackAccuracy = theAttackAccuracy;
+        myHealthPotions = 0;
+        myVisionPotions = 0;
+        myItems = new ArrayList<>();
+
     }
 
     /**
@@ -55,28 +63,32 @@ public class DungeonCharacter implements CreatureEntity {
 
     }
 
+    void setMyHealthPotions(final int thePotionCount) {
+        myHealthPotions = thePotionCount;
+    }
+
+    void setMyVisionPotions(final int thePotionCount) {
+        myVisionPotions = thePotionCount;
+    }
+
+    void addMyItems(final String theItem) {
+        myItems.add(theItem);
+    }
+
     /**
      * This method sets damage for the given character
      * @param theDamage this is the amount of damage taken during battle that will be applied to the HP.
      */
-    public void setDamage(final int theDamage){
+    void setDamage(final int theDamage){
         int newHp = getMyHitPoints() - theDamage;
         setMyHitPoints(newHp);
-    }
-
-    /**
-     * This method returns the hit points for the current character.
-     * @return int representing the hit points of a character.
-     */
-    public int getMyHitPoints() {
-        return myHitPoints;
     }
 
     /**
      * This method sets the hitpoints for the current character.
      * @param myHitPoints the hit points which need to be set for the charcter
      */
-    public void setMyHitPoints(int myHitPoints) {
+    void setMyHitPoints(int myHitPoints) {
         this.myHitPoints = myHitPoints;
     }
 
@@ -105,13 +117,19 @@ public class DungeonCharacter implements CreatureEntity {
         return myName;
     }
 
-
+    /**
+     * This method returns the hit points for the current character.
+     * @return int representing the hit points of a character.
+     */
+    int getMyHitPoints() {
+        return myHitPoints;
+    }
 
     /**
      * This method will retrieve a Characters attack speed
      * @return int representing the attack speed of a Dungeon Character.
      */
-    public int getMyAttackSpeed() {
+    int getMyAttackSpeed() {
         return myAttackSpeed;
     }
 
@@ -119,7 +137,21 @@ public class DungeonCharacter implements CreatureEntity {
      * This method will retrieve a Characters attack Accuracy
      * @return double representing the attack accuracy of a Dungeon Character.
      */
-    public double getMyAttackAccuracy(){
+    double getMyAttackAccuracy(){
         return myAttackAccuracy;
     }
+
+    int getMyHealthPotions() {
+        return myHealthPotions;
+    }
+
+    int getMyVisionPotions() {
+        return myVisionPotions;
+    }
+
+    ArrayList<String> getMyItems() {
+        return myItems;
+    }
+
+
 }
