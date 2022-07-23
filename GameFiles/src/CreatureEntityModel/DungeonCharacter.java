@@ -39,8 +39,6 @@ public class DungeonCharacter implements CreatureEntity {
         myDamageRangeMax = theDamageRangeMax;
         myAttackSpeed = theAttackSpeed;
         myAttackAccuracy = theAttackAccuracy;
-
-
     }
 
     /**

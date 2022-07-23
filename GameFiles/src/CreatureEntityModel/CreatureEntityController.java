@@ -20,10 +20,12 @@ public class CreatureEntityController {
         //Create hero instance
         if(theCharacter.toLowerCase().equals("hero")){
             myHero = new Warrior();
+            myCharacter = myHero;
         }
         //Create monster instance
         if(theCharacter.toLowerCase().equals("monster")){
-            myCharacter = new Gremlin();
+            myMonster = new Gremlin();
+            myCharacter = myMonster;
         }
     }
 
