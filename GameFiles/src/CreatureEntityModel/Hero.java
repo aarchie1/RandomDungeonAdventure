@@ -42,6 +42,7 @@ public class Hero extends DungeonCharacter {
      */
     @Override
     public String toString() {
+        // String concatenation
         super.toString();
         return "Hero{" +
                 "myBlockAccuracy=" + myBlockAccuracy +
