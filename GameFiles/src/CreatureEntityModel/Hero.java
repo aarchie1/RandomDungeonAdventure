@@ -1,5 +1,7 @@
 package CreatureEntityModel;
 
+import java.util.ArrayList;
+
 /**
  * Inherits from CreatureEntityModel and is abstract
  * A hero never gets fewer attacks than a monster
@@ -13,8 +15,10 @@ public class Hero extends DungeonCharacter {
     private final double myBlockAccuracy;
     private final String myRegularAttack;
     private final String mySpecialAttack;
-
-
+    private static final int VISION_POTION_VALUE = 20;
+    private int myHealthPotions;
+    private int myVisionPotions;
+    private ArrayList<String> myItems;
     /**
      *
      * @param theName this is the name of the Dungeon Character.
@@ -34,6 +38,9 @@ public class Hero extends DungeonCharacter {
         myBlockAccuracy = theBlockAccuracy;
         myRegularAttack = theRegularAttack;
         mySpecialAttack = theSpecialAttack;
+        myHealthPotions = 0;
+        myVisionPotions = 0;
+        myItems = new ArrayList<>();
     }
 
     /**
@@ -43,12 +50,38 @@ public class Hero extends DungeonCharacter {
     @Override
     public String toString() {
         // String concatenation
-        super.toString();
-        return "Hero{" +
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("Hero{" +
                 "myBlockAccuracy=" + myBlockAccuracy +
                 ", myRegularAttack='" + myRegularAttack + '\'' +
                 ", mySpecialAttack='" + mySpecialAttack + '\'' +
-                '}';
+                '}');
+        return sb.toString();
+    }
+
+    public void setMyHealthPotions(final int thePotionCount) {
+        myHealthPotions = thePotionCount;
+    }
+
+    public void setMyVisionPotions(final int thePotionCount) {
+        myVisionPotions = thePotionCount;
+    }
+
+    public void addMyItems(final String theItem) {
+        myItems.add(theItem);
+    }
+
+    int getMyHealthPotions() {
+        return myHealthPotions;
+    }
+
+    int getMyVisionPotions() {
+        return myVisionPotions;
+    }
+
+    ArrayList<String> getMyItems() {
+        return myItems;
     }
 
     public double getMyBlockAccuracy() {

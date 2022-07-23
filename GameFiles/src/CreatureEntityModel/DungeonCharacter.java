@@ -13,16 +13,13 @@ import java.util.*;
  * @version .02
  */
 public class DungeonCharacter implements CreatureEntity {
-    private static final int VISION_POTION_VALUE = 20;
     private final String myName;
     private int myHitPoints;
     private final int myDamageRangeMin;
     private final int myDamageRangeMax;
     private final int myAttackSpeed;
     private final double myAttackAccuracy;
-    private int myHealthPotions;
-    private int myVisionPotions;
-    private ArrayList<String> myItems;
+
 
     /**
      *
@@ -42,9 +39,7 @@ public class DungeonCharacter implements CreatureEntity {
         myDamageRangeMax = theDamageRangeMax;
         myAttackSpeed = theAttackSpeed;
         myAttackAccuracy = theAttackAccuracy;
-        myHealthPotions = 0;
-        myVisionPotions = 0;
-        myItems = new ArrayList<>();
+
 
     }
 
@@ -61,18 +56,6 @@ public class DungeonCharacter implements CreatureEntity {
             theOpponent.setDamage(damage);
         }
 
-    }
-
-    void setMyHealthPotions(final int thePotionCount) {
-        myHealthPotions = thePotionCount;
-    }
-
-    void setMyVisionPotions(final int thePotionCount) {
-        myVisionPotions = thePotionCount;
-    }
-
-    void addMyItems(final String theItem) {
-        myItems.add(theItem);
     }
 
     /**
@@ -141,17 +124,7 @@ public class DungeonCharacter implements CreatureEntity {
         return myAttackAccuracy;
     }
 
-    int getMyHealthPotions() {
-        return myHealthPotions;
-    }
 
-    int getMyVisionPotions() {
-        return myVisionPotions;
-    }
-
-    ArrayList<String> getMyItems() {
-        return myItems;
-    }
 
 
 }
