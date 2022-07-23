@@ -2,17 +2,34 @@ package CreatureEntityModel;
 
 public class BattleLogic {
 
-    public Hero getCombatantOne (Hero theHero) {
-        theHero.getMyName();
-        theHero.getMyHitPoints();
-        theHero.getMyBlockAccuracy();
-        theHero.getMyRegularAttack();
-        theHero.getMySpecialAttack();
-        theHero.getMyAttackAccuracy();
-        theHero.getMyAttackSpeed();
-        theHero.getMyBlockAccuracy();
-
+    /**
+     * Copies stats of a Hero
+     * @param theHero
+     * @return
+     */
+    public Hero heroFightStats (Hero theHero) {
+        String heroName = theHero.getMyName();
+        int heroHitPoints = theHero.getMyHitPoints();
+        double heroBlockAccuracy = theHero.getMyBlockAccuracy();
+        String heroRegularAttack = theHero.getMyRegularAttack();
+        String heroSpecialAttack = theHero.getMySpecialAttack();
+        double heroAttackAccuracy = theHero.getMyAttackAccuracy();
+        int heroAttackSpeed = theHero.getMyAttackSpeed();
         return theHero;
+    }
+
+    /**
+     * Copies stats of Monster
+     * @param theMonster
+     * @return
+     */
+    public Monster monsterFightStats (Monster theMonster) {
+        String monsterName = theMonster.getMyName();
+        int monsterHitPoints = theMonster.getMyHitPoints();
+        int monsterAttackSpeed = theMonster.getMyAttackSpeed();
+        double monsterAttackAccuracy = theMonster.getMyAttackAccuracy();
+        double monsterHealingPercentage = theMonster.getMyHealingPercentage();
+        return theMonster;
     }
 
 
@@ -25,16 +42,27 @@ public class BattleLogic {
      * @return the faster of the two
      */
     public String compareSpeed(Hero theHero, Monster theMonster) {
-        int HeroSpeed = theHero.getMyAttackSpeed();
-        int MonsterSpeed = theMonster.getMyAttackSpeed();
+        int heroSpeed = theHero.getMyAttackSpeed();
+        int monsterSpeed = theMonster.getMyAttackSpeed();
 
-        if (HeroSpeed > MonsterSpeed) {
-            return theHero.toString();
-        } else if (HeroSpeed < MonsterSpeed) {
-            return theMonster.toString();
+        if (heroSpeed > monsterSpeed) {
+            return "Hero";
+        } else if (heroSpeed < monsterSpeed) {
+            return "Monster";
         } else {
-            return theHero.toString();
+            return "Hero";
         }
+    }
+
+    public void theFight (Hero heroFightStats, Monster monsterFightStats) {
+        if (compareSpeed(heroFightStats,monsterFightStats).equals("Hero")) {
+            while(heroFightStats.getMyHitPoints() > 0 | monsterFightStats.getMyHitPoints() > 0) {
+                if(heroFightStats.getMyAttackAccuracy() > .50) {
+                    //monsterFightStats.getMyHitPoints() -= heroFightStats.getMyRegularAttack();
+                }
+            }
+        }
+
     }
 
 
