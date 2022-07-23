@@ -11,9 +11,6 @@ class CreatureEntityControllerTest {
     CreatureEntityController myHero  = new CreatureEntityController("hero");
     CreatureEntityController myMonster = new CreatureEntityController("Monster");
 
-    public void setHPHelper(CreatureEntityController theCharacter, int theHP){
-        theCharacter.setMyHitPoints(theHP);
-    }
 
     @BeforeEach
     void setUp(){
@@ -30,7 +27,6 @@ class CreatureEntityControllerTest {
 
     @Test
     void checkAlive() {
-        setHPHelper(myHero, 0);
         System.out.println(myHero.checkAlive());
 
     }
