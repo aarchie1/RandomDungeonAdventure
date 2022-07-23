@@ -13,11 +13,13 @@ import static java.lang.Integer.parseInt;
  */
 public class CreatureEntityController {
     private DungeonCharacter myCharacter;
+    private Monster myMonster;
+    private Hero myHero;
 
     public CreatureEntityController(final String theCharacter){
         //Create hero instance
         if(theCharacter.toLowerCase().equals("hero")){
-            myCharacter = new Warrior();
+            myHero = new Warrior();
         }
         //Create monster instance
         if(theCharacter.toLowerCase().equals("monster")){
@@ -51,8 +53,8 @@ public class CreatureEntityController {
      * @return this is an integer representing the number of items a player has
      */
     public int giveItem(final String theItem){
-        myCharacter.addMyItems(theItem);
-        return myCharacter.getMyItems().size();
+        myHero.addMyItems(theItem);
+        return myHero.getMyItems().size();
     }
 
     /**
@@ -61,9 +63,9 @@ public class CreatureEntityController {
      * @param thePotionValue this is a String that represents the value of the health potion
      */
     public void useHealthPotion(final String thePotionValue){
-        if( myCharacter.getMyHealthPotions() > 0){
-            myCharacter.setMyHealthPotions(myCharacter.getMyHealthPotions() - 1);
-            myCharacter.setMyHitPoints(myCharacter.getMyHitPoints() + parseInt(thePotionValue));
+        if( myHero.getMyHealthPotions() > 0){
+            myHero.setMyHealthPotions(myHero.getMyHealthPotions() - 1);
+            myHero.setMyHitPoints(myHero.getMyHitPoints() + parseInt(thePotionValue));
         }
     }
 
@@ -73,8 +75,8 @@ public class CreatureEntityController {
      * lives in the MapModel package.
      */
     public void useVisionPotion(){
-        if( myCharacter.getMyVisionPotions() > 0){
-            myCharacter.setMyVisionPotions(myCharacter.getMyVisionPotions() - 1);
+        if( myHero.getMyVisionPotions() > 0){
+            myHero.setMyVisionPotions(myHero.getMyVisionPotions() - 1);
         }
     }
 
