@@ -11,7 +11,9 @@ import java.util.ArrayList;
  * This includes Items, Monsters, Objectives, Traps,
  *      DungeonFeatures, and if the Room is empty a description
  *      of that EmptyRoom.
- *
+ * @author Rowan W Osmon
+ * @author Anthony Archie
+ * @version .02
  */
 public class EntityController {
     private boolean areMonstersDefeated;
@@ -22,7 +24,7 @@ public class EntityController {
 
 
     public RoomEntity addMonster(){
-        RoomEntity myCreature = new CreatureCrossover();
+        RoomEntity myCreature = new CreatureCrossover("monster");
         return myCreature;
     }
 
@@ -31,6 +33,30 @@ public class EntityController {
         myContents.add(new DevAmulet());
         return myContents;
     }
+
+    // Method to addHero
+    public RoomEntity addHero (){
+        RoomEntity myCreature = new CreatureCrossover("hero");
+        return myCreature;
+    }
+
+    // Method to Remove Monster
+    public void removeMonster(){
+
+    }
+    // Method to remove Hero when leaving the room
+
+    // Method to add Pillars
+
+    // Method to add healthPotion
+
+    // Method to add visionPotion
+
+    // Method to add door
+
+    // Method to add trap
+
+
 
 
 
