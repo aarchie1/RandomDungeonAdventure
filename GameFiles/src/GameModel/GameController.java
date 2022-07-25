@@ -131,6 +131,7 @@ public class GameController {
         return myMap.getRoomAt(myCurrentLocation).toString();
     }
 
+    public String showFullMap() {return myMap.getFullMap();}
     /**
      * This method should check for the end game condition.
      * It returns false when the condition is set, true otherwise.

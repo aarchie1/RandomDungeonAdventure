@@ -44,7 +44,9 @@ public class MapController {
         return myMap.getRoomAt(theCoordinates);
     }
 
-
+    public String getFullMap(){
+        return myMap.fullMap();
+    }
 
 
 
