@@ -10,6 +10,7 @@ import RoomModel.RoomController;
  */
 public class GameController {
 
+
     /**
      * This controls map actions.
      */
@@ -74,13 +75,33 @@ public class GameController {
 
     /**
      * This method takes a string that represents up, down, left, or right.
+     * Acceptable inputs are (U, D, L, R)
      * It does nothing if given an incorrect string
      * It will tell the MapController to move once in the specified direction.
      *
-     * @param theDirection UP,DOWN,LEFT,RIGHT are the only accepted inputs.
+     * @param theDirection U,D,L,R are the only accepted inputs.
      */
-    public void enterDirection(final String theDirection){
-        //insert code here!
+    public Location inputDirection(final String theDirection){
+        Location nextLoc;
+        Directions d = Directions.getDirection(theDirection);
+        switch (d) {
+            case UP:
+                nextLoc = new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()-1);
+                break;
+            case DOWN:
+                nextLoc = new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()+1);
+                break;
+            case LEFT:
+                nextLoc = new Location(myCurrentLocation.getMyX()-1, myCurrentLocation.getMyY());
+                break;
+            case RIGHT:
+                nextLoc = new Location(myCurrentLocation.getMyX()+1, myCurrentLocation.getMyY()-1);
+                break;
+            default:
+                nextLoc = new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY());
+                break;
+        }
+        return nextLoc;
     }
 
     /**
@@ -97,21 +118,8 @@ public class GameController {
      * Used to input directions to the game controller.
      * @param theDirection
      */
-    public void moveLocal(String theDirection){
-        int theX = theStart.getMyX();
-        int theY = theStart.getMyY();
-        switch(theDirection) {
-            case "up":      theY++;
-                break;
-            case "down":    theY--;
-                break;
-            case "left":    theX--;
-                break;
-            case "right":   theX++;
-                break;
-            default:        throw new RuntimeException("Not a valid input!");
-        }
-        setLocal(new Location(theX, theY));
+    public void moveLocal(final String theDirection){
+        setLocal(inputDirection(theDirection));
 
     }
 
@@ -119,7 +127,7 @@ public class GameController {
      * Used to modify the current location for moving.
      * @param theLocation
      */
-    public void setLocal(final Location theLocation) {
+    private void setLocal(final Location theLocation) {
         myCurrentLocation = theLocation;
     }
 

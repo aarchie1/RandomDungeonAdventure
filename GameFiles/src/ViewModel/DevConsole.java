@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class DevConsole {
     GameController myGame = new GameController();
-    Scanner S = new Scanner(System.in);
+    Scanner s = new Scanner(System.in);
 
     DevConsole(){
         System.out.println("Welcome to RADS!");
@@ -20,10 +20,15 @@ public class DevConsole {
 
     public void playNewGame(){
         myGame.newGame();
-
+        gameLogicLoop();
     }
     private void gameLogicLoop() {
+
         while (myGame.hasWon()){
+         System.out.println(myGame.showCurrentRoom());
+         System.out.println("Please input W, A, S, or D");
+         String in = s.nextLine();
+         myGame.inputDirection(in);
 
         }
     }
