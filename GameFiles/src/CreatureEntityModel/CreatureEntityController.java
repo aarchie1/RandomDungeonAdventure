@@ -1,6 +1,8 @@
 package CreatureEntityModel;
 
 
+import java.util.ArrayList;
+
 import static java.lang.Integer.parseInt;
 
 /**
@@ -12,35 +14,59 @@ import static java.lang.Integer.parseInt;
  * @version .02
  */
 public class CreatureEntityController {
-    private DungeonCharacter myCharacter;
     private Monster myMonster;
     private Hero myHero;
 
-    public CreatureEntityController(final String theCharacter){
-        //Create hero instance
-        if(theCharacter.toLowerCase().equals("hero")){
-            myHero = new Warrior();
-        }
-        //Create monster instance
-        if(theCharacter.toLowerCase().equals("monster")){
-            myCharacter = new Gremlin();
-        }
+    public CreatureEntityController(){
+
     }
 
-    /**
-     * This method returns the creatures name as a String
-     * @return String representing the Characters Name.
-     */
-    public String getCharacterName(){
-        return myCharacter.getMyName();
+    // Method for creating instance of a hero
+    public void createHero(){
+        myHero = new Warrior();
     }
+
+    // Method for creating instance of a monster
+    public void createMonster(){
+        myMonster = new Gremlin();
+    }
+
+    // Method for retrieving current monsters name
+    public String getMyMonster() {
+        return myMonster.getMyName();
+    }
+
+    //Method for retreiving current heros name
+    public String getMyHero() {
+        return myHero.getMyName();
+    }
+
+    // Method for testing purposes
+    public void setHeroDamage(final int theDamage){
+        myHero.setDamage(theDamage);
+    }
+
+    // Method for testing purpose, maybe leave in depending on team decision
+    // Credit to tutorial point for the code on Creating a string from a ArrayList
+    // https://www.tutorialspoint.com/How-to-create-a-string-from-a-Java-ArrayList#:~:text=To%20convert%20the%20contents%20of,using%20the%20toString()%20method.
+    public String getMyHeroItems(){
+        ArrayList<String> al = myHero.getMyItems();
+        StringBuffer sb = new StringBuffer();
+        for (String s : al) {
+            sb.append(s);
+            sb.append(" ");
+        }
+        String str = sb.toString();
+        return str;
+    }
+
 
     /**
      * This method makes a call to the Dungeon Character to see if the Character is Alive.
      * @return boolean representing true if the Dungeon Character is alive, and false otherwise
      */
-    public boolean checkAlive(){
-        if(myCharacter.getMyHitPoints() > 0 ){
+    public boolean checkHeroAlive(){
+        if(myHero.getMyHitPoints() > 0 ){
             return true;
         } else {
             return false;
@@ -53,7 +79,15 @@ public class CreatureEntityController {
      * @return this is an integer representing the number of items a player has
      */
     public int giveItem(final String theItem){
-        myHero.addMyItems(theItem);
+        if(theItem.equals("HealthPotion")){
+            myHero.setMyHealthPotions(myHero.getMyHealthPotions() + 1);
+            myHero.addMyItems(theItem);
+        } else if(theItem.equals("VisionPotion")){
+            myHero.setMyVisionPotions(myHero.getMyVisionPotions() + 1);
+            myHero.addMyItems(theItem);
+        } else {
+            myHero.addMyItems(theItem);
+        }
         return myHero.getMyItems().size();
     }
 
@@ -66,6 +100,7 @@ public class CreatureEntityController {
         if( myHero.getMyHealthPotions() > 0){
             myHero.setMyHealthPotions(myHero.getMyHealthPotions() - 1);
             myHero.setMyHitPoints(myHero.getMyHitPoints() + parseInt(thePotionValue));
+            myHero.removeMyItems("HealthPotion");
         }
     }
 
@@ -77,6 +112,7 @@ public class CreatureEntityController {
     public void useVisionPotion(){
         if( myHero.getMyVisionPotions() > 0){
             myHero.setMyVisionPotions(myHero.getMyVisionPotions() - 1);
+            myHero.removeMyItems("VisionPotion");
         }
     }
 

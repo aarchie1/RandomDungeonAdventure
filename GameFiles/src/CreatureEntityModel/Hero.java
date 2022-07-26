@@ -72,6 +72,12 @@ public class Hero extends DungeonCharacter {
         myItems.add(theItem);
     }
 
+    public void removeMyItems(final String theItem) {
+        if(myItems.contains(theItem)){
+            myItems.remove(theItem);
+        }
+    }
+
     int getMyHealthPotions() {
         return myHealthPotions;
     }
