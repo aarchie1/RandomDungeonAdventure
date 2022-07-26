@@ -11,16 +11,16 @@ package RoomEntity;
 import CreatureEntityModel.CreatureEntityController;
 
 public class CreatureCrossover implements RoomEntity {
-    private final CreatureEntityController myCreature;
+    private final CreatureEntityController myCreatureController;
 
 
     CreatureCrossover(final String theCharacter){
-        myCreature = new CreatureEntityController(theCharacter);
+        myCreatureController = new CreatureEntityController();
     }
 
     @Override
     public String toString() {
-        return myCreature.getCharacterName();
+        return myCreatureController.getMyHero() + "\n" + myCreatureController.getMyMonster();
     }
 
 }
