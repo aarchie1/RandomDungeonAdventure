@@ -50,6 +50,7 @@ public class GameController {
      * This method should create a new map with a starting room
      */
     public void newGame(){
+
         myMap = new MapController();
     }
 
@@ -81,7 +82,7 @@ public class GameController {
      *
      * @param theDirection U,D,L,R are the only accepted inputs.
      */
-    public Location inputDirection(final String theDirection){
+    private Location inputDirection(final String theDirection){
         Location nextLoc;
         Directions d = Directions.getDirection(theDirection);
         switch (d) {
@@ -120,6 +121,10 @@ public class GameController {
      */
     public void moveLocal(final String theDirection){
         setLocal(inputDirection(theDirection));
+        // check new room for intractable
+        // call to Creature control/battle if monster found
+        // call to Creature control/Hero if item/obj/trap found
+
 
     }
 
@@ -139,7 +144,8 @@ public class GameController {
         return myMap.getRoomAt(myCurrentLocation).toString();
     }
 
-    public String showFullMap() {return myMap.getFullMap();}
+    public String showFullMap() {
+        return myMap.getFullMap();}
     /**
      * This method should check for the end game condition.
      * It returns false when the condition is set, true otherwise.

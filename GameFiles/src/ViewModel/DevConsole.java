@@ -25,11 +25,15 @@ public class DevConsole {
     private void gameLogicLoop() {
 
         while (myGame.hasWon()){
+            // display stuff
          System.out.println(myGame.showCurrentRoom());
          System.out.println("Please input W, A, S, or D");
+            // take player inputs
          String in = s.nextLine();
-         myGame.inputDirection(in);
+         myGame.moveLocal(in);
+            // return new state in loop
 
         }
+        // end game stuff
     }
 }
