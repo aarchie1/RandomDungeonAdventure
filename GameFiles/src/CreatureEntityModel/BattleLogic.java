@@ -1,68 +1,47 @@
 package CreatureEntityModel;
 
+import java.util.Random;
+
+
+/**
+ * This class is used for any battle logic
+ * @author Gil Rabara
+ * @version 0.01
+ * Gil's Notes
+ * This class takes in Hero and Monster stats from CreatureEntityController
+ * Checks to see if A Hero and a Monster Type are in the same room
+ * If yes: Battle will automatically take place
+ * Will record if Hero or Monster dies (HP > 0)
+ * Will update Hero HP at end of battle
+ */
 public class BattleLogic {
 
-    /**
-     * Copies stats of a Hero
-     * @param theHero
-     * @return
+    /*
+     * method that exports hero HP if hero is alive
      */
-    public Hero heroFightStats (Hero theHero) {
-        String heroName = theHero.getMyName();
-        int heroHitPoints = theHero.getMyHitPoints();
-        double heroBlockAccuracy = theHero.getMyBlockAccuracy();
-        String heroRegularAttack = theHero.getMyRegularAttack();
-        String heroSpecialAttack = theHero.getMySpecialAttack();
-        double heroAttackAccuracy = theHero.getMyAttackAccuracy();
-        int heroAttackSpeed = theHero.getMyAttackSpeed();
-        return theHero;
-    }
 
     /**
-     * Copies stats of Monster
-     * @param theMonster
-     * @return
+     * Constructor
      */
-    public Monster monsterFightStats (Monster theMonster) {
-        String monsterName = theMonster.getMyName();
-        int monsterHitPoints = theMonster.getMyHitPoints();
-        int monsterAttackSpeed = theMonster.getMyAttackSpeed();
-        double monsterAttackAccuracy = theMonster.getMyAttackAccuracy();
-        double monsterHealingPercentage = theMonster.getMyHealingPercentage();
-        return theMonster;
+    public BattleLogic() {
+
     }
 
 
+    public int theFight (Hero heroInfo, Monster monsterInfo) {
+        Random randoNum = new Random(); // Random number generator
+       // CreatureEntityController cec = new CreatureEntityController();
 
-    /**
-     * Upon initiating battle this method will check to see
-     * who has higher attack speed.
-     * @param theHero  takes in a hero entity
-     * @param theMonster takes in a monster entity
-     * @return the faster of the two
-     */
-    public String compareSpeed(Hero theHero, Monster theMonster) {
-        int heroSpeed = theHero.getMyAttackSpeed();
-        int monsterSpeed = theMonster.getMyAttackSpeed();
-
-        if (heroSpeed > monsterSpeed) {
-            return "Hero";
-        } else if (heroSpeed < monsterSpeed) {
-            return "Monster";
-        } else {
-            return "Hero";
-        }
-    }
-
-    public void theFight (Hero heroFightStats, Monster monsterFightStats) {
-        if (compareSpeed(heroFightStats,monsterFightStats).equals("Hero")) {
-            while(heroFightStats.getMyHitPoints() > 0 | monsterFightStats.getMyHitPoints() > 0) {
-                if(heroFightStats.getMyAttackAccuracy() > .50) {
-                    //monsterFightStats.getMyHitPoints() -= heroFightStats.getMyRegularAttack();
+        while(heroInfo.getMyHitPoints() > 0 && monsterInfo.getMyHitPoints() > 0) {
+                if(heroInfo.getMyAttackAccuracy() > randoNum.nextDouble()) {
+                    monsterInfo.setDamage(Integer.parseInt(heroInfo.getMyRegularAttack()));
+                    //cec.checkAlive()
                 }
-            }
-        }
 
+            }
+        // if HeroHP >= 0 then return 0;
+        //return heroHP
+        return 1;
     }
 
 
