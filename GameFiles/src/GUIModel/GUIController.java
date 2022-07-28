@@ -1,7 +1,9 @@
 package GUIModel;
 
-import javax.swing.*;
-
 public class GUIController{
+
+    public static void main(String[] args) {
+        new GUITitle();
+    }
 
 }

@@ -52,4 +52,11 @@ public class Monster extends DungeonCharacter{
         return myHealingPercentage;
     }
 
+    @Override
+    void setDamage(final int theDamage) {
+        int newHp = getMyHitPoints() - theDamage;
+        setMyHitPoints(newHp);
+        // monster has a chance to heal, so call some methods that allow that to happen
+        // random chance to heal, get from method above
+    }
 }
