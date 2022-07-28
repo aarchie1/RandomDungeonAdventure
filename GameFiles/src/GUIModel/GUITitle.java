@@ -2,11 +2,13 @@ package GUIModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Creates the GUI
  */
-public class GUIFactory extends GUIController{
+public class GUITitle extends GUIController implements ActionListener{
 
     JFrame window;
     JPanel titleNamePanel;
@@ -14,16 +16,12 @@ public class GUIFactory extends GUIController{
     JLabel titleNameLabel;
     JButton startButton;
     int screenWidth, screenHeight;
-    Image titleBackground;
-    Font titleFont;
-    Font normalFont;
 
     /**
      * Constructor that calls GUI Methods
      */
-    GUIFactory() {
+    GUITitle() {
         GUIstartUp();
-        //paint(Graphics g);
     }
 
     public void GUIstartUp() {
@@ -69,9 +67,10 @@ public class GUIFactory extends GUIController{
         // Start Button
         startButton = new JButton("START"); // Name button "Start"
         startButton.setBackground(Color.black); // "Start" background color
-        startButton.setForeground(Color.white); // "Start" Foreground color
+        startButton.setForeground(Color.black); // "Start" Foreground color
         startButton.setFont(normalFont); // "Start" font
         startButton.setFocusPainted(false); // "Start"
+        startButton.addActionListener(this); // Button action
         startButtonPanel.add(startButton); // add "Start" to ButtonPanel
 
         window.add(titleNamePanel); // Add titleNamePanel to JFrame "window"
@@ -81,10 +80,10 @@ public class GUIFactory extends GUIController{
     }
 
 
-    public void paint (Graphics g) {
-        Graphics2D g2D = (Graphics2D) g;
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
-        g2D.drawImage(titleBackground,0,0,null);
     }
+
 
 }
