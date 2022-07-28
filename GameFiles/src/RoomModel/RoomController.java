@@ -44,7 +44,7 @@ public class RoomController {
      */
     public Room genericRoom() {
         Room theRoom = new BasicRoom();
-        theRoom.addEntity(myEntityEditor.addMonster());
+        //theRoom.addEntity(myEntityEditor.addMonster());
         return theRoom;
     }
 
