@@ -24,6 +24,7 @@ public enum Directions {
                 break;
             default:
                 myD = null;
+                break;
         }
         return myD;
     }

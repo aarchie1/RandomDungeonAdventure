@@ -38,7 +38,7 @@ class GameControllerTest {
 
     @Test
     void actionMenu() {
-
+        System.out.println(testGame.actionMenu(""));
     }
 
     @Test
@@ -54,6 +54,7 @@ class GameControllerTest {
     @Test
     void showCurrentRoom() {
         System.out.println(testGame.showCurrentRoom());
+
     }
 
     @Test

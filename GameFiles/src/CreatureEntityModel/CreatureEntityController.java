@@ -18,6 +18,7 @@ public class CreatureEntityController {
     private Hero myHero;
 
     public CreatureEntityController(){
+        createHero();
 
     }
 
@@ -44,6 +45,37 @@ public class CreatureEntityController {
     // Method for testing purposes
     public void setHeroDamage(final int theDamage){
         myHero.setDamage(theDamage);
+    }
+
+    /**
+     * This method is called to fight a monster.
+     * It is the public face for the BattleLoop logic
+     * It takes a String theMonsterName, which is used to match a monster to its stats.
+     * The checkHeroAlive method should be called after this is run
+     * @param theMonsterName
+     */
+    public void fightAMonster(final String theMonsterName) {
+            // logic to determine monster - stubbed below - input string, output a Monster
+        Monster opponent =  findMonster(theMonsterName);
+            // call to the BattleLoop with the monster generated -
+            // input is the monster from above and the Hero
+            // output is Integer, hero's health after battle Loop.
+        // int heroHealth = BattleLoop(theHero, theMonster);
+        // setHeroDamage(heroHealth);
+    }
+
+    /**
+     * This method should match a String MonsterName to its matching monster class
+     * It should fail-safe into a default monster
+     * This method should be private and is used by the fightAMonster method
+     * @param theMonsterName a string of the monster name
+     * @return the MonsterClass for use in battleLogic
+     */
+    private Monster findMonster(String theMonsterName) {
+        // this is a mock value! This method needs to be filled out!
+        Monster theMonster = new Gremlin();
+
+        return theMonster;
     }
 
     // Method for testing purpose, maybe leave in depending on team decision
