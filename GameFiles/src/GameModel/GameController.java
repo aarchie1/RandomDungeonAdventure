@@ -22,11 +22,11 @@ public class GameController {
     /**
      * This controls room actions.
      */
-    private RoomController myRoom;
+    private RoomController myRoom = new RoomController();
     /**
      * This controls RoomEntitys
      */
-    private CreatureEntityController myCreatures;
+    private CreatureEntityController myCreatures = new CreatureEntityController();
     /**
      * This stores the start location
      */
@@ -49,8 +49,17 @@ public class GameController {
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
         myMap.setLocal(theStart);
+        myCreatures.createHero();
 
 
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String heroStats() {
+        return myCreatures.getMyHero();
     }
 
     /**
@@ -125,6 +134,7 @@ public class GameController {
         //insert code here!
         return myCreatures.getMyHeroItems();
     }
+    
 
 
 

@@ -42,6 +42,8 @@ public class CreatureEntityController {
         return myHero.getMyName();
     }
 
+
+
     // Method for testing purposes
     public void setHeroDamage(final int theDamage){
         myHero.setDamage(theDamage);

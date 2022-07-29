@@ -39,16 +39,17 @@ class GameControllerTest {
     @Test
     void actionMenu() {
         System.out.println(testGame.actionMenu(""));
+
     }
 
     @Test
     void moveLocal() {
-
+        fail();
     }
 
     @Test
     void setLocal() {
-
+        fail();
     }
 
     @Test
@@ -58,7 +59,7 @@ class GameControllerTest {
     }
 
     @Test
-    void testToString() {
-
+    void hasWon() {
+        fail();
     }
 }
