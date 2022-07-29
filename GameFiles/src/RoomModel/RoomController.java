@@ -15,7 +15,7 @@ import RoomEntity.EntityController;
  *      it is used to place/edit/remove them.
  * @author Rowan W Osmon
  * @author Anthony Archie
- * @version .02
+ * @version .03
  *
  */
 public class RoomController {
