@@ -1,5 +1,7 @@
 package RoomEntity;
 
+import CreatureEntityModel.CreatureEntityController;
+
 import java.util.ArrayList;
 
 /**
@@ -13,37 +15,42 @@ import java.util.ArrayList;
  *      of that EmptyRoom.
  * @author Rowan W Osmon
  * @author Anthony Archie
- * @version .02
+ * @version .03
  */
 public class EntityController {
+
     private boolean areMonstersDefeated;
     private ArrayList<RoomEntity> myContents = new ArrayList<>();
+    private final CreatureCrossover myCreatureCrossover = new CreatureCrossover();
+
     public EntityController(){
         areMonstersDefeated = false;
     }
 
-
-    public RoomEntity addMonster(){
-        RoomEntity myCreature = new CreatureCrossover("monster");
-        return myCreature;
-    }
-
+    // Method to get starting room
     public ArrayList<RoomEntity> getStartingRoom(){
         myContents = new ArrayList<>();
+        addHero();
+        myContents.add(myCreatureCrossover);
         myContents.add(new DevAmulet());
         return myContents;
     }
 
+    // Method to addMonster
+    public void addMonster(){
+        myCreatureCrossover.addMonster();
+    }
+
     // Method to addHero
-    public RoomEntity addHero (){
-        RoomEntity myCreature = new CreatureCrossover("hero");
-        return myCreature;
+    public void addHero (){
+        myCreatureCrossover.addHero();
     }
 
     // Method to Remove Monster
     public void removeMonster(){
 
     }
+
     // Method to remove Hero when leaving the room
 
     // Method to add Pillars

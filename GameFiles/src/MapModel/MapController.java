@@ -32,7 +32,7 @@ public class MapController {
     public MapController(){
 
     }
-    public void setLocal(Location theLocation) {
+    public void setLocal(final Location theLocation) {
         myLocal = theLocation;
         myMap.generateRoom(myLocal);
         myCurrentRoom = myMap.getRoomAt(myLocal);
@@ -40,7 +40,7 @@ public class MapController {
 
 
 
-    public Room getRoomAt(Location theCoordinates){
+    public Room getRoomAt(final Location theCoordinates){
         return myMap.getRoomAt(theCoordinates);
     }
 
@@ -48,6 +48,9 @@ public class MapController {
         return myMap.fullMap();
     }
 
+    public String getLocalMap(final Location theLocal) {
+        return myMap.localMap(theLocal);
+    }
 
 
 }

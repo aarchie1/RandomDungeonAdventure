@@ -6,21 +6,39 @@ package RoomEntity;
  * to place monster and heroes in rooms as necessary.
  * @author Anthony Archie
  * @author Rowan W Osmon
- * @version .01
+ * @version 0.01
  */
 import CreatureEntityModel.CreatureEntityController;
 
 public class CreatureCrossover implements RoomEntity {
-    private final CreatureEntityController myCreatureController;
 
+    public final CreatureEntityController myCreatureController;
 
-    CreatureCrossover(final String theCharacter){
+    CreatureCrossover() {
         myCreatureController = new CreatureEntityController();
     }
 
+    public CreatureEntityController getMyCreatureController() {
+        return myCreatureController;
+    }
+
+    // Method to addMonster
+    public void addMonster(){
+
+        myCreatureController.createMonster();
+        myCreatureController.getMyMonster();
+    }
+
+    // Method to addMonster
+    public void addHero(){
+        myCreatureController.createHero();
+    }
+
+
+
     @Override
     public String toString() {
-        return myCreatureController.getMyHero() + "\n" + myCreatureController.getMyMonster();
+        return myCreatureController.getMyMonster();
     }
 
 }

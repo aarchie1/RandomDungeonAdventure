@@ -10,20 +10,21 @@ public enum Directions {
    static Directions getDirection(final String theDirection){
         Directions myD;
         switch (theDirection) {
-            case "W":
+            case "w":
                 myD = Directions.UP;
                 break;
-            case "S":
+            case "s":
                 myD = Directions.DOWN;
                 break;
-            case "A" :
+            case "a" :
                 myD = Directions.LEFT;
                 break;
-            case "D" :
+            case "d" :
                 myD =Directions.RIGHT;
                 break;
             default:
                 myD = null;
+                break;
         }
         return myD;
     }

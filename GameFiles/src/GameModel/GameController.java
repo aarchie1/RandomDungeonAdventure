@@ -2,27 +2,33 @@ package GameModel;
 
 import CreatureEntityModel.CreatureEntityController;
 import MapModel.MapController;
+import RoomEntity.RoomEntity;
+import RoomModel.Room;
 import RoomModel.RoomController;
+
+import java.util.ArrayList;
 
 /**
  * This Class will control and consolidate all the game models into the game logic
  * It ties all the models together.
+ * @author Rowan W Osmon
+ * @version 0.01
  */
 public class GameController {
 
 
     /**
-     * This controls map actions.
+     * This controls any map actions.
      */
     private MapController myMap = new MapController() ;
     /**
      * This controls room actions.
      */
-    private RoomController myRoom;
+    private RoomController myRoom = new RoomController();
     /**
      * This controls RoomEntitys
      */
-    private CreatureEntityController myCreatures;
+    private CreatureEntityController myCreatures = new CreatureEntityController();
     /**
      * This stores the start location
      */
@@ -34,14 +40,28 @@ public class GameController {
     private Location myCurrentLocation;
 
     /**
+     * Used to track how many objectives the player has found.
+     */
+    private int objectivesFound = 0;
+
+    /**
      * The constructor creates a new GameController
      */
     public GameController(){
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
         myMap.setLocal(theStart);
+        myCreatures.createHero();
 
 
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String heroStats() {
+        return myCreatures.getMyHero();
     }
 
     /**
@@ -83,8 +103,12 @@ public class GameController {
      * @param theDirection U,D,L,R are the only accepted inputs.
      */
     private Location inputDirection(final String theDirection){
+
         Location nextLoc;
         Directions d = Directions.getDirection(theDirection);
+        if (d == null) {
+            return myCurrentLocation;
+        }
         switch (d) {
             case UP:
                 nextLoc = new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()-1);
@@ -106,27 +130,66 @@ public class GameController {
     }
 
     /**
-     * This method is called on by a view to do an action.
+     * This method is called on by a view to get possible actions.
      * Actions are things the player can do like drink a potion.
      * It does nothing if given an incorrect string
      * @param theAction an accepted input TBD
+     * @return the Hero's Items as a string.
      */
-    public void actionMenu(final String theAction){
+    public String actionMenu(final String theAction){
+        String chosenAction = "";
         //insert code here!
+        PlayerActions myA = PlayerActions.getAct(theAction);
+        switch (myA){
+            // Consider a refactor to make UseHealthPostion take no input.
+            case HEALPOT:
+                chosenAction = "Used a HealthPotion";
+                myCreatures.useHealthPotion("20");
+                break;
+            case VISONPOT:
+                chosenAction = "Used a VisionPotion";
+                chosenAction += "\n" + myMap.getLocalMap(myCurrentLocation);
+                break;
+            case PLAYERINV:
+                chosenAction = myCreatures.getMyHeroItems();
+                break;
+            default:
+                chosenAction = "Not a valid Action!";
+                break;
+        }
+        return chosenAction;
     }
+
+
+
 
     /**
      * Used to input directions to the game controller.
+     * This is how the player navigates between rooms.
+     * methods that need to happen after a player moves go here.
      * @param theDirection
      */
     public void moveLocal(final String theDirection){
         setLocal(inputDirection(theDirection));
         // check new room for intractable
-        // call to Creature control/battle if monster found
-        // call to Creature control/Hero if item/obj/trap found
-
+        checkForRoomEntity(myMap.getRoomAt(myCurrentLocation).toString());
 
     }
+
+    /**
+     * This Method is used to check a room for key objects.
+     *
+     *  Check if theRoomContents contains a substring that matches a Monster
+     *  call to Creature control/battle if monster found
+     *
+     *  Check if theRoomContents contains a substring that matches an item
+     *  call to Creature control/Hero if item/obj/trap found
+     * @param theRoomContents
+     */
+    private void checkForRoomEntity(String theRoomContents) {
+
+    }
+
 
     /**
      * Used to modify the current location for moving.
@@ -156,6 +219,7 @@ public class GameController {
         //insert code here!
         return true;
     }
+
 
 
 }

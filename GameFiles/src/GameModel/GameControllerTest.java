@@ -38,26 +38,28 @@ class GameControllerTest {
 
     @Test
     void actionMenu() {
+        System.out.println(testGame.actionMenu(""));
 
     }
 
     @Test
     void moveLocal() {
-
+        fail();
     }
 
     @Test
     void setLocal() {
-
+        fail();
     }
 
     @Test
     void showCurrentRoom() {
         System.out.println(testGame.showCurrentRoom());
+
     }
 
     @Test
-    void testToString() {
-
+    void hasWon() {
+        fail();
     }
 }
