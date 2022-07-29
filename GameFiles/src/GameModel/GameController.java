@@ -11,12 +11,14 @@ import java.util.ArrayList;
 /**
  * This Class will control and consolidate all the game models into the game logic
  * It ties all the models together.
+ * @author Rowan W Osmon
+ * @version 0.01
  */
 public class GameController {
 
 
     /**
-     * This controls map actions.
+     * This controls any map actions.
      */
     private MapController myMap = new MapController() ;
     /**

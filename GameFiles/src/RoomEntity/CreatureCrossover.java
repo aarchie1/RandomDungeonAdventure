@@ -6,7 +6,7 @@ package RoomEntity;
  * to place monster and heroes in rooms as necessary.
  * @author Anthony Archie
  * @author Rowan W Osmon
- * @version .01
+ * @version 0.01
  */
 import CreatureEntityModel.CreatureEntityController;
 
@@ -18,10 +18,6 @@ public class CreatureCrossover implements RoomEntity {
         myCreatureController = new CreatureEntityController();
     }
 
-    /**
-     *
-     * @return
-     */
     public CreatureEntityController getMyCreatureController() {
         return myCreatureController;
     }
