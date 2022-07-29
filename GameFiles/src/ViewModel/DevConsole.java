@@ -12,7 +12,7 @@ public class DevConsole {
     GameController myGame = new GameController();
     Scanner s = new Scanner(System.in);
 
-    DevConsole(){
+    public DevConsole(){
         System.out.println("Welcome to RADS!");
         System.out.println(myGame.showCurrentRoom());
 

@@ -11,20 +11,26 @@ package RoomEntity;
 import CreatureEntityModel.CreatureEntityController;
 
 public class CreatureCrossover implements RoomEntity {
+
     public final CreatureEntityController myCreatureController;
 
-
-    public CreatureCrossover() {
+    CreatureCrossover() {
         myCreatureController = new CreatureEntityController();
     }
 
+    /**
+     *
+     * @return
+     */
     public CreatureEntityController getMyCreatureController() {
         return myCreatureController;
     }
 
     // Method to addMonster
     public void addMonster(){
+
         myCreatureController.createMonster();
+        myCreatureController.getMyMonster();
     }
 
     // Method to addMonster
@@ -36,7 +42,7 @@ public class CreatureCrossover implements RoomEntity {
 
     @Override
     public String toString() {
-        return myCreatureController.getMyHero() + "\n" + myCreatureController.getMyMonster();
+        return myCreatureController.getMyMonster();
     }
 
 }

@@ -18,6 +18,7 @@ public class CreatureEntityController {
     private Hero myHero;
     private ArrayList<DungeonCharacter> myCharacters = new ArrayList<DungeonCharacter>();
 
+    public MonsterTemplates myTemplates;
 
     public CreatureEntityController(){
         createHero();
@@ -37,8 +38,9 @@ public class CreatureEntityController {
      * this currently defaults to a gremlin and will be refactored later to handle other monster types.
      */
     public void createMonster(){
-        myMonster = new Gremlin();
+        myMonster = MonsterTemplates.spawnMonster(MonsterTemplates.GREMLIN);
         myCharacters.add(myMonster);
+
     }
 
     // Method for retrieving current monsters name
@@ -48,7 +50,14 @@ public class CreatureEntityController {
      * @return String representing the monsters name.
      */
     public String getMyMonster() {
-        return myMonster.getMyName();
+            String m = "";
+            try {
+                myMonster.getMyName();
+            } catch (NullPointerException e) {
+
+                m = "No monster in creatureEntityController!";
+            }
+        return m;
     }
 
     /**

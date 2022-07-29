@@ -18,9 +18,10 @@ import java.util.ArrayList;
  * @version .03
  */
 public class EntityController {
+
     private boolean areMonstersDefeated;
     private ArrayList<RoomEntity> myContents = new ArrayList<>();
-    private CreatureCrossover myCreatureCrossover = new CreatureCrossover();
+    private final CreatureCrossover myCreatureCrossover = new CreatureCrossover();
 
     public EntityController(){
         areMonstersDefeated = false;
