@@ -101,8 +101,12 @@ public class GameController {
      * @param theDirection U,D,L,R are the only accepted inputs.
      */
     private Location inputDirection(final String theDirection){
+
         Location nextLoc;
         Directions d = Directions.getDirection(theDirection);
+        if (d == null) {
+            return myCurrentLocation;
+        }
         switch (d) {
             case UP:
                 nextLoc = new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()-1);
