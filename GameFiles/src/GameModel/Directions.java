@@ -20,7 +20,7 @@ public enum Directions {
                 myD = Directions.LEFT;
                 break;
             case "d" :
-                myD =Directions.RIGHT;
+                myD = Directions.RIGHT;
                 break;
             default:
                 myD = null;
