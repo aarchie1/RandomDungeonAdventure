@@ -12,7 +12,7 @@ public class Run {
      * This is used to run the program.
      * @param args command line arguments.
      */
-    public static void main(String[] args){
+    public static void main(final String[] args){
         DevConsole play = new DevConsole();
         play.playNewGame();
     }

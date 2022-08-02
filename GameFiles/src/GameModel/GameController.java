@@ -48,6 +48,7 @@ public class GameController {
      * The constructor creates a new GameController
      */
     public GameController(){
+        // move object constructon to here
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
         myMap.setLocal(theStart);

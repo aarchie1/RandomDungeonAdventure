@@ -14,8 +14,19 @@ public class DevConsole {
 
     public DevConsole(){
         System.out.println("Welcome to RADS!");
-        System.out.println(myGame.showCurrentRoom());
 
+        //Character selection choice promt here
+        String myHero = charSelect();
+        System.out.println("Selected " + myHero);
+        System.out.println("The " + myHero + " has entered a Dungeon in search of " +
+                "4 legendary artifacts!");
+        //System.out.println(myGame.showCurrentRoom());
+
+    }
+
+    private String charSelect() {
+
+        return "charSelect placeholder";
     }
 
     public void playNewGame(){
