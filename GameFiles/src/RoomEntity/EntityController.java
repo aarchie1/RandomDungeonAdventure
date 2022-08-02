@@ -31,7 +31,7 @@ public class EntityController {
     public ArrayList<RoomEntity> getStartingRoom(){
         myContents = new ArrayList<>();
         addHero();
-        myContents.add(myCreatureCrossover);
+        //myContents.add(myCreatureCrossover);
         myContents.add(new DevAmulet());
         return myContents;
     }

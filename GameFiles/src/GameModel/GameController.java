@@ -48,6 +48,7 @@ public class GameController {
      * The constructor creates a new GameController
      */
     public GameController(){
+        // move object constructon to here
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
         myMap.setLocal(theStart);
@@ -120,7 +121,7 @@ public class GameController {
                 nextLoc = new Location(myCurrentLocation.getMyX()-1, myCurrentLocation.getMyY());
                 break;
             case RIGHT:
-                nextLoc = new Location(myCurrentLocation.getMyX()+1, myCurrentLocation.getMyY()-1);
+                nextLoc = new Location(myCurrentLocation.getMyX()+1, myCurrentLocation.getMyY());
                 break;
             default:
                 nextLoc = new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY());
@@ -220,6 +221,14 @@ public class GameController {
         return true;
     }
 
+    /**
+     * Used to return a combat log to the view.
+     * This method should get the combat record from the
+     * @return
+     */
+    public String combatLog() {
+        String baseMsg = "There are no monsters in this room.";
 
-
+        return baseMsg;
+    }
 }
