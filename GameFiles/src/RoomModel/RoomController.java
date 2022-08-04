@@ -70,4 +70,11 @@ public class RoomController {
         }
         return specialRoom;
     }
+
+    // take input from the map whitch indicate wher doors should be in the room -
+    // call on the roomentinty controler to get those roomo objects and add them to the room.
+
+    public void doorCheck(){
+
+    }
 }
