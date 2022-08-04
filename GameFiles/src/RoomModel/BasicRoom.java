@@ -1,6 +1,5 @@
 package RoomModel;
 
-import RoomEntity.RoomEntity;
 import RoomEntity.EmptyRoom;
 
 import java.util.ArrayList;
@@ -16,19 +15,20 @@ public class BasicRoom implements Room {
     /**
      * This list holds the contents of the room.
      */
-    List<RoomEntity> myEntitys = null;
+    List<String> myEntitys;
 
     /**
      * This Boolean is used to quickly determine if the room is empty or not.
      */
-    Boolean isEmpty = false;
+    Boolean isEmpty;
 
     /**
      * Constructs a basic room.
      * This Room has an ArrayList<RoomEntity> that is empty
      */
     public BasicRoom(){
-        myEntitys = new ArrayList<RoomEntity>();
+
+        myEntitys = new ArrayList<>();
         isEmpty = true;
     }
 
@@ -36,7 +36,7 @@ public class BasicRoom implements Room {
      * Constructs a basic room with a List of RoomEntities.
      * @param arr the RoomEntities in the room.
      */
-    BasicRoom(List<RoomEntity> arr){
+    BasicRoom(final List<String> arr){
         myEntitys = arr;
         checkIfEmpty();
 
@@ -46,7 +46,7 @@ public class BasicRoom implements Room {
      * Sets new contents to the room.
      * @param arr the List of RoomEntities
      */
-    public void setMyEntitys(List<RoomEntity> arr) {
+    public void setMyEntitys(List<String> arr) {
         myEntitys = arr;
         checkIfEmpty();
     }
@@ -55,7 +55,8 @@ public class BasicRoom implements Room {
      * Gets a copy of the List of RoomEntities.
      * @return the RoomEntityList
      */
-    public List<RoomEntity> getMyEntitys(){
+    @Override
+    public List<String> getMyEntities(){
         return myEntitys;
     }
 
@@ -68,8 +69,8 @@ public class BasicRoom implements Room {
      */
     @Override
     public void removeEntity(final String theTargetName) {
-        for (RoomEntity r : myEntitys){
-            if (r.toString().equals(theTargetName)) {
+        for (String r : myEntitys){
+            if (r.equals(theTargetName)) {
                 myEntitys.remove(r);
                 break;
             }
@@ -82,10 +83,11 @@ public class BasicRoom implements Room {
      * @param e
      */
     @Override
-    public void addEntity(RoomEntity e) {
+    public void addEntity(String e) {
         myEntitys.add(e);
         checkIfEmpty();
     }
+
 
     /**
      * Checks if this room is empty or not
@@ -110,8 +112,8 @@ public class BasicRoom implements Room {
         }
 
         StringBuilder sb = new StringBuilder();
-        for (RoomEntity r : myEntitys) {
-            sb.append(r.toString());
+        for (String r : myEntitys) {
+            sb.append(r);
         }
         return sb.toString();
     }

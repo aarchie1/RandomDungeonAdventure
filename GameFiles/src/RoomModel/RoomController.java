@@ -3,6 +3,9 @@ package RoomModel;
 
 import RoomEntity.EntityController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class is used to control all Rooms
  * It needs methods stubbed out
@@ -34,7 +37,11 @@ public class RoomController {
      * @return Room object representing the starting room
      */
     public Room startRoom() {
-        Room start = new StartingRoom(myEntityEditor.getStartingRoom());
+        ArrayList<String> arr = new ArrayList<>();
+        for (Object i : myEntityEditor.getStartingRoom()){
+            arr.add(i.toString());
+        }
+        Room start = new StartingRoom(arr);
         return start;
     }
 

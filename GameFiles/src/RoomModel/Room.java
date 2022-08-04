@@ -1,7 +1,7 @@
 package RoomModel;
 
 import RoomEntity.EntityController;
-import RoomEntity.RoomEntity;
+
 
 import java.util.List;
 
@@ -18,13 +18,14 @@ public interface Room {
     /**
      * Adds a Room Entity to the List.
      */
-    void addEntity(RoomEntity e);
+    void addEntity(String theEntityName);
+
 
     /**
      * Returns a copy of the list when called on
      * @return a List of RoomEntitys.
      */
-    List<RoomEntity> getMyEntitys();
+    List<String> getMyEntities();
 
     /**
      * Removes the targeted RoomEntity from the list.
@@ -33,6 +34,5 @@ public interface Room {
     void removeEntity(String theTargetName);
     
     public String toString();
-
 
 }

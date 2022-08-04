@@ -2,13 +2,9 @@ package MapModel;
 
 import GameModel.Location;
 import RoomModel.Room;
-import RoomModel.RoomController;
-import RoomModel.StartingRoom;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Set;
+
 
 /**
  * A basic map. It implements the methods in the RADSMap

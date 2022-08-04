@@ -2,8 +2,8 @@ package GameModel;
 
 import CreatureEntityModel.CreatureEntityController;
 import MapModel.MapController;
-import RoomEntity.RoomEntity;
-import RoomModel.Room;
+
+import RoomEntity.EntityController;
 import RoomModel.RoomController;
 
 import java.util.ArrayList;
@@ -20,18 +20,19 @@ public class GameController {
     /**
      * This controls any map actions.
      */
-    private MapController myMap = new MapController() ;
+    private MapController myMap;
     /**
      * This controls room actions.
      */
-    private RoomController myRoom = new RoomController();
+    private RoomController myRoom;
     /**
      * This controls RoomEntitys
      */
-    private CreatureEntityController myCreatures = new CreatureEntityController();
+    private CreatureEntityController myCreatures;
     /**
      * This stores the start location
      */
+    private EntityController myREntity;
     private final Location theStart;
 
     /**
@@ -39,15 +40,15 @@ public class GameController {
      */
     private Location myCurrentLocation;
 
-    /**
-     * Used to track how many objectives the player has found.
-     */
-    private int objectivesFound = 0;
 
     /**
      * The constructor creates a new GameController
      */
     public GameController(){
+        myMap = new MapController();
+        myRoom = new RoomController();
+        myCreatures = new CreatureEntityController();
+        myREntity = new EntityController();
         // move object constructon to here
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
@@ -58,8 +59,10 @@ public class GameController {
     }
 
     /**
-     *
-     * @return
+     * This is used by a view to get the hero's stats.
+     * This should call on the Creature Controller to get the Hero's stats
+     * it should then display that as a string.
+     * @return The stats of the hero as a string.
      */
     public String heroStats() {
         return myCreatures.getMyHero();
@@ -67,11 +70,9 @@ public class GameController {
 
     /**
      * This starts a new game
-     *
      * This method should create a new map with a starting room
      */
     public void newGame(){
-
         myMap = new MapController();
     }
 
@@ -104,7 +105,6 @@ public class GameController {
      * @param theDirection U,D,L,R are the only accepted inputs.
      */
     private Location inputDirection(final String theDirection){
-
         Location nextLoc;
         Directions d = Directions.getDirection(theDirection);
         if (d == null) {
@@ -161,9 +161,6 @@ public class GameController {
         return chosenAction;
     }
 
-
-
-
     /**
      * Used to input directions to the game controller.
      * This is how the player navigates between rooms.
@@ -189,6 +186,11 @@ public class GameController {
      */
     private void checkForRoomEntity(String theRoomContents) {
 
+        //check for trap
+
+        //check for monster
+
+        // check for item
     }
 
 

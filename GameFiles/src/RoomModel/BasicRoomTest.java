@@ -24,17 +24,17 @@ class BasicRoomTest {
 
     @org.junit.jupiter.api.Test
     void setMyEntities() {
-        List <RoomEntity> arr = new ArrayList<>();
-        arr.add(myDevAmulet);
-        myRoom = new BasicRoom(arr);
+        List <String> arr = new ArrayList<>();
+        arr.add(myDevAmulet.toString());
+        myRoom = new BasicRoom();
         assertEquals(myDevAmulet.toString(), arr.get(0).toString());
     }
 
     @org.junit.jupiter.api.Test
     void getMyEntities() {
-        List <RoomEntity> arr;
-        myRoom.addEntity(myDevAmulet);
-        arr = myRoom.getMyEntitys();
+        List <String> arr;
+        myRoom.addEntity(myDevAmulet.toString());
+        arr = myRoom.getMyEntities();
         System.out.println(arr.get(0));
         assertEquals(myDevAmulet.toString(), arr.get(0).toString());
     }
@@ -43,8 +43,8 @@ class BasicRoomTest {
     void removeEntity() {
         Item myI = new Item("theTestItem");
 
-        myRoom.addEntity(myDevAmulet);
-        myRoom.addEntity(myI);
+        myRoom.addEntity(myDevAmulet.toString());
+        myRoom.addEntity(myI.toString());
         myRoom.removeEntity(myDevAmulet.toString());
         System.out.println(myRoom.toString());
         assertEquals(myI.toString(), myRoom.toString());
@@ -52,7 +52,7 @@ class BasicRoomTest {
 
     @org.junit.jupiter.api.Test
     void addEntity() {
-        myRoom.addEntity(new DevAmulet());
+        myRoom.addEntity(new DevAmulet().toString());
         System.out.println(myRoom.toString());
         assertEquals("DevAmulet", myRoom.toString());
     }
