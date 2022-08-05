@@ -73,6 +73,7 @@ public class GameController {
      * This method should create a new map with a starting room
      */
     public void newGame(){
+        //reset the hero
         myMap = new MapController();
     }
 
