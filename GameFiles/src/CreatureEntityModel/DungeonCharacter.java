@@ -47,11 +47,14 @@ public class DungeonCharacter implements CreatureEntity {
      * current character.
      * @param theOpponent this is the oppenent that will have hit points taken away given an accurate attack.
      */
-    public void attackBehavior(DungeonCharacter theOpponent){
+    public void attackBehavior(final DungeonCharacter theOpponent){
         if (myAttackAccuracy > 0 ){
+            double hitChance = myAttackAccuracy * 100;
             Random r = new Random();
-            int damage = r.nextInt(myDamageRangeMax - myDamageRangeMin + 1 ) + myDamageRangeMin;
-            theOpponent.setDamage(damage);
+            if(r.nextInt(100) < hitChance){
+                int damage = r.nextInt(myDamageRangeMax - myDamageRangeMin + 1 ) + myDamageRangeMin;
+                theOpponent.setDamage(damage);
+            }
         }
 
     }
@@ -69,7 +72,7 @@ public class DungeonCharacter implements CreatureEntity {
      * This method sets the hitpoints for the current character.
      * @param myHitPoints the hit points which need to be set for the charcter
      */
-    void setMyHitPoints(int myHitPoints) {
+    void setMyHitPoints(final int myHitPoints) {
         this.myHitPoints = myHitPoints;
     }
 
@@ -121,6 +124,15 @@ public class DungeonCharacter implements CreatureEntity {
     double getMyAttackAccuracy(){
         return myAttackAccuracy;
     }
+
+    public int getMyDamageRangeMin() {
+        return myDamageRangeMin;
+    }
+
+    public int getMyDamageRangeMax() {
+        return myDamageRangeMax;
+    }
+
 
 
 

@@ -2,12 +2,12 @@ package CreatureEntityModel;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static java.lang.Integer.parseInt;
 
 /**
  * This Class is used to control all the CreatureEntities. (Dungeon Characters)
- * It needs all methods stubbed out
  * This Class is used to produce all the Dungeon Characters and provide the methods
  * to control them.
  * @author Anthony Archie
@@ -42,8 +42,6 @@ public class CreatureEntityController {
         myCharacters.add(myMonster);
 
     }
-
-    // Method for retrieving current monsters name
 
     /**
      * This method is used to get the monster as a String
@@ -85,13 +83,17 @@ public class CreatureEntityController {
      * @param theMonsterName
      */
     public void fightAMonster(final String theMonsterName) {
-            // logic to determine monster - stubbed below - input string, output a Monster
+        // logic to determine monster - stubbed below - input string, output a Monster
         Monster opponent =  findMonster(theMonsterName);
-            // call to the BattleLoop with the monster generated -
-            // input is the monster from above and the Hero
-            // output is Integer, hero's health after battle Loop.
-        // int heroHealth = BattleLoop(theHero, theMonster);
-        // setHeroDamage(heroHealth);
+        BattleLogic bl = new BattleLogic(myHero, opponent);
+        int heroHealth = bl.startBattle();
+        if ( heroHealth > 0) {
+            System.out.println("hero has slain the monster");
+            myHero.setMyHitPoints(heroHealth);
+        } else {
+            System.out.println("hero has been slain by the monster");
+        }
+
     }
 
     /**
@@ -101,12 +103,19 @@ public class CreatureEntityController {
      * @param theMonsterName a string of the monster name
      * @return the MonsterClass for use in battleLogic
      */
-    private Monster findMonster(String theMonsterName) {
-        // this is a mock value! This method needs to be filled out!
+    private Monster findMonster(final String theMonsterName) {
+        Iterator i = myCharacters.iterator();
+        while(i.hasNext()){
+            Monster m = (Monster) i.next();
+            if (m.getMyName().equalsIgnoreCase(theMonsterName)){
+                return m;
+            }
+        }
+        // Default fail safe
         Monster theMonster = new Gremlin();
-
         return theMonster;
     }
+
     /**
      * This method is for returning a copy of the items a hero has as a String.
      * Credit to tutorial point for the code on Creating a string from a ArrayList
@@ -114,9 +123,6 @@ public class CreatureEntityController {
      *     ArrayList#:~:text=To%20convert%20the%20contents%20of,using%20the%20toString()%20method.
      * @return String representing the hero's items
      */
-    // Method for testing purpose, maybe leave in depending on team decision
-    // Credit to tutorial point for the code on Creating a string from a ArrayList
-    // https://www.tutorialspoint.com/How-to-create-a-string-from-a-Java-ArrayList#:~:text=To%20convert%20the%20contents%20of,using%20the%20toString()%20method.
     public String getMyHeroItems(){
         ArrayList<String> al = myHero.getMyItems();
         StringBuffer sb = new StringBuffer();
