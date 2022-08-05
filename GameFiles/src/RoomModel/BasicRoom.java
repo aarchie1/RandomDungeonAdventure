@@ -15,7 +15,6 @@ public class BasicRoom implements Room {
     /**
      * This list holds the contents of the room.
      */
-    List<String> myEntitys;
 
     /**
      * This Boolean is used to quickly determine if the room is empty or not.
@@ -28,7 +27,7 @@ public class BasicRoom implements Room {
      */
     public BasicRoom(){
 
-        myEntitys = new ArrayList<>();
+        setMyEntitys(new ArrayList<String>());
         isEmpty = true;
     }
 
@@ -36,8 +35,8 @@ public class BasicRoom implements Room {
      * Constructs a basic room with a List of RoomEntities.
      * @param arr the RoomEntities in the room.
      */
-    BasicRoom(final List<String> arr){
-        myEntitys = arr;
+    BasicRoom(final ArrayList<String> arr){
+        setMyEntitys(arr);
         checkIfEmpty();
 
     }
@@ -46,8 +45,9 @@ public class BasicRoom implements Room {
      * Sets new contents to the room.
      * @param arr the List of RoomEntities
      */
-    public void setMyEntitys(List<String> arr) {
-        myEntitys = arr;
+    public void setMyEntitys(final ArrayList<String> arr) {
+        myEntitys.clear();
+        myEntitys.addAll(arr);
         checkIfEmpty();
     }
 
@@ -56,7 +56,7 @@ public class BasicRoom implements Room {
      * @return the RoomEntityList
      */
     @Override
-    public List<String> getMyEntities(){
+    public ArrayList<String> getMyEntities(){
         return myEntitys;
     }
 

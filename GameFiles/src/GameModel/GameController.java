@@ -170,7 +170,7 @@ public class GameController {
     public void moveLocal(final String theDirection){
         setLocal(inputDirection(theDirection));
         // check new room for intractable
-        checkForRoomEntity(myMap.getRoomAt(myCurrentLocation).toString());
+        checkForRoomEntity(myMap.getRoomAt(myCurrentLocation).getMyEntities());
 
     }
 
@@ -184,7 +184,7 @@ public class GameController {
      *  call to Creature control/Hero if item/obj/trap found
      * @param theRoomContents
      */
-    private void checkForRoomEntity(String theRoomContents) {
+    private void checkForRoomEntity(ArrayList<String> theRoomContents) {
 
         //check for trap
 

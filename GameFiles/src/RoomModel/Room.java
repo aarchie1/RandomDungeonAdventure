@@ -3,6 +3,7 @@ package RoomModel;
 import RoomEntity.EntityController;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 public interface Room {
 
     EntityController myContentsEdit = new EntityController();
-
+    ArrayList<String> myEntitys= new ArrayList<String>();
     /**
      * Adds a Room Entity to the List.
      */
@@ -25,7 +26,7 @@ public interface Room {
      * Returns a copy of the list when called on
      * @return a List of RoomEntitys.
      */
-    List<String> getMyEntities();
+    ArrayList<String> getMyEntities();
 
     /**
      * Removes the targeted RoomEntity from the list.
