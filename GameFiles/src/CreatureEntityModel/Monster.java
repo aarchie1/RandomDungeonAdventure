@@ -1,5 +1,7 @@
 package CreatureEntityModel;
 
+import java.util.Random;
+
 /**
  * Inherits from CreatureEntityModel and is abstract
  * Calls super constructor and has a constructor for Monster Specific Skills
@@ -44,6 +46,7 @@ public class Monster extends DungeonCharacter{
                 '}';
     }
 
+
     /**
      * Getter Method for healing percentage
      * @return double representing the chance for a monster to heal after being attacked.
@@ -56,7 +59,11 @@ public class Monster extends DungeonCharacter{
     void setDamage(final int theDamage) {
         int newHp = getMyHitPoints() - theDamage;
         setMyHitPoints(newHp);
-        // monster has a chance to heal, so call some methods that allow that to happen
-        // random chance to heal, get from method above
+        double healingChance = getMyHealingPercentage() * 100;
+        Random r = new Random();
+        if(r.nextInt(100) < healingChance){
+            int healing = r.nextInt(myHealPointRangeMax - myHealPointRangeMin +1 ) + myHealPointRangeMin;
+            setMyHitPoints(getMyHitPoints() + healing);
+        }
     }
 }
