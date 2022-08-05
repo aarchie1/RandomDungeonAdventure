@@ -45,7 +45,7 @@ public class Monster extends DungeonCharacter{
                 "myHealingPercentage=" + myHealingPercentage +
                 '}';
     }
-    
+
 
     /**
      * Getter Method for healing percentage
