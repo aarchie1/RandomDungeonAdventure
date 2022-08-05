@@ -51,7 +51,6 @@ public class EntityController {
 
     }
 
-    // Method to remove Hero when leaving the room
 
     // Method to add Pillars
 

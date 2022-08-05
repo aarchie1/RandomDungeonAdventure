@@ -1,55 +1,39 @@
 package CreatureEntityModel;
 
-import java.util.Random;
-
-
 /**
  * This class is used for any battle logic
- * @author Gil Rabara
+ * @author Anthony Archie
  * @version 0.01
- * Gil's Notes
- * This class takes in Hero and Monster stats from CreatureEntityController
- * Checks to see if A Hero and a Monster Type are in the same room
- * If yes: Battle will automatically take place
- * Will record if Hero or Monster dies (HP > 0)
- * Will update Hero HP at end of battle
  */
 public class BattleLogic {
+    Hero myHero;
+    Monster myMonster;
 
-    /*
-     * method that exports hero HP if hero is alive
-     */
-
-    /**
-     * Constructor
-     */
-    public BattleLogic() {
-
+    public BattleLogic(final Hero theHero, final Monster theMonster) {
+        myHero = theHero;
+        myMonster = theMonster;
     }
 
-
-    public int theFight (Hero heroInfo, Monster monsterInfo) {
-        Random randoNum = new Random(); // Random number generator
-       // CreatureEntityController cec = new CreatureEntityController();
-
-        while(heroInfo.getMyHitPoints() > 0 && monsterInfo.getMyHitPoints() > 0) {
-                if(heroInfo.getMyAttackAccuracy() > randoNum.nextDouble()) {
-                    monsterInfo.setDamage(Integer.parseInt(heroInfo.getMyRegularAttack()));
-                    //cec.checkAlive()
+    public int startBattle () {
+        // Battle Loop, Continue as long as both hero and monster are alive
+        // Each iteration through this loop is 1 round of battle
+        while (myHero.getMyHitPoints() > 0 && myMonster.getMyHitPoints() > 0) {
+            if(myHero.getMyAttackSpeed() >= myMonster.getMyAttackSpeed()){
+                if(myHero.getMyAttackSpeed()  >= myMonster.getMyAttackSpeed() * 2 ){
+                    attack(myHero, myMonster);
+                    myHero.attackBehavior(myMonster);
+                } else {
+                    attack(myHero, myMonster);
                 }
-
+            } else {
+                attack(myMonster, myHero);
             }
-        // if HeroHP >= 0 then return 0;
-        //return heroHP
-        return 1;
+        }
+        return myHero.getMyHitPoints();
     }
 
-
-    // import copy of relevant stats
-    // if 2 or more creatures are in same room
-    // will loop through options
-    // display as it goes through each loop
-    // first win loss will be automated
-    // prompt GAME CONTROLLER for player choice
-    // Long term goal is to allow player to make choices
+    private void attack(final DungeonCharacter theFirstCharacter , final DungeonCharacter theSecondCharacter) {
+        theFirstCharacter.attackBehavior(theSecondCharacter);
+        theSecondCharacter.attackBehavior(theFirstCharacter);
+    }
 }
