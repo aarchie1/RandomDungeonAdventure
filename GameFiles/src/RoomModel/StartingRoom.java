@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class StartingRoom extends BasicRoom {
 
-    StartingRoom(ArrayList<RoomEntity> arr) {
+    StartingRoom(ArrayList<String> arr) {
         super(arr);
     }
 

@@ -23,14 +23,16 @@ import RoomModel.RoomController;
  */
 public class MapController {
 
-    RADSMap myMap = new BasicMap();
-    Location myLocal = new Location(0,0);
+    RADSMap myMap;
+    Location myLocal;
 
-    RoomController myRoom = new RoomController();
+    RoomController myRoom ;
     Room myCurrentRoom;
 
     public MapController(){
-
+        myMap = new BasicMap();
+        myLocal = new Location(0,0);
+        myRoom = new RoomController();
     }
     public void setLocal(final Location theLocation) {
         myLocal = theLocation;

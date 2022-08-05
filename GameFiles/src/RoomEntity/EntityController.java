@@ -51,7 +51,6 @@ public class EntityController {
 
     }
 
-
     // Method to add Pillars
 
     // Method to add healthPotion

@@ -16,13 +16,13 @@ public enum PlayerActions {
     static PlayerActions getAct(final String theAction){
         PlayerActions myA;
         switch (theAction) {
-            case "H":
+            case "h":
                 myA = PlayerActions.HEALPOT;
                 break;
-            case "V":
+            case "v":
                 myA = PlayerActions.VISONPOT;
                 break;
-            case "I":
+            case "i":
                 myA = PlayerActions.PLAYERINV;
                 break;
             default:
