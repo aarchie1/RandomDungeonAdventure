@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUIModel.GUIMenu">
+  <grid id="27dc6" binding="GUIMenu" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="1280" height="800"/>
+    </constraints>
+    <properties>
+      <alignmentX value="0.0"/>
+      <alignmentY value="0.0"/>
+      <background color="-16777216"/>
+      <maximumSize width="1280" height="800"/>
+      <minimumSize width="1280" height="800"/>
+      <name value="GUIMenu"/>
+      <opaque value="true"/>
+      <preferredSize width="1280" height="800"/>
+    </properties>
+    <border type="line" title="Random Adventure Dungeon Simulator" title-justification="2" title-position="3">
+      <font name="Comic Sans MS" size="36" style="1"/>
+      <title-color color="-6579301"/>
+      <color color="-16777216"/>
+    </border>
+    <children>
+      <component id="736a" class="javax.swing.JButton" binding="newGameButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="97" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="New Game"/>
+        </properties>
+      </component>
+      <component id="3a96" class="javax.swing.JButton" binding="loadGameButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="89" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="Load Game"/>
+        </properties>
+      </component>
+      <hspacer id="e8ad1">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="e98f">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+    </children>
+  </grid>
+</form>
