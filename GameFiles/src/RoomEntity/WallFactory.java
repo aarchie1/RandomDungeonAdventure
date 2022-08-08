@@ -1,33 +1,30 @@
 package RoomEntity;
 
+public enum WallFactory implements RoomEntity {
 
-
-enum DoorFactory implements RoomEntity {
     UP,
     DOWN,
     LEFT,
     RIGHT;
 
-    @Override
-    public String toString() {
-      return getMyName();
+    public String toString(){
+        return getMyName();
     }
-
     @Override
     public String getMyName() {
         String dis = "";
         switch (this){
-            case UP -> dis = "DOORUP";
-            case DOWN -> dis ="DOORDOWN";
-            case RIGHT -> dis = "DOORRIGHT";
-            case LEFT -> dis = "DOORLEFT";
+            case UP -> dis = "WALLUP";
+            case DOWN -> dis ="WALLDOWN";
+            case RIGHT -> dis = "WALLRIGHT";
+            case LEFT -> dis = "WALLLEFT";
         }
         return dis;
     }
 
 
-    static RoomEntity doorGen(final String theDirection) {
-        DoorFactory theD = null;
+    static RoomEntity wallGen(final String theDirection) {
+        WallFactory theD = null;
         switch (theDirection){
             case "UP" -> theD = UP;
             case "DOWN" -> theD = DOWN;
@@ -36,5 +33,6 @@ enum DoorFactory implements RoomEntity {
         }
         return theD;
     }
-}
 
+
+}

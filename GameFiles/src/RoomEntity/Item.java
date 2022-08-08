@@ -23,7 +23,12 @@ public class Item implements RoomEntity {
 
     @Override
     public String toString() {
-        return myName.toString();
+        return getMyName();
+    }
+
+    @Override
+    public String getMyName() {
+        return myName;
     }
 
     public void setMyFlavorText(String myFlavorText) {

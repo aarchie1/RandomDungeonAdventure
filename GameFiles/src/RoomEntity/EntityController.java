@@ -1,7 +1,5 @@
 package RoomEntity;
 
-import CreatureEntityModel.CreatureEntityController;
-
 import java.util.ArrayList;
 
 /**
@@ -19,20 +17,31 @@ import java.util.ArrayList;
  */
 public class EntityController {
 
-    private boolean areMonstersDefeated;
-    private ArrayList<RoomEntity> myContents = new ArrayList<>();
-    private final CreatureCrossover myCreatureCrossover = new CreatureCrossover();
+    private ArrayList<RoomEntity> myContents;
+    private final CreatureCrossover myCreatureCrossover;
 
     public EntityController(){
-        areMonstersDefeated = false;
+        myContents = new ArrayList<>();
+        myCreatureCrossover = new CreatureCrossover();
     }
 
-    // Method to get starting room
+    /**
+     * This Method is called on to generate the contents of the starting room.
+     * @return
+     */
     public ArrayList<RoomEntity> getStartingRoom(){
-        myContents = new ArrayList<>();
-        addHero();
-        //myContents.add(myCreatureCrossover);
+        myContents = getBasicRoom();
         myContents.add(new DevAmulet());
+        addDoor("UP");
+        return myContents;
+    }
+
+    public ArrayList<RoomEntity> getBasicRoom() {
+        myContents = new ArrayList<>();
+        myContents.add(WallFactory.UP);
+        myContents.add(WallFactory.DOWN);
+        myContents.add(WallFactory.LEFT);
+        myContents.add(WallFactory.RIGHT);
         return myContents;
     }
 
@@ -51,6 +60,17 @@ public class EntityController {
 
     }
 
+    /**
+     * This method should be used to determine if a string theName is a monster
+     * If it is a matcu return true.
+     * else false.
+     * @param theName the string for the monster name to look for.
+     * @return true if the name matches a monster, false otherwise
+     */
+    public boolean isMonster(String theName) {
+        return false;
+    }
+
     // Method to add Pillars
 
     // Method to add healthPotion
@@ -58,6 +78,13 @@ public class EntityController {
     // Method to add visionPotion
 
     // Method to add door
+    public void addDoor(final String theDir) {
+        if (DoorFactory.doorGen(theDir) != null){
+            myContents.remove(WallFactory.wallGen(theDir));
+            myContents.add(DoorFactory.doorGen(theDir));
+        }
+
+    }
 
     // Method to add trap
 
