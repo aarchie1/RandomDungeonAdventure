@@ -78,11 +78,15 @@ public class RoomController {
         return specialRoom;
     }
 
-    // take input from the map whitch indicate wher doors should be in the room -
-    // call on the roomentinty controler to get those roomo objects and add them to the room.
+    // take input from the map which indicate where doors should be in the room -
+    // call on the RoomEntity controller to get those room objects and add them to the room.
 
-    public void doorCheck(){
+    public void doorCheck(final String[] doorLocations,final Room theCurrent){
 
+        for (String s: doorLocations){
+
+            myEntityEditor.LoadContents(theCurrent.getMyEntities());
+        }
     }
 
     /**

@@ -1,6 +1,7 @@
 package RoomEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This Class is used to control all RoomEntity's
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 public class EntityController {
 
-    private ArrayList<RoomEntity> myContents;
+    private List<RoomEntity> myContents;
     private final CreatureCrossover myCreatureCrossover;
 
     public EntityController(){
@@ -27,16 +28,21 @@ public class EntityController {
 
     /**
      * This Method is called on to generate the contents of the starting room.
+     *
      * @return
      */
-    public ArrayList<RoomEntity> getStartingRoom(){
+    public List<RoomEntity> getStartingRoom(){
         myContents = getBasicRoom();
         myContents.add(new DevAmulet());
         addDoor("UP");
         return myContents;
     }
 
-    public ArrayList<RoomEntity> getBasicRoom() {
+    /**
+     * This method is called on each room first. It adds 4 walls to the room.
+     * @return
+     */
+    public List<RoomEntity> getBasicRoom() {
         myContents = new ArrayList<>();
         myContents.add(WallFactory.UP);
         myContents.add(WallFactory.DOWN);
@@ -67,7 +73,7 @@ public class EntityController {
      * @param theName the string for the monster name to look for.
      * @return true if the name matches a monster, false otherwise
      */
-    public boolean isMonster(String theName) {
+    public boolean isMonster(final String theName) {
         return false;
     }
 
@@ -83,6 +89,16 @@ public class EntityController {
             myContents.remove(WallFactory.wallGen(theDir));
             myContents.add(DoorFactory.doorGen(theDir));
         }
+
+    }
+
+    /**
+     * This method should create a room with the contents of the List.
+     * Each string should represent a single door, wall, item, or monster
+     * This method should match the requested string with the correct enum object.
+     * @param theContents A list of the RoomEntities to be manipulated by the controller.
+     */
+    public void LoadContents(final List<String> theContents) {
 
     }
 
