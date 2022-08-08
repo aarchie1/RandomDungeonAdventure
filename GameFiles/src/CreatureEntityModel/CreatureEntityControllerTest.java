@@ -17,8 +17,8 @@ class CreatureEntityControllerTest {
 
     @BeforeEach
     void setUp(){
-        myController.createHero();
-        myController.createMonster();
+        myController.createHero("thief");
+        myController.createMonster("gremlin");
 
     }
 
@@ -99,10 +99,13 @@ class CreatureEntityControllerTest {
         assertEquals(0, heroesItems);
     }
 
+    @Test
+
     private void helperGiveHeroPillars() {
         myController.giveItem("Pillar1");
         myController.giveItem("Pillar2");
         myController.giveItem("Pillar3");
         myController.giveItem("Pillar4");
     }
+
 }

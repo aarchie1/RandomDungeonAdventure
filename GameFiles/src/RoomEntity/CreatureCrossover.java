@@ -25,13 +25,13 @@ public class CreatureCrossover implements RoomEntity {
     // Method to addMonster
     public void addMonster(){
 
-        myCreatureController.createMonster();
+        myCreatureController.createMonster("gremlin");
         myCreatureController.getMyMonster();
     }
 
     // Method to addMonster
     public void addHero(){
-        myCreatureController.createHero();
+        myCreatureController.createHero("thief");
     }
 
 

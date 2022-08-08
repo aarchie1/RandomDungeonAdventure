@@ -20,15 +20,20 @@ public class CreatureEntityController {
 
     public CreatureEntityController(){
         myCharacters  = new ArrayList<DungeonCharacter>();
-        createHero();
+        createHero("thief");
 
     }
 
     /**
      * This method creates and instance of a hero and assigns that hero object to a field of this class
+     * @param theHeroName this is a String representing the name of the hero to be created.
      */
-    public void createHero(){
-        myHero = HeroFactory.spawnHero(HeroFactory.WARRIOR);
+    public void createHero(final String theHeroName){
+        switch(theHeroName.toLowerCase()){
+            case "thief" -> myHero = HeroFactory.spawnHero(HeroFactory.THIEF);
+            case "warrior" -> myHero = HeroFactory.spawnHero(HeroFactory.WARRIOR);
+            case "priestess" -> myHero = HeroFactory.spawnHero(HeroFactory.PRIESTESS);
+        }
         myCharacters.add(myHero);
     }
 
@@ -36,8 +41,13 @@ public class CreatureEntityController {
      * This method creates and instance of a monster and assigns that hero object to a field of this class.
      * this currently defaults to a gremlin and will be refactored later to handle other monster types.
      */
-    public void createMonster(){
-        myMonster = MonsterFactory.spawnMonster(MonsterFactory.GREMLIN);
+    public void createMonster(final String theMonsterName){
+        switch(theMonsterName.toLowerCase()){
+            case "gremlin" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.GREMLIN);
+            case "ogre" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.OGRE);
+            case "skeleton" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.SKELETON);
+        }
+
         myCharacters.add(myMonster);
 
     }

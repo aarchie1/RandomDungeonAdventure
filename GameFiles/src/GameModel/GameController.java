@@ -53,7 +53,7 @@ public class GameController {
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
         myMap.setLocal(theStart);
-        myCreatures.createHero();
+        myCreatures.createHero("thief");
 
 
     }
