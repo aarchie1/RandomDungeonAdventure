@@ -20,7 +20,7 @@ public class CreatureEntityController {
 
     public CreatureEntityController(){
         myCharacters  = new ArrayList<DungeonCharacter>();
-        createHero("thief");
+        createHero("warrior");
 
     }
 
@@ -59,7 +59,7 @@ public class CreatureEntityController {
     public String getMyMonster() {
             String m = "";
             try {
-                myMonster.getMyName();
+                m = myMonster.getMyName();
             } catch (NullPointerException e) {
 
                 m = "No monster in creatureEntityController!";
@@ -72,7 +72,7 @@ public class CreatureEntityController {
      * @return String representing the hero's name
      */
     public String getMyHero() {
-        return myHero.getMyName();
+        return myHero.toString();
     }
 
     /**
@@ -94,13 +94,16 @@ public class CreatureEntityController {
     public void fightAMonster(final String theMonsterName) {
         // logic to determine monster - stubbed below - input string, output a Monster
         Monster opponent =  findMonster(theMonsterName);
+        if (opponent == null) {
+            return;
+        }
         BattleLogic bl = new BattleLogic(myHero, opponent);
         int heroHealth = bl.startBattle();
         if ( heroHealth > 0) {
-            System.out.println("hero has slain the monster");
+            System.out.println("Hero has slain the monster");
             myHero.setMyHitPoints(heroHealth);
         } else {
-            System.out.println("hero has been slain by the monster");
+            System.out.println("Hero has been slain by the monster");
         }
 
     }
@@ -115,9 +118,9 @@ public class CreatureEntityController {
     private Monster findMonster(final String theMonsterName) {
         Iterator i = myCharacters.iterator();
         while(i.hasNext()){
-            Monster m = (Monster) i.next();
-            if (m.getMyName().equalsIgnoreCase(theMonsterName)){
-                return m;
+           DungeonCharacter d = (DungeonCharacter) i.next();
+            if (d.getMyName().equalsIgnoreCase(theMonsterName)){
+                return (Monster) d;
             }
         }
         // Default fail safe
