@@ -16,4 +16,9 @@ public class EmptyRoom implements RoomEntity {
         return myContents;
     }
 
+    @Override
+    public String getMyName() {
+        return myContents;
+    }
+
 }

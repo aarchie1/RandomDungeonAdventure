@@ -38,6 +38,12 @@ public class CreatureCrossover implements RoomEntity {
 
     @Override
     public String toString() {
+        return getMyName();
+    }
+
+
+    @Override
+    public String getMyName() {
         return myCreatureController.getMyMonster();
     }
 

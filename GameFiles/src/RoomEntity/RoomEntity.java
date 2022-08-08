@@ -13,4 +13,5 @@ public interface RoomEntity {
     public String toString();
 
 
+    String getMyName();
 }
