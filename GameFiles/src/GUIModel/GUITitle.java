@@ -12,6 +12,7 @@ public class GUITitle extends GUIController implements ActionListener{
 
     JFrame window;
     JPanel titleNamePanel;
+    private JButton StartButton;
     JPanel startButtonPanel;
     JLabel titleNameLabel;
     JButton startButton;
@@ -22,6 +23,12 @@ public class GUITitle extends GUIController implements ActionListener{
      */
     GUITitle() {
         GUIstartUp();
+        StartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public void GUIstartUp() {
