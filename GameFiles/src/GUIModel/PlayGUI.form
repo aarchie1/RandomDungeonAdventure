@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUIModel.PlayGUI">
+  <grid id="27dc6" binding="playPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="90" y="18" width="1280" height="800"/>
+    </constraints>
+    <properties>
+      <background color="-16777216"/>
+      <foreground color="-6579301"/>
+      <maximumSize width="1280" height="800"/>
+      <minimumSize width="1280" height="800"/>
+      <name value=""/>
+      <opaque value="false"/>
+      <preferredSize width="1280" height="800"/>
+    </properties>
+    <border type="etched" title="Random Adventure Dungeon Simulator" title-justification="2" title-position="3">
+      <font name="Comic Sans MS" size="36" style="1"/>
+      <title-color color="-6579301"/>
+    </border>
+    <children>
+      <grid id="921e2" binding="viewPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="1280" height="800"/>
+            <preferred-size width="1280" height="800"/>
+            <maximum-size width="1280" height="800"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="b30c3" binding="directionPanel" layout-manager="GridLayoutManager" row-count="2" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="320" height="250"/>
+                <preferred-size width="320" height="250"/>
+                <maximum-size width="320" height="250"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+            </properties>
+            <border type="etched"/>
+            <children>
+              <component id="e328" class="javax.swing.JButton" binding="buttonRight">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="50"/>
+                    <preferred-size width="100" height="50"/>
+                    <maximum-size width="100" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Right"/>
+                </properties>
+              </component>
+              <component id="c6410" class="javax.swing.JButton" binding="buttonLeft">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="50"/>
+                    <preferred-size width="100" height="50"/>
+                    <maximum-size width="100" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Left"/>
+                </properties>
+              </component>
+              <component id="e5400" class="javax.swing.JButton" binding="buttonDown">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="50"/>
+                    <preferred-size width="100" height="50"/>
+                    <maximum-size width="100" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <alignmentY value="0.0"/>
+                  <text value="Down"/>
+                </properties>
+              </component>
+              <component id="6a6dc" class="javax.swing.JButton" binding="buttonUp">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="50"/>
+                    <preferred-size width="100" height="50"/>
+                    <maximum-size width="100" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Up"/>
+                </properties>
+              </component>
+              <hspacer id="fe93c">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <hspacer id="526e6">
+                <constraints>
+                  <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+          <grid id="4639f" binding="logPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="250" height="550"/>
+                <preferred-size width="250" height="550"/>
+                <maximum-size width="250" height="550"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+            </properties>
+            <border type="etched" title="History Log" title-justification="2"/>
+            <children/>
+          </grid>
+          <grid id="baf24" binding="mapPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <minimum-size width="1080" height="550"/>
+                <preferred-size width="1080" height="550"/>
+                <maximum-size width="1080" height="550"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-6579301"/>
+            </properties>
+            <border type="etched"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
