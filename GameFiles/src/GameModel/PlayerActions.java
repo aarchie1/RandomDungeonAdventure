@@ -14,7 +14,7 @@ public enum PlayerActions {
      * @return the PlayerAction used with that string
      */
     static PlayerActions getAct(final String theAction){
-        PlayerActions myA;
+        PlayerActions myA = null;
         switch (theAction) {
             case "h":
                 myA = PlayerActions.HEALPOT;

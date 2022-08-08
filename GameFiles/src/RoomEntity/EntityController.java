@@ -44,10 +44,10 @@ public class EntityController {
      */
     public List<RoomEntity> getBasicRoom() {
         myContents = new ArrayList<>();
-        myContents.add(WallFactory.UP);
-        myContents.add(WallFactory.DOWN);
-        myContents.add(WallFactory.LEFT);
-        myContents.add(WallFactory.RIGHT);
+        myContents.add(WallFactory.WALLUP);
+        myContents.add(WallFactory.WALLDOWN);
+        myContents.add(WallFactory.WALLLEFT);
+        myContents.add(WallFactory.WALLRIGHT);
         return myContents;
     }
 
@@ -85,9 +85,9 @@ public class EntityController {
 
     // Method to add door
     public void addDoor(final String theDir) {
-        if (DoorFactory.doorGen(theDir) != null){
-            myContents.remove(WallFactory.wallGen(theDir));
-            myContents.add(DoorFactory.doorGen(theDir));
+        if (DoorFactory.getDoor(theDir) != null){
+            myContents.remove(WallFactory.getWall(theDir));
+            myContents.add(DoorFactory.getDoor(theDir));
         }
 
     }
@@ -101,6 +101,7 @@ public class EntityController {
     public void LoadContents(final List<String> theContents) {
 
     }
+
 
     // Method to add trap
 

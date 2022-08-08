@@ -19,6 +19,11 @@ public class Wall implements  RoomEntity{
         return myName.toString();
     }
 
+    @Override
+    public String getMyName() {
+        return null;
+    }
+
     public void setMyFlavorText(String myFlavorText) {
         this.myFlavorText = myFlavorText;
     }

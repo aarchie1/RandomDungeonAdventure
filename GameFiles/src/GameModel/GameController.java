@@ -138,27 +138,28 @@ public class GameController {
      * @param theAction an accepted input TBD
      * @return the Hero's Items as a string.
      */
-    public String actionMenu(final String theAction){
+    public String actionMenu(final String theAction) {
         String chosenAction = "";
-        //insert code here!
-        PlayerActions myA = PlayerActions.getAct(theAction);
-        switch (myA){
-            // Consider a refactor to make UseHealthPostion take no input.
-            case HEALPOT:
-                chosenAction = "Used a HealthPotion";
-                myCreatures.useHealthPotion("20");
-                break;
-            case VISONPOT:
-                chosenAction = "Used a VisionPotion";
-                chosenAction += "\n" + myMap.getLocalMap(myCurrentLocation);
-                break;
-            case PLAYERINV:
-                chosenAction = myCreatures.getMyHeroItems();
-                break;
-            default:
-                chosenAction = "Not a valid Action!";
-                break;
-        }
+
+            PlayerActions myA = PlayerActions.getAct(theAction);
+
+            switch (myA) {
+                // Consider a refactor to make UseHealthPostion take no input.
+                case HEALPOT:
+                    chosenAction = "Used a HealthPotion";
+                    myCreatures.useHealthPotion("20");
+                    break;
+                case VISONPOT:
+                    chosenAction = "Used a VisionPotion";
+                    chosenAction += "\n" + myMap.getLocalMap(myCurrentLocation);
+                    break;
+                case PLAYERINV:
+                    chosenAction = myCreatures.getMyHeroItems();
+                    break;
+                default:
+                    chosenAction = "Not a valid Action!";
+                    break;
+            }
         return chosenAction;
     }
 

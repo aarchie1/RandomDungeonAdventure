@@ -41,7 +41,7 @@ public class RoomController {
         for (Object i : myEntityEditor.getStartingRoom()){
             arr.add(i.toString());
         }
-        Room start = new StartingRoom(arr);
+        Room start = new BasicRoom(arr);
         return start;
     }
 
@@ -51,7 +51,7 @@ public class RoomController {
      */
     public Room genericRoom() {
         Room theRoom = new BasicRoom();
-        //theRoom.addEntity(myEntityEditor.addMonster());
+        theRoom.addEntity(myEntityEditor.getBasicRoom().toString());
         return theRoom;
     }
 

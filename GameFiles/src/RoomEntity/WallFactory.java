@@ -31,12 +31,18 @@ public enum WallFactory implements RoomEntity {
     static Wall spawnWall(WallFactory theWall) {
         Wall newWall = null;
         switch (theWall) {
-            case WALLUP -> newWall = new Wall("Up");
-            case WALLDOWN -> newWall = new Wall("Down");
-            case WALLLEFT -> newWall = new Wall("Left");
-            case WALLRIGHT -> newWall = new Wall("Right");
+            case WALLUP -> newWall = new Wall("WALLUP");
+            case WALLDOWN -> newWall = new Wall("WALLDOWN");
+            case WALLLEFT -> newWall = new Wall("WALLLEFT");
+            case WALLRIGHT -> newWall = new Wall("WALLRIGHT");
         }
         return newWall;
+    }
+
+
+    @Override
+    public String getMyName() {
+        return null;
     }
 }
 
