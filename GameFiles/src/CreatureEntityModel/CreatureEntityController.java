@@ -16,11 +16,10 @@ import static java.lang.Integer.parseInt;
 public class CreatureEntityController {
     private Monster myMonster;
     private Hero myHero;
-    private ArrayList<DungeonCharacter> myCharacters = new ArrayList<DungeonCharacter>();
-
-    public MonsterTemplates myTemplates;
+    private ArrayList<DungeonCharacter> myCharacters;
 
     public CreatureEntityController(){
+        myCharacters  = new ArrayList<DungeonCharacter>();
         createHero();
 
     }
@@ -29,7 +28,7 @@ public class CreatureEntityController {
      * This method creates and instance of a hero and assigns that hero object to a field of this class
      */
     public void createHero(){
-        myHero = new Warrior();
+        myHero = HeroFactory.spawnHero(HeroFactory.WARRIOR);
         myCharacters.add(myHero);
     }
 
@@ -38,7 +37,7 @@ public class CreatureEntityController {
      * this currently defaults to a gremlin and will be refactored later to handle other monster types.
      */
     public void createMonster(){
-        myMonster = MonsterTemplates.spawnMonster(MonsterTemplates.GREMLIN);
+        myMonster = MonsterFactory.spawnMonster(MonsterFactory.GREMLIN);
         myCharacters.add(myMonster);
 
     }
@@ -112,7 +111,7 @@ public class CreatureEntityController {
             }
         }
         // Default fail safe
-        Monster theMonster = new Gremlin();
+        Monster theMonster = MonsterFactory.spawnMonster(MonsterFactory.GREMLIN);
         return theMonster;
     }
 
