@@ -19,6 +19,7 @@ public class TitleGUI extends GUIController implements ActionListener{
         TitleGUIComponents();
     }
 
+
     private void TitleGUIComponents() {
         screenWidth = 1280;
         screenHeight = 800;

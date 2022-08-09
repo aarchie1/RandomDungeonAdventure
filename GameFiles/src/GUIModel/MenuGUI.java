@@ -59,7 +59,11 @@ public class MenuGUI extends GUIController implements ActionListener {
         if(e.getSource() == loadGameButton) {
             System.out.println("Load game");
             menuFrame.dispose();
-            PlayGUI playGUI = new PlayGUI();
+            try {
+                PlayGUI playGUI = new PlayGUI();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 

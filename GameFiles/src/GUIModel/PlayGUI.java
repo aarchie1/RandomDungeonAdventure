@@ -1,17 +1,26 @@
 package GUIModel;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 
 public class PlayGUI extends GUIController implements ActionListener {
     private JFrame playFrame;
     private JPanel playPanel, directionPanel, viewPanel, logPanel, mapPanel;
     private JButton buttonUp, buttonDown, buttonLeft, buttonRight;
     private int screenWidth, screenHeight;
+    private ImageIcon tileImage;
 
-    PlayGUI() {playGUIComponents();}
+    PlayGUI() throws IOException {
+        playGUIComponents();
+        mapGrid();
+    }
 
     private void playGUIComponents() {
         screenWidth = 1280;
@@ -32,23 +41,45 @@ public class PlayGUI extends GUIController implements ActionListener {
         playPanel.setBounds(0,0,1280,800);
         playPanel.setBackground(Color.black);
 
-        // viewPanel
-        viewPanel.setBounds(0,0,1280,800);
-        viewPanel.setBackground(Color.gray);
+        // Up button
+        buttonUp.addActionListener(this);
 
-        // mapPanel
-        mapPanel.setBounds(0,0,1050,550);
-        mapPanel.setBackground(Color.gray);
-        mapPanel.setVisible(true);
-        // directionPanel
-        // logPanel
+        // Down button
+        buttonDown.addActionListener(this);
 
+        // Left button
+        buttonLeft.addActionListener(this);
 
+        // Right button
+        buttonRight.addActionListener(this);
+    }
+
+    private void mapGrid() throws IOException {
+
+        URL url = this.getClass().getResource("/Sprites/tile.png");
+        ImageIcon imageIcon = new ImageIcon(url);
+
+        JLabel tileLabel = new JLabel();
+        tileLabel.setIcon(imageIcon);
+
+        mapPanel.setLayout(new GridLayout(9,9,0,0));
+        mapPanel.add(tileLabel);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == buttonUp) {
+            System.out.println("Going up");
+        }
+        if (e.getSource() == buttonDown) {
+            System.out.println("Going down");
+        }
+        if (e.getSource() == buttonLeft) {
+            System.out.println("Going left");
+        }
+        if (e.getSource() == buttonRight) {
+            System.out.println("Going right");
+        }
     }
 }
