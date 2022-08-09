@@ -13,7 +13,7 @@
       <maximumSize width="1280" height="800"/>
       <minimumSize width="1280" height="800"/>
       <name value=""/>
-      <opaque value="false"/>
+      <opaque value="true"/>
       <preferredSize width="1280" height="800"/>
       <visible value="true"/>
     </properties>

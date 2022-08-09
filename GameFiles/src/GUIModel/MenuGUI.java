@@ -14,24 +14,24 @@ public class MenuGUI extends GUIController implements ActionListener {
 
     MenuGUI() {menuGUIComponents();}
 
-    public void menuGUIComponents() {
+    private void menuGUIComponents() {
         screenWidth = 1280;
         screenHeight = 800;
 
         // Menu Frame
-        menuFrame = new JFrame(); // Creates new JFrame "menuFrame"
-        menuFrame.setSize(screenWidth, screenHeight); // "menuFrame" width and height
-        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // "menuFrame" close operation on exit
-        menuFrame.setLocationRelativeTo(null); // "menuFrame" spawns in middle of screen
-        menuFrame.setVisible(true); // "menuFrame" visibility
-        menuFrame.setLayout(null); // "menuFrame" layout
-        menuFrame.setBackground(Color.black); // "menuFrame" background color
-        menuFrame.setResizable(false); // "menuFrame" resizability
+        menuFrame = new JFrame();
+        menuFrame.setSize(screenWidth, screenHeight);
+        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        menuFrame.setLocationRelativeTo(null);
+        menuFrame.setVisible(true);
+        menuFrame.setLayout(null);
+        menuFrame.setBackground(Color.black);
+        menuFrame.setResizable(false);
         menuFrame.add(menuPanel);
 
         // Menu Main Panel
-        menuPanel.setBounds(0,0,1280,800); // "Random Adventure Dungeon Simulator" bounds
-        menuPanel.setBackground(Color.black); // "Random Adventure Dungeon Simulator" background color
+        menuPanel.setBounds(0,0,1280,800);
+        menuPanel.setBackground(Color.black);
 
         // New Game Panel
         newGamePanel.setBounds(0,400,120,60);

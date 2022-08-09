@@ -15,73 +15,62 @@ public class TitleGUI extends GUIController implements ActionListener{
     private JButton startButton;
     int screenWidth, screenHeight;
 
-    /**
-     * Constructor that calls GUI Methods
-     */
     TitleGUI() {
         TitleGUIComponents();
     }
 
-    public void TitleGUIComponents() {
+    private void TitleGUIComponents() {
         screenWidth = 1280;
         screenHeight = 800;
 
-        Font titleFont = new Font("Comic Sans",Font.PLAIN,90); // Title Font
-        Font normalFont = new Font("Comic Sans", Font.PLAIN, 20); // normal Font
+        Font titleFont = new Font("Comic Sans",Font.PLAIN,90);
+        Font normalFont = new Font("Comic Sans", Font.PLAIN, 20);
 
         // Window
-        titleGUIFrame = new JFrame(); // Creates new JFrame "window"
-        titleGUIFrame.setSize(screenWidth, screenHeight); // "window" width and height
-        titleGUIFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // "window" close operation on exit
-        titleGUIFrame.setLocationRelativeTo(null); // "window" spawns in middle of screen
-        titleGUIFrame.setVisible(true); // "window" visibility
-        titleGUIFrame.setLayout(null); // "window" layout
-        titleGUIFrame.getContentPane().setBackground(Color.black); // "window" background color
-        titleGUIFrame.setResizable(false); // "window" resizability
+        titleGUIFrame = new JFrame();
+        titleGUIFrame.setSize(screenWidth, screenHeight);
+        titleGUIFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        titleGUIFrame.setLocationRelativeTo(null);
+        titleGUIFrame.setVisible(true);
+        titleGUIFrame.setLayout(null);
+        titleGUIFrame.getContentPane().setBackground(Color.black);
+        titleGUIFrame.setResizable(false);
 
         // Title Name Panel
-        titleNamePanel = new JPanel(); // Creates JPanel "titleNamePanel"
-        int newTitleX = (int)Math.round(screenWidth *0.125); // X location for "titleNamePanel"
-        int newTitleY = (int)Math.round(screenHeight *0.166); // Y location for "titleNamePanel"
-        int newTitleWidth =(int)Math.round(screenWidth *0.75); // Width for "titleNamePanel"
-        int newTitleHeight = (int)Math.round(screenHeight *0.25); // Height for "titleNamePanel"
-        titleNamePanel.setBounds(newTitleX,newTitleY,newTitleWidth,newTitleHeight); // "titleNamePanel" bounds
-        titleNamePanel.setBackground(Color.black); // "titleNamePanel" background color
+        titleNamePanel = new JPanel();
+        int newTitleX = (int)Math.round(screenWidth *0.125);
+        int newTitleY = (int)Math.round(screenHeight *0.166);
+        int newTitleWidth =(int)Math.round(screenWidth *0.75);
+        int newTitleHeight = (int)Math.round(screenHeight *0.25);
+        titleNamePanel.setBounds(newTitleX,newTitleY,newTitleWidth,newTitleHeight);
+        titleNamePanel.setBackground(Color.black);
 
         // Title Name Label
-        JLabel titleNameLabel = new JLabel("Dungeon Adventure"); // Creates a new JLabel "Dungeon Adventure"
-        titleNameLabel.setForeground(Color.white); // "Dungeon Adventure" Foreground color
-        titleNameLabel.setFont(titleFont); // "Dungeon Adventure" font
-        titleNamePanel.add(titleNameLabel); // adds "Dungeon Adventure" JLabel to JPanel
+        JLabel titleNameLabel = new JLabel("Dungeon Adventure");
+        titleNameLabel.setForeground(Color.white);
+        titleNameLabel.setFont(titleFont);
+        titleNamePanel.add(titleNameLabel);
 
         // Start Button Panel
-        JPanel startButtonPanel = new JPanel(); // Creates a new JPanel "startButtonPanel"
-        int newButtonX = (int)Math.round(screenWidth *0.360); // X location for "startButtonPanel"
-        int newButtonY = (int)Math.round(screenHeight *0.667); // Y location for "startButtonPanel"
-        int newButtonWidth =(int)Math.round(screenWidth *0.25); // Width for "startButtonPanel"
-        int newButtonHeight = (int)Math.round(screenHeight *0.125); // Height for "startButtonPanel"
-        startButtonPanel.setBounds(newButtonX,newButtonY,newButtonWidth,newButtonHeight); // "startButtonPanel" bounds
-        startButtonPanel.setBackground(Color.black); // "startButtonPanel" background color
+        JPanel startButtonPanel = new JPanel();
+        int newButtonX = (int)Math.round(screenWidth *0.360);
+        int newButtonY = (int)Math.round(screenHeight *0.667);
+        int newButtonWidth =(int)Math.round(screenWidth *0.25);
+        int newButtonHeight = (int)Math.round(screenHeight *0.125);
+        startButtonPanel.setBounds(newButtonX,newButtonY,newButtonWidth,newButtonHeight);
+        startButtonPanel.setBackground(Color.black);
 
         // Start Button
-        startButton = new JButton("START"); // Name button "Start"
-        startButton.setBackground(Color.gray); // "Start" background color
-        startButton.setForeground(Color.black); // "Start" Foreground color
-        startButton.setFont(normalFont); // "Start" font
-        startButton.setFocusPainted(false); // Removes interior box from "Start"
-        startButton.addActionListener(this); // Button action
-        startButtonPanel.add(startButton); // add "Start" to ButtonPanel
+        startButton = new JButton("START");
+        startButton.setBackground(Color.gray);
+        startButton.setForeground(Color.black);
+        startButton.setFont(normalFont);
+        startButton.setFocusPainted(false);
+        startButton.addActionListener(this);
+        startButtonPanel.add(startButton);
 
-        // Actions
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {}
-        });
-
-        titleGUIFrame.add(titleNamePanel); // Add titleNamePanel to JFrame "window"
-        titleGUIFrame.add(startButtonPanel); // Add startButtonPanel to JFrame "window"
-
-        titleGUIFrame.setVisible(true); // "window" JFrame is visible
+        titleGUIFrame.add(titleNamePanel);
+        titleGUIFrame.add(startButtonPanel);
     }
 
 
