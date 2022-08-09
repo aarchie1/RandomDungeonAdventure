@@ -16,20 +16,24 @@ import static java.lang.Integer.parseInt;
 public class CreatureEntityController {
     private Monster myMonster;
     private Hero myHero;
-    private ArrayList<DungeonCharacter> myCharacters = new ArrayList<DungeonCharacter>();
-
-    public MonsterTemplates myTemplates;
+    private ArrayList<DungeonCharacter> myCharacters;
 
     public CreatureEntityController(){
-        createHero();
+        myCharacters  = new ArrayList<DungeonCharacter>();
+        createHero("warrior");
 
     }
 
     /**
      * This method creates and instance of a hero and assigns that hero object to a field of this class
+     * @param theHeroName this is a String representing the name of the hero to be created.
      */
-    public void createHero(){
-        myHero = new Warrior();
+    public void createHero(final String theHeroName){
+        switch(theHeroName.toLowerCase()){
+            case "thief" -> myHero = HeroFactory.spawnHero(HeroFactory.THIEF);
+            case "warrior" -> myHero = HeroFactory.spawnHero(HeroFactory.WARRIOR);
+            case "priestess" -> myHero = HeroFactory.spawnHero(HeroFactory.PRIESTESS);
+        }
         myCharacters.add(myHero);
     }
 
@@ -37,8 +41,13 @@ public class CreatureEntityController {
      * This method creates and instance of a monster and assigns that hero object to a field of this class.
      * this currently defaults to a gremlin and will be refactored later to handle other monster types.
      */
-    public void createMonster(){
-        myMonster = MonsterTemplates.spawnMonster(MonsterTemplates.GREMLIN);
+    public void createMonster(final String theMonsterName){
+        switch(theMonsterName.toLowerCase()){
+            case "gremlin" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.GREMLIN);
+            case "ogre" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.OGRE);
+            case "skeleton" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.SKELETON);
+        }
+
         myCharacters.add(myMonster);
 
     }
@@ -50,7 +59,7 @@ public class CreatureEntityController {
     public String getMyMonster() {
             String m = "";
             try {
-                myMonster.getMyName();
+                m = myMonster.getMyName();
             } catch (NullPointerException e) {
 
                 m = "No monster in creatureEntityController!";
@@ -63,7 +72,7 @@ public class CreatureEntityController {
      * @return String representing the hero's name
      */
     public String getMyHero() {
-        return myHero.getMyName();
+        return myHero.toString();
     }
 
     /**
@@ -85,13 +94,16 @@ public class CreatureEntityController {
     public void fightAMonster(final String theMonsterName) {
         // logic to determine monster - stubbed below - input string, output a Monster
         Monster opponent =  findMonster(theMonsterName);
+        if (opponent == null) {
+            return;
+        }
         BattleLogic bl = new BattleLogic(myHero, opponent);
         int heroHealth = bl.startBattle();
         if ( heroHealth > 0) {
-            System.out.println("hero has slain the monster");
+            System.out.println("Hero has slain the monster");
             myHero.setMyHitPoints(heroHealth);
         } else {
-            System.out.println("hero has been slain by the monster");
+            System.out.println("Hero has been slain by the monster");
         }
 
     }
@@ -106,13 +118,13 @@ public class CreatureEntityController {
     private Monster findMonster(final String theMonsterName) {
         Iterator i = myCharacters.iterator();
         while(i.hasNext()){
-            Monster m = (Monster) i.next();
-            if (m.getMyName().equalsIgnoreCase(theMonsterName)){
-                return m;
+           DungeonCharacter d = (DungeonCharacter) i.next();
+            if (d.getMyName().equalsIgnoreCase(theMonsterName)){
+                return (Monster) d;
             }
         }
         // Default fail safe
-        Monster theMonster = new Gremlin();
+        Monster theMonster = MonsterFactory.spawnMonster(MonsterFactory.GREMLIN);
         return theMonster;
     }
 

@@ -61,7 +61,8 @@ public class Monster extends DungeonCharacter{
         setMyHitPoints(newHp);
         double healingChance = getMyHealingPercentage() * 100;
         Random r = new Random();
-        if(r.nextInt(100) < healingChance){
+        int l = r.nextInt(100);
+        if( l < healingChance){
             int healing = r.nextInt(myHealPointRangeMax - myHealPointRangeMin +1 ) + myHealPointRangeMin;
             setMyHitPoints(getMyHitPoints() + healing);
         }

@@ -51,7 +51,8 @@ public class DungeonCharacter implements CreatureEntity {
         if (myAttackAccuracy > 0 ){
             double hitChance = myAttackAccuracy * 100;
             Random r = new Random();
-            if(r.nextInt(100) < hitChance){
+            int l = r.nextInt(100);
+            if( l < hitChance){
                 int damage = r.nextInt(myDamageRangeMax - myDamageRangeMin + 1 ) + myDamageRangeMin;
                 theOpponent.setDamage(damage);
             }
@@ -82,8 +83,7 @@ public class DungeonCharacter implements CreatureEntity {
      */
     @Override
     public String toString() {
-        return "CreatureEntityModel{" +
-                "myName='" + myName + '\'' +
+        return "myName='" + myName + '\'' +
                 ", myHitPoints=" + myHitPoints +
                 ", myDamageRangeMin=" + myDamageRangeMin +
                 ", myDamageRangeMax=" + myDamageRangeMax +

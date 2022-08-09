@@ -1,6 +1,7 @@
 package CreatureEntityModel;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Inherits from CreatureEntityModel and is abstract
@@ -52,12 +53,24 @@ public class Hero extends DungeonCharacter {
         // String concatenation
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-        sb.append("Hero{" +
+        sb.append("Hero:" +
                 "myBlockAccuracy=" + myBlockAccuracy +
                 ", myRegularAttack='" + myRegularAttack + '\'' +
                 ", mySpecialAttack='" + mySpecialAttack + '\'' +
                 '}');
         return sb.toString();
+    }
+
+    @Override
+    void setDamage(final int theDamage) {
+        double blockChance = getMyBlockAccuracy() * 100;
+        Random r = new Random();
+        int randomBlockChance = r.nextInt(100);
+        if(randomBlockChance < blockChance){
+            return;
+        }
+        int newHp = getMyHitPoints() - theDamage;
+        setMyHitPoints(newHp);
     }
 
     public void setMyHealthPotions(final int thePotionCount) {

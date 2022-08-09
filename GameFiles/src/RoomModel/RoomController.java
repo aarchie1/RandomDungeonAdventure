@@ -41,7 +41,7 @@ public class RoomController {
         for (Object i : myEntityEditor.getStartingRoom()){
             arr.add(i.toString());
         }
-        Room start = new StartingRoom(arr);
+        Room start = new BasicRoom(arr);
         return start;
     }
 
@@ -51,7 +51,7 @@ public class RoomController {
      */
     public Room genericRoom() {
         Room theRoom = new BasicRoom();
-        //theRoom.addEntity(myEntityEditor.addMonster());
+        theRoom.addEntity(myEntityEditor.getBasicRoom().toString());
         return theRoom;
     }
 
@@ -78,10 +78,30 @@ public class RoomController {
         return specialRoom;
     }
 
-    // take input from the map whitch indicate wher doors should be in the room -
-    // call on the roomentinty controler to get those roomo objects and add them to the room.
+    // take input from the map which indicate where doors should be in the room -
+    // call on the RoomEntity controller to get those room objects and add them to the room.
 
-    public void doorCheck(){
+    public void doorCheck(final String[] doorLocations,final Room theCurrent){
+
+        for (String s: doorLocations){
+
+            myEntityEditor.LoadContents(theCurrent.getMyEntities());
+        }
+    }
+
+    /**
+     * This method should check for a monster, if a string matching a monster is found,
+     * then the monster is removed. The room should be saved with its updated state.
+     * @param theCurrent
+     * @return
+     */
+    public Room removeMonsters(Room theCurrent) {
+        for (String s: theCurrent.getMyEntities()){
+            if (myEntityEditor.isMonster(s)){
+                theCurrent.removeEntity(s);
+            }
+        }
+        return theCurrent;
 
     }
 }
