@@ -7,6 +7,7 @@ import CreatureEntityModel.DungeonCharacter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,15 +18,14 @@ class CreatureEntityControllerTest {
 
     @BeforeEach
     void setUp(){
-        myController.createHero();
-        myController.createMonster();
+        myController.createMonster("Gremlin");
 
     }
 
     @Test
     void getCharacterNames() {
-        assertEquals("Wyze the Warrior", myController.getMyHero());
-        assertEquals("Gizmo The Gremlin", myController.getMyMonster());
+        assertEquals("warrior", myController.getMyHero().toLowerCase());
+        assertEquals("gremlin", myController.getMyMonster().toLowerCase());
     }
 
     @Test
@@ -98,6 +98,16 @@ class CreatureEntityControllerTest {
         int heroesItems = strList.size();
         assertEquals(0, heroesItems);
     }
+    @Test
+    void battle1(){
+        myController.createMonster("gremlin");
+        System.out.println("Hero Status Prior to battle: " + "\n" + myController.getMyHero());
+        System.out.println("Begin Fight:");
+        myController.fightAMonster("gremlin");
+        System.out.println("Hero Status After battle: " + "\n" + myController.getMyHero());
+    }
+
+
 
     private void helperGiveHeroPillars() {
         myController.giveItem("Pillar1");
@@ -105,4 +115,5 @@ class CreatureEntityControllerTest {
         myController.giveItem("Pillar3");
         myController.giveItem("Pillar4");
     }
+
 }

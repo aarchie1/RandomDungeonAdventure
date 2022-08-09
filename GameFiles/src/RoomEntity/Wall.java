@@ -1,11 +1,11 @@
 package RoomEntity;
 
-public class Door implements RoomEntity{
+public class Wall implements  RoomEntity{
     private final String myName;
 
     private String myFlavorText = "";
 
-    public Door(String myName) {
+    public Wall(String myName) {
         this.myName = myName;
         setMyFlavorText("");
     }

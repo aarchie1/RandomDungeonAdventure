@@ -14,15 +14,15 @@ public enum PlayerActions {
      * @return the PlayerAction used with that string
      */
     static PlayerActions getAct(final String theAction){
-        PlayerActions myA;
+        PlayerActions myA = null;
         switch (theAction) {
-            case "H":
+            case "h":
                 myA = PlayerActions.HEALPOT;
                 break;
-            case "V":
+            case "v":
                 myA = PlayerActions.VISONPOT;
                 break;
-            case "I":
+            case "i":
                 myA = PlayerActions.PLAYERINV;
                 break;
             default:

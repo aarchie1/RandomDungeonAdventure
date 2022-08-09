@@ -84,12 +84,28 @@ public class DevConsole {
     }
 
     private void takeAction(int theChoice){
+
         switch (theChoice) {
-            case 1 -> promptToMove();
-            case 2 -> System.out.println(myGame.actionMenu("I"));
-            case 3 -> myGame.actionMenu("H");
-            case 4 -> myGame.actionMenu("V");
-            default -> promptAction();
+            case 1 -> {
+                promptToMove();
+                break;
+            }
+            case 2 -> {
+                System.out.println(myGame.actionMenu("i"));
+                break;
+            }
+            case 3 -> {
+                System.out.println(myGame.actionMenu(myGame.actionMenu("h")));
+                break;
+            }
+            case 4 -> {
+                System.out.println(myGame.actionMenu(myGame.actionMenu("v")));
+                break;
+            }
+            default -> {
+                promptAction();
+                break;
+            }
         }
     }
 }
