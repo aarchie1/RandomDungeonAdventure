@@ -16,11 +16,11 @@ public class TitleGUI extends GUIController implements ActionListener{
     int screenWidth, screenHeight;
 
     TitleGUI() {
-        TitleGUIComponents();
+        titleGUIComponents();
     }
 
 
-    private void TitleGUIComponents() {
+    private void titleGUIComponents() {
         screenWidth = 1280;
         screenHeight = 800;
 
