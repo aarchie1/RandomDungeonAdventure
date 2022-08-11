@@ -17,6 +17,7 @@ public class CreatureEntityController {
     private Monster myMonster;
     private Hero myHero;
     private ArrayList<DungeonCharacter> myCharacters;
+    private final static int HEALTH_Potion_Value = 40;
 
     public CreatureEntityController(){
         myCharacters  = new ArrayList<DungeonCharacter>();
@@ -41,15 +42,22 @@ public class CreatureEntityController {
      * This method creates and instance of a monster and assigns that hero object to a field of this class.
      * this currently defaults to a gremlin and will be refactored later to handle other monster types.
      */
-    public void createMonster(final String theMonsterName){
+     public void createMonster(final String theMonsterName){
         switch(theMonsterName.toLowerCase()){
             case "gremlin" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.GREMLIN);
             case "ogre" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.OGRE);
             case "skeleton" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.SKELETON);
         }
-
         myCharacters.add(myMonster);
+    }
 
+     public void removeMonster(final String theMonsterName){
+        switch(theMonsterName.toLowerCase()){
+            case "gremlin" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.GREMLIN);
+            case "ogre" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.OGRE);
+            case "skeleton" -> myMonster = MonsterFactory.spawnMonster(MonsterFactory.SKELETON);
+        }
+        myCharacters.remove(myMonster);
     }
 
     /**
@@ -181,10 +189,10 @@ public class CreatureEntityController {
      * players HP
      * @param thePotionValue this is a String that represents the value of the health potion
      */
-    public void useHealthPotion(final String thePotionValue){
+    public void useHealthPotion(){
         if( myHero.getMyHealthPotions() > 0){
             myHero.setMyHealthPotions(myHero.getMyHealthPotions() - 1);
-            myHero.setMyHitPoints(myHero.getMyHitPoints() + parseInt(thePotionValue));
+            myHero.setMyHitPoints(myHero.getMyHitPoints() + HEALTH_Potion_Value);
             myHero.removeMyItems("HealthPotion");
         }
     }

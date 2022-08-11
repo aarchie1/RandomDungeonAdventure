@@ -73,7 +73,7 @@ class CreatureEntityControllerTest {
         assertEquals(true , condition);
         myController.setHeroDamage(125);
         assertEquals(false, myController.checkHeroAlive());
-        myController.useHealthPotion(String.valueOf(20));
+        myController.useHealthPotion();
         assertEquals(true, myController.checkHeroAlive());
         System.out.println(myController.checkHeroAlive());
     }
