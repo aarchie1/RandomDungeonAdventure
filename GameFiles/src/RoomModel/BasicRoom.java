@@ -1,6 +1,6 @@
 package RoomModel;
 
-import RoomEntity.EmptyRoom;
+import RoomEntity.EntityController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,8 @@ import java.util.List;
     /**
      * This list holds the contents of the room.
      */
-
+    EntityController myContentsEdit;
+    ArrayList<String> myEntities;
     /**
      * This Boolean is used to quickly determine if the room is empty or not.
      */
@@ -25,7 +26,8 @@ import java.util.List;
      * This Room has an ArrayList<RoomEntity> that is empty
      */
     public BasicRoom(){
-        setMyEntitys(new ArrayList<String>());
+        myEntities = new ArrayList<>();
+        myContentsEdit = new EntityController();
         isEmpty = true;
     }
 
@@ -34,7 +36,7 @@ import java.util.List;
      * @param arr the RoomEntities in the room.
      */
     BasicRoom(final ArrayList<String> arr){
-        setMyEntitys(arr);
+        setMyEntities(arr);
         checkIfEmpty();
 
     }
@@ -43,9 +45,11 @@ import java.util.List;
      * Sets new contents to the room.
      * @param arr the List of RoomEntities
      */
-    public void setMyEntitys(final List<String> arr) {
-        myEntitys.clear();
-        myEntitys.addAll(arr);
+    public void setMyEntities(final List<String> arr) {
+        if (myEntities == null){
+            myEntities = new ArrayList<>();
+        }
+        myEntities.addAll(arr);
         checkIfEmpty();
     }
 
@@ -55,7 +59,7 @@ import java.util.List;
      */
     @Override
     public ArrayList<String> getMyEntities(){
-        return myEntitys;
+        return myEntities;
     }
 
     /**
@@ -67,9 +71,9 @@ import java.util.List;
      */
     @Override
     public void removeEntity(final String theTargetName) {
-        for (String r : myEntitys){
+        for (String r : myEntities){
             if (r.equals(theTargetName)) {
-                myEntitys.remove(r);
+                myEntities.remove(r);
                 break;
             }
         }
@@ -82,7 +86,7 @@ import java.util.List;
      */
     @Override
     public void addEntity(String e) {
-        myEntitys.add(e);
+        myEntities.add(e);
         checkIfEmpty();
     }
 
@@ -92,7 +96,7 @@ import java.util.List;
      * @return true if it is, false if not.
      */
     public void checkIfEmpty(){
-        if (myEntitys.isEmpty()) {
+        if (myEntities.isEmpty()) {
             isEmpty = true;
         } else {
             isEmpty = false;
@@ -106,11 +110,11 @@ import java.util.List;
      */
     public String toString(){
         if (isEmpty){
-            return new EmptyRoom().toString();
+            return "EmptyRoom";
         }
 
         StringBuilder sb = new StringBuilder();
-        for (String r : myEntitys) {
+        for (String r : myEntities) {
             sb.append(r);
         }
         return sb.toString();

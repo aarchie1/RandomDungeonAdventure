@@ -2,6 +2,7 @@ package RoomModel;
 
 
 import RoomEntity.EntityController;
+import RoomEntity.RoomEntity;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class RoomController {
      * Default Constructor
       */
     public RoomController(){
+
         myEntityEditor = new EntityController();
     }
 
@@ -37,11 +39,9 @@ public class RoomController {
      * @return Room object representing the starting room
      */
     public Room startRoom() {
-        ArrayList<String> arr = new ArrayList<>();
-        for (Object i : myEntityEditor.getStartingRoom()){
-            arr.add(i.toString());
-        }
-        Room start = new BasicRoom(arr);
+
+        Room start = new BasicRoom(myEntityEditor.getStartingRoom());
+
         return start;
     }
 
@@ -50,8 +50,7 @@ public class RoomController {
      * @return Room Object containing a basic room
      */
     public Room genericRoom() {
-        Room theRoom = new BasicRoom();
-        theRoom.addEntity(myEntityEditor.getBasicRoom().toString());
+        Room theRoom = new BasicRoom(myEntityEditor.getBasicRoom());
         return theRoom;
     }
 
@@ -82,13 +81,12 @@ public class RoomController {
     // call on the RoomEntity controller to get those room objects and add them to the room.
 
     public Room doorCheck(final String[] doorLocations,final Room theCurrent){
-
+        ArrayList<RoomEntity> arr = myEntityEditor.LoadContents(theCurrent.getMyEntities());
         for (String s: doorLocations){
-            myEntityEditor.LoadContents(theCurrent.getMyEntities());
-            myEntityEditor.addDoor(s);
+            arr = myEntityEditor.addDoor(arr,s);
         }
-        BasicRoom update = new BasicRoom();
-        update.setMyEntitys(myEntityEditor.getContents());
+
+        BasicRoom update = new BasicRoom(myEntityEditor.getContents(arr));
         return update;
     }
 
