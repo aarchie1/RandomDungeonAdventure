@@ -102,6 +102,13 @@ public class EntityController {
 
     }
 
+    public List<String> getContents(){
+        List<String> theNames = new ArrayList<>();
+        for (RoomEntity e : myContents){
+            theNames.add(e.getMyName());
+        }
+        return theNames;
+    }
 
     // Method to add trap
 

@@ -26,7 +26,6 @@ public class BasicRoom implements Room {
      * This Room has an ArrayList<RoomEntity> that is empty
      */
     public BasicRoom(){
-
         setMyEntitys(new ArrayList<String>());
         isEmpty = true;
     }
@@ -45,7 +44,7 @@ public class BasicRoom implements Room {
      * Sets new contents to the room.
      * @param arr the List of RoomEntities
      */
-    public void setMyEntitys(final ArrayList<String> arr) {
+    public void setMyEntitys(final List<String> arr) {
         myEntitys.clear();
         myEntitys.addAll(arr);
         checkIfEmpty();

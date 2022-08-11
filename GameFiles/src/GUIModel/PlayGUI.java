@@ -59,10 +59,9 @@ public class PlayGUI extends GUIController implements ActionListener {
         URL url = this.getClass().getResource("/Sprites/tile.png");
         ImageIcon imageIcon = new ImageIcon(url);
 
-        JLabel tileLabel = new JLabel();
-        tileLabel.setIcon(imageIcon);
+        JLabel tileLabel = new JLabel(imageIcon);
 
-        mapPanel.setLayout(new GridLayout(9,9,0,0));
+        mapPanel.setLayout(new GridLayout(1,1,0,0));
         mapPanel.add(tileLabel);
     }
 

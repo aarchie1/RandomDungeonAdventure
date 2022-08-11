@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MenuGUI extends GUIController implements ActionListener {
     private JFrame menuFrame;
@@ -53,7 +54,11 @@ public class MenuGUI extends GUIController implements ActionListener {
         if(e.getSource() == newGameButton) {
             System.out.println("New game");
             menuFrame.dispose();
-            PlayGUI playGUI = new PlayGUI();
+            try {
+                PlayGUI playGUI = new PlayGUI();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
 
         }
         if(e.getSource() == loadGameButton) {

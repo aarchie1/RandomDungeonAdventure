@@ -50,7 +50,6 @@ public class BasicMap implements RADSMap {
 
         if (!myMap.containsKey(theLocation)) {
             myMap.put(theLocation, myRoomControl.genericRoom());
-
         }
 
     }
@@ -117,7 +116,7 @@ public class BasicMap implements RADSMap {
             for (int j = -1; j< 2; j++){
                 l = new Location(theLocation.getMyX()+i, theLocation.getMyY()+j);
                 if(!myMap.containsKey(l)){
-                    myMap.put(l, myRoomControl.genericRoom());
+                    generateRoom(l);
                 }
                 sb.append("[" + myMap.get(l) + "]");
             }
