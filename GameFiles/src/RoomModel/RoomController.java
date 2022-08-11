@@ -95,13 +95,14 @@ public class RoomController {
     /**
      * This method should check for a monster, if a string matching a monster is found,
      * then the monster is removed. The room should be saved with its updated state.
-     * @param theCurrent
-     * @return
+     * @param theCurrent the current room being checked for monsters.
+     * @return Room the room which was altered
      */
     public Room removeMonsters(Room theCurrent) {
         for (String s: theCurrent.getMyEntities()){
             if (myEntityEditor.isMonster(s)){
                 theCurrent.removeEntity(s);
+                myEntityEditor.removeMonster(s);
             }
         }
         return theCurrent;
