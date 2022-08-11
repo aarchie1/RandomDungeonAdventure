@@ -84,11 +84,11 @@ class BasicMap implements RADSMap {
      * @return
      */
     @Override
-    public String fullMap() {
-        int rowOffset = -10;
-        int columnOffset = -10;
-        String[][] arr = new String[20][20];
-        Location theCoord = new Location(rowOffset,columnOffset);
+    public String fullMap(final int theX,final int theY) {
+        int rowOffset = 0 - Math.abs(theX/2);
+        int columnOffset = 0 -  Math.abs(theY/2);
+        String[][] arr = new String[Math.abs(theX)][Math.abs(theY)];
+        Location theCoord;
         for (int i = 0; i < arr.length; i++){
            for (int j = 0; j < arr[i].length; j++){
                theCoord = new Location(rowOffset+i,columnOffset+j);

@@ -33,7 +33,7 @@ public interface RADSMap {
      * This should return every room stored on the map in string form.
      * @return String representing all rooms on this map.
      */
-    String fullMap();
+    String fullMap(final int x, final int they);
 
     Room getRoomAt(Location theLocation);
 
