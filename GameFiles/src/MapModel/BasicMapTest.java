@@ -1,7 +1,7 @@
 package MapModel;
 
 import GameModel.Location;
-import RoomModel.BasicRoom;
+import RoomModel.RoomController;
 import RoomModel.Room;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 class BasicMapTest {
     BasicMap myMap = new BasicMap();
     Location myStart = new Location(0,0);
-
     Location myCurrent = new Location(0,0);
+    RoomController myRoomEdit = new RoomController();
 
     private void moveOffset(int theX, int theY){
 
@@ -35,7 +35,8 @@ class BasicMapTest {
         System.out.println("\n***Begin generateRoom test***\n");
         moveOffset(1,0);
         myMap.generateRoom(myCurrent);
-        myMap.replaceRoom(myCurrent, new BasicRoom());
+
+        myMap.replaceRoom(myCurrent, myRoomEdit.genericRoom());
         fail("Not finished!");
 
     }

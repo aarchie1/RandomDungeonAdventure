@@ -2,8 +2,10 @@ package MapModel;
 
 import GameModel.Location;
 import RoomModel.Room;
+import RoomModel.RoomController;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 
 /**
@@ -19,12 +21,30 @@ import java.util.Arrays;
  * This class (or an extension of it) should also
  *      place a starting room, the 4 objectives, and the ExitRoom
  */
-public class BasicMap implements RADSMap {
+class BasicMap implements RADSMap {
 
+    /**
+     * Maps take locations as input. All Maps are centered at Location(0,0)
+     */
+    Location myCoordinate;
+
+    /**
+     * This HashMap is used for quick and dynamic access to the map
+     * The keys can be iterated over to generate the entire map when needed.
+     * A Map with <Location, Room> allows for a dynamic map, vs a 2D array
+     */
+    HashMap<Location, Room> myMap;
+
+    /**
+     * A Map needs to generate Rooms.
+     */
+    private RoomController myRoomControl;
     BasicMap(){
+        myCoordinate = new Location(0,0);
+        myMap = new HashMap<>();
+        myRoomControl = new RoomController();
         generateRoom(myCoordinate);
         replaceRoom(myCoordinate, myRoomControl.startRoom());
-        generateLocalRooms(myCoordinate);
     }
 
     /**

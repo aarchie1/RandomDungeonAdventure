@@ -10,8 +10,7 @@ import java.util.List;
  *
  * @author Rowan W Osmon
  * @version 0.01
- */
-public class BasicRoom implements Room {
+ */ class BasicRoom implements Room {
     /**
      * This list holds the contents of the room.
      */

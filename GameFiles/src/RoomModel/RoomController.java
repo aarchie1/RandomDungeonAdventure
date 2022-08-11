@@ -23,13 +23,13 @@ import java.util.ArrayList;
  */
 public class RoomController {
 
-    EntityController myEntityEditor = new EntityController();
+    EntityController myEntityEditor;
 
     /**
      * Default Constructor
       */
     public RoomController(){
-
+        myEntityEditor = new EntityController();
     }
 
     /**
