@@ -34,7 +34,10 @@ public class CreatureCrossover implements RoomEntity {
         myCreatureController.createHero("thief");
     }
 
-
+    // Method to RemoveMonster
+    public void removeMonster(final String theMonsterName){
+        myCreatureController.removeMonster(theMonsterName);
+    }
 
     @Override
     public String toString() {

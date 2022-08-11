@@ -147,7 +147,7 @@ public class GameController {
                 // Consider a refactor to make UseHealthPostion take no input.
                 case HEALPOT:
                     chosenAction = "Used a HealthPotion";
-                    myCreatures.useHealthPotion("20");
+                    myCreatures.useHealthPotion();
                     break;
                 case VISONPOT:
                     chosenAction = "Used a VisionPotion";
