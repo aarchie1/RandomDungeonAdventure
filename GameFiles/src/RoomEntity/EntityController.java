@@ -36,7 +36,7 @@ public class EntityController {
     public List<RoomEntity> getStartingRoom(){
         myContents = getBasicRoom();
         myContents.add(new DevAmulet());
-        addDoor("UP");
+        addDoor("w");
         return myContents;
     }
 
