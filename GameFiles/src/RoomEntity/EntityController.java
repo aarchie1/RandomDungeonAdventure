@@ -32,7 +32,7 @@ public class EntityController {
     public ArrayList<String> getStartingRoom(){
         ArrayList<RoomEntity> myContents = basicRoom();
         myContents.add(ItemFactory.DEVAMULET);
-        myContents.add(DoorFactory.DOORUP);
+        myContents = addDoor(myContents,"w");
         return getContents(myContents);
     }
 
@@ -243,17 +243,17 @@ public class EntityController {
                myContents = addObjective(myContents);
             } else if(isWall(s)){
                 switch(s){
-                    case "wallup" -> myContents = addWall(myContents,"up");
-                    case "walldown" -> myContents = addWall(myContents,"down");
-                    case "wallleft" -> myContents = addWall(myContents,"left");
-                    case "wallright" -> myContents = addWall(myContents,"right");
+                    case "wallup" -> myContents = addWall(myContents,"w");
+                    case "walldown" -> myContents = addWall(myContents,"s");
+                    case "wallleft" -> myContents = addWall(myContents,"a");
+                    case "wallright" -> myContents = addWall(myContents,"d");
                 }
             } else if (isDoor(s)){
                 switch(s){
-                    case "doorup" -> myContents = addDoor(myContents,"up");
-                    case "downdoor" -> myContents = addDoor(myContents,"down");
-                    case "doorleft" -> myContents = addDoor(myContents,"left");
-                    case "doorightr" -> myContents = addDoor(myContents,"right");
+                    case "doorup" -> myContents = addDoor(myContents,"w");
+                    case "downdoor" -> myContents = addDoor(myContents,"s");
+                    case "doorleft" -> myContents = addDoor(myContents,"a");
+                    case "doorightr" -> myContents = addDoor(myContents,"d");
                 }
             } else if (isTrap(s)){
                 myContents = addTrap(myContents);

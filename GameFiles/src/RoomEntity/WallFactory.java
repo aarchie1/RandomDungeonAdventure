@@ -6,25 +6,14 @@ public enum WallFactory implements RoomEntity {
     WALLLEFT,
     WALLRIGHT;
 
-    static RoomEntity getWall(final String s) {
-        WallFactory myWall;
-        switch (s) {
-            case "w":
-                myWall = WALLUP;
-                break;
-            case "s":
-                myWall = WALLDOWN;
-                break;
-            case "a":
-                myWall = WALLLEFT;
-                break;
-            case "d":
-                myWall = WALLRIGHT;
-                break;
-            default:
-                myWall = null;
-                break;
-        }
+    static WallFactory getWall(final String s) {
+        WallFactory myWall = switch (s) {
+            case "w" -> WALLUP;
+            case "s" -> WALLDOWN;
+            case "a" -> WALLLEFT;
+            case "d" -> WALLRIGHT;
+            default -> null;
+        };
         return myWall;
     }
 
@@ -36,6 +25,7 @@ public enum WallFactory implements RoomEntity {
             case WALLLEFT -> newWall = new Wall("WALLLEFT");
             case WALLRIGHT -> newWall = new Wall("WALLRIGHT");
         }
+        newWall.setMyFlavorText("A Wall");
         return newWall;
     }
 
