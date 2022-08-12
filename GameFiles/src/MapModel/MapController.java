@@ -27,7 +27,6 @@ public class MapController {
     Location myLocal;
 
     RoomController myRoom ;
-    Room myCurrentRoom;
 
     public MapController(){
         explored = 0;
@@ -44,9 +43,11 @@ public class MapController {
             explored = theLocation.getMyY();
         }
         myMap.generateRoom(myLocal);
-        myCurrentRoom = myMap.getRoomAt(myLocal);
     }
 
+    //Algo for door placment
+    // take as input the map,
+    // produce a map with door edited so that object can be reached.
 
 
     public Room getRoomAt(final Location theCoordinates){

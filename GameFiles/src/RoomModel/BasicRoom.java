@@ -115,7 +115,7 @@ import java.util.List;
 
         StringBuilder sb = new StringBuilder();
         for (String r : myEntities) {
-            sb.append(r);
+            sb.append(" " + r + " ");
         }
         return sb.toString();
     }
