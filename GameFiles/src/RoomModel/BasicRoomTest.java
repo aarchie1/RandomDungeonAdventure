@@ -1,6 +1,7 @@
 package RoomModel;
 
 import RoomEntity.*;
+import org.junit.jupiter.api.Test;
 
 
 import java.util.ArrayList;
@@ -10,12 +11,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * This is used to test the BasicRoom Class
+ * Changelog 0.01 -> 0.02:
+ * refactored tests to use the public RoomEntity class
+ * rather then the package Item class
  * @author Rowan W Osmon
- * @version 0.01
+ * @version 0.02
  */
 class BasicRoomTest {
     Room myRoom = new BasicRoom();
-    Item myDevAmulet = new DevAmulet();
+    RoomEntity myDevAmulet = new RoomEntity() {
+        @Override
+        public String getMyName() {
+            return"DEVAMULET";
+        }
+        @Override
+        public String toString() {
+            return getMyName();
+        }
+    };
+
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
@@ -41,20 +55,18 @@ class BasicRoomTest {
 
     @org.junit.jupiter.api.Test
     void removeEntity() {
-        Item myI = new Item("theTestItem");
-
         myRoom.addEntity(myDevAmulet.toString());
-        myRoom.addEntity(myI.toString());
+        assertEquals(myRoom.toString().contains(myDevAmulet.toString()), true);
         myRoom.removeEntity(myDevAmulet.toString());
         System.out.println(myRoom.toString());
-        assertEquals(myI.toString(), myRoom.toString());
+        assertEquals(myRoom.toString().contains(myDevAmulet.toString()),false);
     }
 
     @org.junit.jupiter.api.Test
     void addEntity() {
-        myRoom.addEntity(new DevAmulet().toString());
+        myRoom.addEntity(myDevAmulet.toString());
         System.out.println(myRoom.toString());
-        assertEquals("DevAmulet", myRoom.toString());
+        assertEquals(myRoom.toString().contains(myDevAmulet.toString()),true);
     }
 
     @org.junit.jupiter.api.Test

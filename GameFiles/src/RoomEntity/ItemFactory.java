@@ -15,7 +15,7 @@ public enum ItemFactory implements RoomEntity{
      */
     @Override
     public String getMyName() {
-        return "" + this;
+        return "" + this.name();
     }
 
     static Item spawnItem(final ItemFactory theItem){
@@ -23,22 +23,24 @@ public enum ItemFactory implements RoomEntity{
         switch (theItem) {
             case HEALPOT -> myItem = new Item(HEALPOT.toString());
             case VISONPOT -> myItem = new Item(VISONPOT.toString());
-            case OBJECTIVE -> myItem = new Item(OBJECTIVE.toString());
-            case TRAP -> myItem = new Item(TRAP.toString());
-            case DEVAMULET -> myItem = new DevAmulet();
+            case OBJECTIVE -> {
+                myItem = new Item(OBJECTIVE.toString());
+                myItem.setMyFlavorText("One of the four objectives");
+            }
+            case TRAP ->{
+                myItem = new Item(TRAP.toString());
+                myItem.setMyFlavorText("This room smell's terrible! It assaults your nose!");
+            }
+            case DEVAMULET -> {
+                myItem = new Item(DEVAMULET.toString());
+                myItem.setMyFlavorText("Used for testing purposes by the creators of this world");
+            }
         }
         return  myItem;
     }
 
     @Override
     public String toString(){
-        String myName = "";
-        switch(this){
-            case VISONPOT -> myName = "VISIONPOT";
-            case HEALPOT -> myName ="HEALPOT";
-            case OBJECTIVE -> myName = "OBJECTIVE";
-            case TRAP -> myName = "TRAP";
-        }
-        return myName;
+        return this.toString();
     }
 }

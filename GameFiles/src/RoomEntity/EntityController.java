@@ -31,7 +31,7 @@ public class EntityController {
      */
     public ArrayList<String> getStartingRoom(){
         ArrayList<RoomEntity> myContents = basicRoom();
-        myContents.add(new DevAmulet());
+        myContents.add(ItemFactory.DEVAMULET);
         myContents.add(DoorFactory.DOORUP);
         return getContents(myContents);
     }
@@ -96,8 +96,7 @@ public class EntityController {
     public boolean isItem(final String theName) {
         boolean flag;
         switch(theName.toLowerCase()){
-            case "visionpot" -> flag = true;
-            case "healpot" -> flag = true;
+            case "visionpot", "devamulet", "healpot" -> flag = true;
             default -> flag = false;
         }
         return flag;
@@ -234,6 +233,7 @@ public class EntityController {
             if (isMonster(s)){
                 myContents = addMonster(myContents);
             } else if(isItem(s)){
+
                 if (s.equalsIgnoreCase("visionpot")){
                    myContents = addVisionPotion(myContents);
                 }else {
