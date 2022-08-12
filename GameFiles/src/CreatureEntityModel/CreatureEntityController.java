@@ -187,7 +187,6 @@ public class CreatureEntityController {
     /**
      * This method takes a String representing the health potions value and applies it to the
      * players HP
-     * @param thePotionValue this is a String that represents the value of the health potion
      */
     public void useHealthPotion(){
         if( myHero.getMyHealthPotions() > 0){
