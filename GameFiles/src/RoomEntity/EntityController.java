@@ -271,4 +271,11 @@ public class EntityController {
     }
 
 
+    public ArrayList<String> getEndRoom() {
+        return getStartingRoom();
+    }
+
+    public ArrayList<String> getObjectiveRoom() {
+        return getStartingRoom();
+    }
 }
