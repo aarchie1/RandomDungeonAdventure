@@ -2,7 +2,7 @@ package GUIModel;
 
 import javax.swing.*;
 
-public class GUIEnd {
+public class EndGUI extends GUIController{
     private JPanel GUIEnd;
     private JLabel GAMEOVER;
     private JButton NewGame;

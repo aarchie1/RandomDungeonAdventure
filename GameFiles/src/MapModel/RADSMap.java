@@ -18,23 +18,6 @@ import java.util.HashMap;
 public interface RADSMap {
 
     /**
-     * Maps take locations as input. All Maps are centered at Location(0,0)
-     */
-    Location myCoordinate = new Location(0,0);
-
-    /**
-     * A Map needs to generate Rooms.
-     */
-    RoomController myRoomControl = new RoomController();
-
-    /**
-     * This HashMap is used for quick and dynamic access to the map
-     * The keys can be iterated over to generate the entire map when needed.
-     * A Map with <Location, Room> allows for a dynamic map, vs a 2D array
-     */
-    HashMap<Location, Room> myMap = new HashMap<>();
-
-    /**
      * This is used to replace a room on the map with a specific Room.
      * @param theLocation The X/Y coordinate of the room.
      * @param theRoom A Room to be placed at that location.
@@ -50,7 +33,7 @@ public interface RADSMap {
      * This should return every room stored on the map in string form.
      * @return String representing all rooms on this map.
      */
-    String fullMap();
+    String fullMap(int theI);
 
     Room getRoomAt(Location theLocation);
 

@@ -2,9 +2,10 @@ package RoomModel;
 
 
 import RoomEntity.EntityController;
+import RoomEntity.RoomEntity;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * This class is used to control all Rooms
@@ -23,13 +24,14 @@ import java.util.List;
  */
 public class RoomController {
 
-    EntityController myEntityEditor = new EntityController();
+    EntityController myEntityEditor;
 
     /**
      * Default Constructor
       */
     public RoomController(){
 
+        myEntityEditor = new EntityController();
     }
 
     /**
@@ -37,11 +39,9 @@ public class RoomController {
      * @return Room object representing the starting room
      */
     public Room startRoom() {
-        ArrayList<String> arr = new ArrayList<>();
-        for (Object i : myEntityEditor.getStartingRoom()){
-            arr.add(i.toString());
-        }
-        Room start = new BasicRoom(arr);
+
+        Room start = new BasicRoom(myEntityEditor.getStartingRoom());
+
         return start;
     }
 
@@ -50,8 +50,7 @@ public class RoomController {
      * @return Room Object containing a basic room
      */
     public Room genericRoom() {
-        Room theRoom = new BasicRoom();
-        theRoom.addEntity(myEntityEditor.getBasicRoom().toString());
+        Room theRoom = new BasicRoom(myEntityEditor.getBasicRoom());
         return theRoom;
     }
 
@@ -81,24 +80,27 @@ public class RoomController {
     // take input from the map which indicate where doors should be in the room -
     // call on the RoomEntity controller to get those room objects and add them to the room.
 
-    public void doorCheck(final String[] doorLocations,final Room theCurrent){
-
+    public Room doorCheck(final String[] doorLocations,final Room theCurrent){
+        ArrayList<RoomEntity> arr = myEntityEditor.LoadContents(theCurrent.getMyEntities());
         for (String s: doorLocations){
-
-            myEntityEditor.LoadContents(theCurrent.getMyEntities());
+            arr = myEntityEditor.addDoor(arr,s);
         }
+
+        BasicRoom update = new BasicRoom(myEntityEditor.getContents(arr));
+        return update;
     }
 
     /**
      * This method should check for a monster, if a string matching a monster is found,
      * then the monster is removed. The room should be saved with its updated state.
-     * @param theCurrent
-     * @return
+     * @param theCurrent the current room being checked for monsters.
+     * @return Room the room which was altered
      */
     public Room removeMonsters(Room theCurrent) {
         for (String s: theCurrent.getMyEntities()){
             if (myEntityEditor.isMonster(s)){
                 theCurrent.removeEntity(s);
+                myEntityEditor.removeMonster(s);
             }
         }
         return theCurrent;

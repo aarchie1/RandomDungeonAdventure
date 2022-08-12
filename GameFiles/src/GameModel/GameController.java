@@ -140,14 +140,13 @@ public class GameController {
      */
     public String actionMenu(final String theAction) {
         String chosenAction = "";
-
             PlayerActions myA = PlayerActions.getAct(theAction);
 
             switch (myA) {
                 // Consider a refactor to make UseHealthPostion take no input.
                 case HEALPOT:
                     chosenAction = "Used a HealthPotion";
-                    myCreatures.useHealthPotion("20");
+                    myCreatures.useHealthPotion();
                     break;
                 case VISONPOT:
                     chosenAction = "Used a VisionPotion";
@@ -161,6 +160,23 @@ public class GameController {
                     break;
             }
         return chosenAction;
+    }
+    public String actionMenu(PlayerActions theAction){
+        switch (theAction) {
+            case HEALPOT -> {
+                myCreatures.useHealthPotion();
+                return "Used a HealthPotion!";
+            }
+            case VISONPOT -> {
+                return "Used a VisionPotion\n" + myMap.getLocalMap(myCurrentLocation);
+            }
+            case PLAYERINV -> {
+                return myCreatures.getMyHeroItems();
+            }
+            default -> {
+                return "Not a valid PlayerAction!";
+            }
+        }
     }
 
     /**

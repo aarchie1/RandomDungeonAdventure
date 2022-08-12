@@ -6,6 +6,7 @@ public enum ItemFactory implements RoomEntity{
     HEALPOT,
     VISONPOT,
     OBJECTIVE,
+    TRAP,
     DEVAMULET;
 
     /**
@@ -23,6 +24,7 @@ public enum ItemFactory implements RoomEntity{
             case HEALPOT -> myItem = new Item(HEALPOT.toString());
             case VISONPOT -> myItem = new Item(VISONPOT.toString());
             case OBJECTIVE -> myItem = new Item(OBJECTIVE.toString());
+            case TRAP -> myItem = new Item(TRAP.toString());
             case DEVAMULET -> myItem = new DevAmulet();
         }
         return  myItem;
@@ -35,6 +37,7 @@ public enum ItemFactory implements RoomEntity{
             case VISONPOT -> myName = "VISIONPOT";
             case HEALPOT -> myName ="HEALPOT";
             case OBJECTIVE -> myName = "OBJECTIVE";
+            case TRAP -> myName = "TRAP";
         }
         return myName;
     }
