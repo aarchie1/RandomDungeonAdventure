@@ -14,8 +14,7 @@ import java.util.List;
  */
 public interface Room {
 
-    EntityController myContentsEdit = new EntityController();
-    ArrayList<String> myEntitys= new ArrayList<String>();
+
     /**
      * Adds a Room Entity to the List.
      */

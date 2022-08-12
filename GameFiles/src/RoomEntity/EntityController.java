@@ -1,9 +1,7 @@
 package RoomEntity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * This Class is used to control all RoomEntity's
@@ -20,11 +18,9 @@ import java.util.Locale;
 public class EntityController {
 
     private static final int TRAP_DAMAGE = 10;
-    private List<RoomEntity> myContents;
-    private final CreatureCrossover myCreatureCrossover;
+    private CreatureCrossover myCreatureCrossover;
 
     public EntityController(){
-        myContents = new ArrayList<>();
         myCreatureCrossover = new CreatureCrossover();
     }
 
@@ -33,29 +29,33 @@ public class EntityController {
      *
      * @return
      */
-    public List<RoomEntity> getStartingRoom(){
-        myContents = getBasicRoom();
+    public ArrayList<String> getStartingRoom(){
+        ArrayList<RoomEntity> myContents = basicRoom();
         myContents.add(new DevAmulet());
-        addDoor("w");
-        return myContents;
+        myContents.add(DoorFactory.DOORUP);
+        return getContents(myContents);
     }
 
     /**
      * This method is called on each room first. It adds 4 walls to the room.
      * @return
      */
-    public List<RoomEntity> getBasicRoom() {
-        myContents = new ArrayList<>();
+    private ArrayList<RoomEntity> basicRoom() {
+        ArrayList<RoomEntity> myContents = new ArrayList<>();
         myContents.add(WallFactory.WALLUP);
         myContents.add(WallFactory.WALLDOWN);
         myContents.add(WallFactory.WALLLEFT);
         myContents.add(WallFactory.WALLRIGHT);
         return myContents;
     }
+    public ArrayList<String> getBasicRoom(){
+        return getContents(basicRoom());
+    }
 
     // Method to addMonster
-    public void addMonster(){
-        myCreatureCrossover.addMonster();
+    private ArrayList<RoomEntity> addMonster(ArrayList<RoomEntity> theRoom){
+        theRoom.add(myCreatureCrossover);
+        return theRoom;
     }
 
     // Method to addHero
@@ -145,7 +145,7 @@ public class EntityController {
      * @param theName the string for the door to look for.
      * @return true if the name matches a door, false otherwise
      */
-    private boolean isDoor(final String theName) {
+    public boolean isDoor(final String theName) {
         boolean flag;
         switch(theName.toLowerCase()){
             case "doorup" -> flag = true;
@@ -157,7 +157,7 @@ public class EntityController {
         return flag;
     }
 
-    private boolean isTrap(String theName) {
+    public boolean isTrap(String theName) {
         boolean flag;
         switch(theName.toLowerCase()){
             case "trap" -> flag = true;
@@ -169,50 +169,57 @@ public class EntityController {
     /**
      * This method adds a Pillar to the players inventory
      */
-    public void addObjective(){
+    private ArrayList<RoomEntity> addObjective(ArrayList<RoomEntity> myContents){
+
         Item myItem = ItemFactory.spawnItem(ItemFactory.OBJECTIVE);
         myCreatureCrossover.getMyCreatureController().giveItem(myItem.toString());
         myContents.remove(myItem);
+        return myContents;
     }
 
     /**
      * This method adds a health potion to the players inventory
      */
-    public void addHealthPotion(){
+    private ArrayList<RoomEntity> addHealthPotion(ArrayList<RoomEntity> myContents){
         Item myItem = ItemFactory.spawnItem(ItemFactory.HEALPOT);
         myCreatureCrossover.getMyCreatureController().giveItem(myItem.toString());
         myContents.remove(myItem);
+        return myContents;
     }
 
     /**
      * This method adds a vision potion to the players inventory
      */
-    public void addVisionPotion(){
+    private ArrayList<RoomEntity> addVisionPotion(ArrayList<RoomEntity> myContents){
         Item myItem = ItemFactory.spawnItem(ItemFactory.VISONPOT);
         myCreatureCrossover.getMyCreatureController().giveItem(myItem.toString());
         myContents.remove(myItem);
+        return myContents;
     }
 
     // Method to add door
-    public void addDoor(final String theDir) {
+    public ArrayList<RoomEntity> addDoor(ArrayList<RoomEntity> myContents, final String theDir) {
         if (DoorFactory.getDoor(theDir) != null){
             myContents.remove(WallFactory.getWall(theDir));
             myContents.add(DoorFactory.getDoor(theDir));
         }
+        return myContents;
     }
 
-    private void addWall(final String theDir) {
+    private ArrayList<RoomEntity> addWall(ArrayList<RoomEntity> myContents, final String theDir) {
         if (WallFactory.getWall(theDir) != null){
             myContents.add(WallFactory.getWall(theDir));
         }
+        return myContents;
     }
 
     /**
      * This method adds a Trap to the room and applys damage to the hero.
      */
-    public void addTrap(){
+    private ArrayList<RoomEntity> addTrap(ArrayList<RoomEntity> myContents){
         Item myItem = ItemFactory.spawnItem(ItemFactory.TRAP);
         myContents.add(myItem);
+        return myContents;
     }
 
     /**
@@ -221,46 +228,47 @@ public class EntityController {
      * This method should match the requested string with the correct enum object.
      * @param theContents A list of the RoomEntities to be manipulated by the controller.
      */
-    public void LoadContents(final List<String> theContents) {
+    public ArrayList <RoomEntity> LoadContents(final List<String> theContents) {
+        ArrayList <RoomEntity> myContents = new ArrayList<>();
         for(String s: theContents){
             if (isMonster(s)){
-                addMonster();
+                myContents = addMonster(myContents);
             } else if(isItem(s)){
                 if (s.equalsIgnoreCase("visionpot")){
-                    addVisionPotion();
+                   myContents = addVisionPotion(myContents);
                 }else {
-                    addHealthPotion();
+                    myContents = addHealthPotion(myContents);
                 }
             } else if(isObjective(s)){
-                addObjective();
+               myContents = addObjective(myContents);
             } else if(isWall(s)){
                 switch(s){
-                    case "wallup" -> addWall("up");
-                    case "walldown" -> addWall("down");
-                    case "wallleft" -> addWall("left");
-                    case "wallright" -> addWall("right");
+                    case "wallup" -> myContents = addWall(myContents,"up");
+                    case "walldown" -> myContents = addWall(myContents,"down");
+                    case "wallleft" -> myContents = addWall(myContents,"left");
+                    case "wallright" -> myContents = addWall(myContents,"right");
                 }
             } else if (isDoor(s)){
                 switch(s){
-                    case "doorup" -> addDoor("up");
-                    case "downdoor" -> addDoor("down");
-                    case "doorleft" -> addDoor("left");
-                    case "doorightr" -> addDoor("right");
+                    case "doorup" -> myContents = addDoor(myContents,"up");
+                    case "downdoor" -> myContents = addDoor(myContents,"down");
+                    case "doorleft" -> myContents = addDoor(myContents,"left");
+                    case "doorightr" -> myContents = addDoor(myContents,"right");
                 }
             } else if (isTrap(s)){
-                addTrap();
+                myContents = addTrap(myContents);
             }
         }
+        return myContents;
     }
 
-    public List<String> getContents(){
-        List<String> theNames = new ArrayList<>();
-        for (RoomEntity e : myContents){
+    public ArrayList<String> getContents(List <RoomEntity> theContents){
+        ArrayList<String> theNames = new ArrayList<>();
+        for (RoomEntity e : theContents){
             theNames.add(e.getMyName());
         }
         return theNames;
     }
-
 
 
 }

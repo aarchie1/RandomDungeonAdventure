@@ -24,10 +24,10 @@ class BasicRoomTest {
 
     @org.junit.jupiter.api.Test
     void setMyEntities() {
-        List <String> arr = new ArrayList<>();
+        ArrayList <String> arr = new ArrayList<>();
         arr.add(myDevAmulet.toString());
-        myRoom = new BasicRoom();
-        assertEquals(myDevAmulet.toString(), arr.get(0).toString());
+        myRoom = new BasicRoom(arr);
+        assertEquals(myDevAmulet.toString(), arr.get(0));
     }
 
     @org.junit.jupiter.api.Test

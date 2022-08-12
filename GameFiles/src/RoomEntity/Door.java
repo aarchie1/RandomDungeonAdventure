@@ -16,12 +16,12 @@ public class Door implements RoomEntity{
 
     @Override
     public String toString() {
-        return myName.toString();
+        return getMyName();
     }
 
     @Override
     public String getMyName() {
-        return null;
+        return myName;
     }
 
     public void setMyFlavorText(String myFlavorText) {

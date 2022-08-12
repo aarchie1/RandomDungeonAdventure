@@ -4,7 +4,7 @@ package RoomEntity;
  * This Class is a RoomEntity representing an empty room.
  * @author Rowan W Osmon
  */
-public class EmptyRoom implements RoomEntity {
+class EmptyRoom implements RoomEntity {
 
     final private String myContents;
     public EmptyRoom(){

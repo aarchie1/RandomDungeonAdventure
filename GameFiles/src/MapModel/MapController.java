@@ -22,7 +22,7 @@ import RoomModel.RoomController;
  *
  */
 public class MapController {
-
+    int explored;
     RADSMap myMap;
     Location myLocal;
 
@@ -30,12 +30,19 @@ public class MapController {
     Room myCurrentRoom;
 
     public MapController(){
+        explored = 0;
         myMap = new BasicMap();
         myLocal = new Location(0,0);
         myRoom = new RoomController();
     }
     public void setLocal(final Location theLocation) {
         myLocal = theLocation;
+        if (Math.abs(theLocation.getMyX()) > explored){
+            explored = theLocation.getMyX();;
+        }
+        if (Math.abs(theLocation.getMyY()) > explored){
+            explored = theLocation.getMyY();
+        }
         myMap.generateRoom(myLocal);
         myCurrentRoom = myMap.getRoomAt(myLocal);
     }
@@ -47,7 +54,7 @@ public class MapController {
     }
 
     public String getFullMap(){
-        return myMap.fullMap();
+        return myMap.fullMap(explored);
     }
 
     public String getLocalMap(final Location theLocal) {

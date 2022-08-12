@@ -1,6 +1,7 @@
 package ViewModel;
 
 import GameModel.GameController;
+import GameModel.PlayerActions;
 
 import java.util.Scanner;
 
@@ -87,22 +88,24 @@ public class DevConsole {
 
         switch (theChoice) {
             case 1 -> {
+                System.out.println("Move Selected!");
                 promptToMove();
                 break;
             }
             case 2 -> {
-                System.out.println(myGame.actionMenu("i"));
+                System.out.println("Status selected!\n" + myGame.actionMenu(PlayerActions.PLAYERINV));
                 break;
             }
             case 3 -> {
-                System.out.println(myGame.actionMenu(myGame.actionMenu("h")));
+                System.out.println("HealthPotion selected!\n" + myGame.actionMenu(PlayerActions.HEALPOT));
                 break;
             }
             case 4 -> {
-                System.out.println(myGame.actionMenu(myGame.actionMenu("v")));
+                System.out.println("VisionPotion selected!\n" + myGame.actionMenu(PlayerActions.VISONPOT));
                 break;
             }
             default -> {
+                System.out.println("Not a valid choice!");
                 promptAction();
                 break;
             }

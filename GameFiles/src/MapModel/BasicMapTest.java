@@ -47,7 +47,7 @@ class BasicMapTest {
         for (int i = 0; i < 5; i++){
             moveOffset(i,i);
             myMap.generateRoom(myCurrent);
-            System.out.println(myMap.fullMap() + "\n");
+            System.out.println(myMap.fullMap(i) + "\n");
         }
         fail("Not finished!");
 

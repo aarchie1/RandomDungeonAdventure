@@ -42,6 +42,6 @@ public enum DoorFactory implements RoomEntity {
 
     @Override
     public String getMyName() {
-        return null;
+        return this.toString();
     }
 }

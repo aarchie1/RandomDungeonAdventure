@@ -13,22 +13,17 @@ public enum PreSetRoom implements Room {
 
 
     @Override
-    public void addEntity(String e) {
-        myEntitys.add(e);
+    public void addEntity(String theEntityName) {
+
     }
 
     @Override
     public ArrayList<String> getMyEntities() {
-
-        return myEntitys;
+        return null;
     }
 
     @Override
     public void removeEntity(String theTargetName) {
-        if (myEntitys.contains(theTargetName)){
-            myEntitys.remove(theTargetName);
-        }
+
     }
-
-
 }
