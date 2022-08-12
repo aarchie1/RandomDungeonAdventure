@@ -70,9 +70,13 @@ public class PlayGUI extends GUIController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonUp) {
             System.out.println("Going up");
+            // TODO: Fix
+            LoseGUI loseGUI = new LoseGUI();
         }
         if (e.getSource() == buttonDown) {
             System.out.println("Going down");
+            // TODO: Fix
+            WinGUI winGUI = new WinGUI();
         }
         if (e.getSource() == buttonLeft) {
             System.out.println("Going left");

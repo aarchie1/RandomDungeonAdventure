@@ -31,14 +31,14 @@ public class MenuGUI extends GUIController implements ActionListener {
         menuFrame.add(menuPanel);
 
         // Menu Main Panel
-        menuPanel.setBounds(0,0,1280,800);
+        menuPanel.setBounds(0,0,screenWidth,screenHeight);
         menuPanel.setBackground(Color.black);
 
         // New Game Panel
-        newGamePanel.setBounds(0,400,120,60);
+        newGamePanel.setBounds(0,screenHeight/2,120,60);
 
         // Load Game Panel
-        loadGamePanel.setBounds(640,400,120,160);
+        loadGamePanel.setBounds(screenWidth/2,screenHeight/2,120,160);
 
         // New Game Button
         newGameButton.addActionListener(this);
