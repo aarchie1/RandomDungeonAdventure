@@ -85,7 +85,6 @@ public class RoomController {
         for (String s: doorLocations){
             arr = myEntityEditor.addDoor(arr,s);
         }
-
         BasicRoom update = new BasicRoom(myEntityEditor.getContents(arr));
         return update;
     }
