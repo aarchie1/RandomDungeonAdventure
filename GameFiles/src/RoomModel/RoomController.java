@@ -50,7 +50,7 @@ public class RoomController {
      * @return Room Object containing a basic room
      */
     public Room genericRoom() {
-        Room theRoom = new BasicRoom(myEntityEditor.getBasicRoom());
+        Room theRoom = new BasicRoom(myEntityEditor.getRandomRoom());
         return theRoom;
     }
 
@@ -59,17 +59,17 @@ public class RoomController {
      * @param theRoom this is the room that is being set
      * @return returns a presetroom
      */
-    public PreSetRoom generateRoom(final String theRoom) {
-        PreSetRoom specialRoom = PreSetRoom.GENERIC;
+    public Room generateRoom(final String theRoom) {
+        PreSetRoom specialRoom = PreSetRoom.GENERICROOM;
         switch(theRoom) {
             case "start":
-                specialRoom = PreSetRoom.START;
+                specialRoom = PreSetRoom.STARTROOM;
                 break;
             case "exit":
-                specialRoom = PreSetRoom.EXIT;
+                specialRoom = PreSetRoom.EXITROOM;
                 break;
             case "object":
-                specialRoom = PreSetRoom.OBJECTIVE;
+                specialRoom = PreSetRoom.OBJECTIVEROOM;
                 break;
             default:
                 break;
@@ -99,7 +99,6 @@ public class RoomController {
         for (String s: theCurrent.getMyEntities()){
             if (myEntityEditor.isMonster(s)){
                 theCurrent.removeEntity(s);
-                myEntityEditor.removeMonster(s);
             }
         }
         return theCurrent;

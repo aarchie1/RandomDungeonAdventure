@@ -51,7 +51,6 @@ public class GameController {
         myRoom = new RoomController();
         myCreatures = new CreatureEntityController();
         myREntity = new EntityController();
-        // move object constructon to here
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
         myMap.setLocal(theStart);

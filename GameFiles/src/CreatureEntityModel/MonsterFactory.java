@@ -8,13 +8,23 @@ package CreatureEntityModel;
 public enum MonsterFactory implements CreatureEntity {
     GREMLIN, OGRE, SKELETON;
 
+    public static Boolean IsMonster(final String theName) {
+        String[] myMon = {"GREMLIN", "OGRE", "SKELETON"};
+        for (String s:myMon) {
+            if (s.equals(theName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * When called, returns the enum name as a string (ex: "OGER")
      * @return
      */
     @Override
     public String getMyName() {
-        return "" + this;
+        return this.toString();
     }
 
     static Monster spawnMonster(MonsterFactory theMon){
