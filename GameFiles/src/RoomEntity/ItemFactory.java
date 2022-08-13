@@ -73,6 +73,6 @@ public enum ItemFactory implements RoomEntity{
 
     @Override
     public String toString(){
-        return this.toString();
+        return getMyName();
     }
 }
