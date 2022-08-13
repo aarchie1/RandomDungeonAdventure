@@ -5,8 +5,7 @@ import RoomModel.RoomController;
 import RoomModel.Room;
 import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BasicMapTest {
     BasicMap myMap = new BasicMap();
@@ -25,9 +24,18 @@ class BasicMapTest {
 
     @org.junit.jupiter.api.Test
     void replaceRoom() {
+
+
         System.out.println("\n***Begin replaceRoom test***\n");
-        System.out.println(myMap.getRoomAt(myStart).toString());
-        fail("Not finished!");
+        String startingRoom = myMap.getRoomAt(myStart).toString();
+        //System.out.println(startingRoom);
+        myMap.replaceRoom(myStart, myRoomEdit.generateRoom("OBJECTIVE"));
+        String editedRoom = myMap.getRoomAt(myStart).toString();
+       // System.out.println(myMap.getRoomAt(myStart).toString());
+        assertNotEquals(editedRoom, startingRoom);
+        myMap.replaceRoom(myStart, myRoomEdit.generateRoom("START"));
+        editedRoom = myMap.getRoomAt(myStart).toString();
+        assertTrue(editedRoom.equals(startingRoom));
     }
 
     @org.junit.jupiter.api.Test

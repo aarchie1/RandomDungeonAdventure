@@ -235,8 +235,8 @@ public class EntityController {
     }
 
     public ArrayList<String> getObjectiveRoom() {
-        ArrayList<RoomEntity> myContents = basicRoom();
-        myContents.add(ItemFactory.spawnItem(ItemFactory.OBJECTIVE));
-        return getContents(myContents);
+        ArrayList <String> myContents = getRandomRoom();
+        myContents.add(ItemFactory.OBJECTIVE.toString());
+        return myContents;
     }
 }

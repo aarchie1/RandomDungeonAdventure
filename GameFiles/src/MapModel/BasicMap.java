@@ -6,6 +6,7 @@ import RoomModel.RoomController;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 
 
 /**
@@ -44,7 +45,39 @@ class BasicMap implements RADSMap {
         myMap = new HashMap<>();
         myRoomControl = new RoomController();
         generateRoom(myCoordinate);
+        placeStartingRooms();
+    }
+
+    private void placeStartingRooms(){
         replaceRoom(myCoordinate, myRoomControl.startRoom());
+        for (int i = 0; i < 5; i++){
+            Location l = keyCheck();
+            while (myMap.containsKey(l)){
+                l = keyCheck();
+            }
+            if (i == 4){
+                replaceRoom(l, myRoomControl.generateRoom("EXIT"));
+            } else{
+                replaceRoom(l, myRoomControl.generateRoom("OBJECTIVE"));
+            }
+
+        }
+
+
+
+    }
+
+    private Location keyCheck(){
+        Random b = new Random();
+        int myX = b.nextInt(1, 10);
+        int myY = b.nextInt(1, 10);
+        if(b.nextBoolean()){
+            myX = -myX;
+        }
+        if (b.nextBoolean()){
+            myX = -myY;
+        }
+        return new Location(myX, myY);
     }
 
     /**
@@ -56,7 +89,6 @@ class BasicMap implements RADSMap {
      */
     @Override
     public void replaceRoom(Location theLocation, Room theRoom) {
-
         myMap.put(theLocation, theRoom);
     }
 
