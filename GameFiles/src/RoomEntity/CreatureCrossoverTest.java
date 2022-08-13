@@ -23,7 +23,7 @@ class CreatureCrossoverTest {
     @Test
     void addMonster() {
         assertNull(testCross.toString());
-        testCross.addMonster();
+        testCross = testCross.addMonster();
         System.out.println(testCross.toString());
 
     }

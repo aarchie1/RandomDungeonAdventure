@@ -53,19 +53,8 @@ public class EntityController {
     }
 
     // Method to addMonster
-    private ArrayList<RoomEntity> addMonster(ArrayList<RoomEntity> theRoom){
-        theRoom.add(myCreatureCrossover);
-        return theRoom;
-    }
-
-    // Method to addHero
-    public void addHero (){
-        myCreatureCrossover.addHero();
-    }
-
-    // Method to Remove Monster
-    public void removeMonster(final String theMonsterName){
-        myCreatureCrossover.removeMonster(theMonsterName);
+    private CreatureCrossover addMonster(final String theName){
+        return new CreatureCrossover();
     }
 
     /**
@@ -94,12 +83,8 @@ public class EntityController {
      * @return true if the name matches an item, false otherwise
      */
     public boolean isItem(final String theName) {
-        boolean flag;
-        switch(theName.toLowerCase()){
-            case "visionpot", "devamulet", "healpot" -> flag = true;
-            default -> flag = false;
-        }
-        return flag;
+
+        return ItemFactory.isItem(theName);
     }
 
     /**
@@ -113,6 +98,15 @@ public class EntityController {
         boolean flag;
         switch(theName.toLowerCase()){
             case "objective" -> flag = true;
+            default -> flag = false;
+        }
+        return flag;
+    }
+
+    public boolean isExit(final String theName) {
+        boolean flag;
+        switch (theName.toLowerCase()) {
+            case "exit" -> flag = true;
             default -> flag = false;
         }
         return flag;
@@ -179,11 +173,8 @@ public class EntityController {
     /**
      * This method adds a health potion to the players inventory
      */
-    private ArrayList<RoomEntity> addHealthPotion(ArrayList<RoomEntity> myContents){
-        Item myItem = ItemFactory.spawnItem(ItemFactory.HEALPOT);
-        myCreatureCrossover.getMyCreatureController().giveItem(myItem.toString());
-        myContents.remove(myItem);
-        return myContents;
+    private Item addHealthPotion(){
+        return ItemFactory.spawnItem(ItemFactory.HEALPOT);
     }
 
     /**
@@ -231,17 +222,10 @@ public class EntityController {
         ArrayList <RoomEntity> myContents = new ArrayList<>();
         for(String s: theContents){
             if (isMonster(s)){
-                myContents = addMonster(myContents);
+                myContents.add(new CreatureCrossover());
             } else if(isItem(s)){
-
-                if (s.equalsIgnoreCase("visionpot")){
-                   myContents = addVisionPotion(myContents);
-                }else {
-                    myContents = addHealthPotion(myContents);
-                }
-            } else if(isObjective(s)){
-               myContents = addObjective(myContents);
-            } else if(isWall(s)){
+                myContents.add(ItemFactory.spawnItem(s));
+            }else if(isWall(s)){
                 switch(s){
                     case "wallup" -> myContents = addWall(myContents,"w");
                     case "walldown" -> myContents = addWall(myContents,"s");
@@ -272,10 +256,16 @@ public class EntityController {
 
 
     public ArrayList<String> getEndRoom() {
-        return getStartingRoom();
+        ArrayList<RoomEntity> myContents = basicRoom();
+
+        myContents.add(ItemFactory.spawnItem(ItemFactory.EXIT));
+        myContents = addDoor(myContents,"w");
+        return getContents(myContents);
     }
 
     public ArrayList<String> getObjectiveRoom() {
-        return getStartingRoom();
+        ArrayList<RoomEntity> myContents = basicRoom();
+
+        return getContents(myContents);
     }
 }

@@ -99,7 +99,6 @@ public class RoomController {
         for (String s: theCurrent.getMyEntities()){
             if (myEntityEditor.isMonster(s)){
                 theCurrent.removeEntity(s);
-                myEntityEditor.removeMonster(s);
             }
         }
         return theCurrent;
