@@ -9,7 +9,7 @@ public enum MonsterFactory implements CreatureEntity {
     GREMLIN, OGRE, SKELETON;
 
     public static Boolean IsMonster(final String theName) {
-        String[] myMon = {"GREMLIN", "OGER", "SKELETION"};
+        String[] myMon = {"GREMLIN", "OGRE", "SKELETON"};
         for (String s:myMon) {
             if (s.equals(theName)) {
                 return true;
@@ -24,7 +24,7 @@ public enum MonsterFactory implements CreatureEntity {
      */
     @Override
     public String getMyName() {
-        return "" + this;
+        return this.toString();
     }
 
     static Monster spawnMonster(MonsterFactory theMon){

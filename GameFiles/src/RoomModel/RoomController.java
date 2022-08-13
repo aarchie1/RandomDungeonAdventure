@@ -50,7 +50,7 @@ public class RoomController {
      * @return Room Object containing a basic room
      */
     public Room genericRoom() {
-        Room theRoom = new BasicRoom(myEntityEditor.getBasicRoom());
+        Room theRoom = new BasicRoom(myEntityEditor.getRandomRoom());
         return theRoom;
     }
 

@@ -2,6 +2,7 @@ package RoomEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * This Class is used to control all RoomEntity's
@@ -17,17 +18,14 @@ import java.util.List;
  */
 public class EntityController {
 
-    private static final int TRAP_DAMAGE = 10;
-    private CreatureCrossover myCreatureCrossover;
 
     public EntityController(){
-        myCreatureCrossover = new CreatureCrossover();
     }
 
     /**
      * This Method is called on to generate the contents of the starting room.
      *
-     * @return
+     * @return An ArrayList of Strings that are the keyword contents of the room.
      */
     public ArrayList<String> getStartingRoom(){
         ArrayList<RoomEntity> myContents = basicRoom();
@@ -38,7 +36,7 @@ public class EntityController {
 
     /**
      * This method is called on each room first. It adds 4 walls to the room.
-     * @return
+     * @return A List of RoomEntities that are common to all rooms
      */
     private ArrayList<RoomEntity> basicRoom() {
         ArrayList<RoomEntity> myContents = new ArrayList<>();
@@ -48,10 +46,42 @@ public class EntityController {
         myContents.add(WallFactory.WALLRIGHT);
         return myContents;
     }
+
+    private ArrayList<RoomEntity> randomRoom() {
+        ArrayList<RoomEntity> myContents = basicRoom();
+        Random r = new Random();
+        int roll = r.nextInt(0,6);
+        if (roll >= 3) {
+            CreatureCrossover c = new CreatureCrossover();
+            c.addRandMonster();
+            myContents.add(c);
+        }
+        roll = r.nextInt(0,6);
+        if(roll >= 4) {
+            myContents.add(ItemFactory.spawnItem(ItemFactory.HEALPOT));
+        }
+        roll = r.nextInt(0,6);
+        if (roll >= 5) {
+            myContents.add(ItemFactory.spawnItem(ItemFactory.VISONPOT));
+        }
+        roll = r.nextInt(0,6);
+        if (roll == 6) {
+            myContents.add(ItemFactory.spawnItem(ItemFactory.TRAP));
+        }
+        return myContents;
+    }
+
+    /**
+     * Get a list of elements common to all rooms.
+     * @return an arraylist of strings that are the contents of the room
+     */
     public ArrayList<String> getBasicRoom(){
         return getContents(basicRoom());
     }
 
+    public ArrayList<String> getRandomRoom() {
+        return getContents(randomRoom());
+    }
 
     /**
      * This method should be used to determine if a string theName is a monster
@@ -61,14 +91,7 @@ public class EntityController {
      * @return true if the name matches a monster, false otherwise
      */
     public boolean isMonster(final String theName) {
-        boolean flag;
-        switch(theName.toLowerCase()){
-            case "gremlin" -> flag = true;
-            case "ogre" -> flag = true;
-            case "skeleton" -> flag = true;
-            default -> flag = false;
-        }
-        return flag;
+        return CreatureCrossover.isAMonster(theName);
     }
 
     /**
@@ -79,7 +102,6 @@ public class EntityController {
      * @return true if the name matches an item, false otherwise
      */
     public boolean isItem(final String theName) {
-
         return ItemFactory.isItem(theName);
     }
 
@@ -92,19 +114,13 @@ public class EntityController {
      */
     public boolean isObjective(final String theName){
         boolean flag;
-        switch(theName.toLowerCase()){
-            case "objective" -> flag = true;
-            default -> flag = false;
-        }
+        flag = "objective".equalsIgnoreCase(theName);
         return flag;
     }
 
     public boolean isExit(final String theName) {
         boolean flag;
-        switch (theName.toLowerCase()) {
-            case "exit" -> flag = true;
-            default -> flag = false;
-        }
+        flag = "exit".equalsIgnoreCase(theName);
         return flag;
     }
 
@@ -118,10 +134,7 @@ public class EntityController {
     private boolean isWall(final String theName) {
         boolean flag;
         switch(theName.toLowerCase()){
-            case "wallup" -> flag = true;
-            case "walldown" -> flag = true;
-            case "wallleft" -> flag = true;
-            case "wallright" -> flag = true;
+            case "wallup", "walldown", "wallleft", "wallright" -> flag = true;
             default -> flag = false;
         }
         return flag;
@@ -137,43 +150,21 @@ public class EntityController {
     public boolean isDoor(final String theName) {
         boolean flag;
         switch(theName.toLowerCase()){
-            case "doorup" -> flag = true;
-            case "doordown" -> flag = true;
-            case "doorleft" -> flag = true;
-            case "doorright" -> flag = true;
+            case "doorup", "doordown", "doorleft", "doorright" -> flag = true;
             default -> flag = false;
         }
         return flag;
     }
 
-    public boolean isTrap(String theName) {
+    /**
+     * This Method returns true if the string matchs a trap
+     * @param theName keyword to look for
+     * @return true if the keyword is a trap, else false
+     */
+    public boolean isTrap(final String theName) {
         boolean flag;
-        switch(theName.toLowerCase()){
-            case "trap" -> flag = true;
-            default -> flag = false;
-        }
+        flag = "trap".equalsIgnoreCase(theName);
         return flag;
-    }
-
-    /**
-     * This method adds a Pillar to the players inventory
-     */
-    private RoomEntity addObjective(){
-        return ItemFactory.spawnItem(ItemFactory.OBJECTIVE);
-    }
-
-    /**
-     * This method adds a health potion to the players inventory
-     */
-    private Item addHealthPotion(){
-        return ItemFactory.spawnItem(ItemFactory.HEALPOT);
-    }
-
-    /**
-     * This method adds a vision potion to the players inventory
-     */
-    private Item addVisionPotion(){
-        return ItemFactory.spawnItem(ItemFactory.VISONPOT);
     }
 
     /**
@@ -191,7 +182,6 @@ public class EntityController {
         }
         return myContents;
     }
-
 
     private RoomEntity addWall(final String theDir) {
         return WallFactory.spawnWall(WallFactory.getWall(theDir));
@@ -239,7 +229,6 @@ public class EntityController {
 
     public ArrayList<String> getEndRoom() {
         ArrayList<RoomEntity> myContents = basicRoom();
-
         myContents.add(ItemFactory.spawnItem(ItemFactory.EXIT));
         myContents = addDoor(myContents,"w");
         return getContents(myContents);
@@ -247,7 +236,7 @@ public class EntityController {
 
     public ArrayList<String> getObjectiveRoom() {
         ArrayList<RoomEntity> myContents = basicRoom();
-
+        myContents.add(ItemFactory.spawnItem(ItemFactory.OBJECTIVE));
         return getContents(myContents);
     }
 }
