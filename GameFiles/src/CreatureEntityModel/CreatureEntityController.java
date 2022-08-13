@@ -209,6 +209,11 @@ public class CreatureEntityController {
         }
     }
 
+    /**
+     * Generates a random Monster name string
+     * Used by Creature Crossover
+     * @return a monster name string
+     */
     public String getMonster() {
         Random r = new Random();
         int next = r.nextInt(0,3);
@@ -228,5 +233,14 @@ public class CreatureEntityController {
             }
         }
         return s;
+    }
+
+    /**
+     * Used to check if a string matches a monster name
+     * returns true if it does, false otherwise;
+     * Used by Creature Crossover
+     */
+    public Boolean isAMonster(final String theName) {
+        return MonsterFactory.IsMonster(theName);
     }
 }

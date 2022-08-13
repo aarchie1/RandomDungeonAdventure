@@ -1,7 +1,5 @@
 package RoomEntity;
 
-import CreatureEntityModel.CreatureEntityController;
-import GameModel.GameController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +21,7 @@ class CreatureCrossoverTest {
     @Test
     void addMonster() {
         assertNull(testCross.toString());
-        testCross = testCross.addMonster();
+        testCross = testCross.addRandMonster();
         System.out.println(testCross.toString());
 
     }

@@ -52,10 +52,6 @@ public class EntityController {
         return getContents(basicRoom());
     }
 
-    // Method to addMonster
-    private CreatureCrossover addMonster(final String theName){
-        return new CreatureCrossover();
-    }
 
     /**
      * This method should be used to determine if a string theName is a monster
@@ -162,12 +158,8 @@ public class EntityController {
     /**
      * This method adds a Pillar to the players inventory
      */
-    private ArrayList<RoomEntity> addObjective(ArrayList<RoomEntity> myContents){
-
-        Item myItem = ItemFactory.spawnItem(ItemFactory.OBJECTIVE);
-        myCreatureCrossover.getMyCreatureController().giveItem(myItem.toString());
-        myContents.remove(myItem);
-        return myContents;
+    private RoomEntity addObjective(){
+        return ItemFactory.spawnItem(ItemFactory.OBJECTIVE);
     }
 
     /**
@@ -180,14 +172,18 @@ public class EntityController {
     /**
      * This method adds a vision potion to the players inventory
      */
-    private ArrayList<RoomEntity> addVisionPotion(ArrayList<RoomEntity> myContents){
-        Item myItem = ItemFactory.spawnItem(ItemFactory.VISONPOT);
-        myCreatureCrossover.getMyCreatureController().giveItem(myItem.toString());
-        myContents.remove(myItem);
-        return myContents;
+    private Item addVisionPotion(){
+        return ItemFactory.spawnItem(ItemFactory.VISONPOT);
     }
 
-    // Method to add door
+    /**
+     * This method places a door in the indicated direction.
+     * This method takes the arraylist as it need to remove a wall when it adds a door.
+     *
+     * @param myContents The List of RoomEntitys that you want the door placed in.
+     * @param theDir The direction you want the door in.
+     * @return the modified list.
+     */
     public ArrayList<RoomEntity> addDoor(ArrayList<RoomEntity> myContents, final String theDir) {
         if (DoorFactory.getDoor(theDir) != null){
             myContents.remove(WallFactory.getWall(theDir));
@@ -196,20 +192,16 @@ public class EntityController {
         return myContents;
     }
 
-    private ArrayList<RoomEntity> addWall(ArrayList<RoomEntity> myContents, final String theDir) {
-        if (WallFactory.getWall(theDir) != null){
-            myContents.add(WallFactory.getWall(theDir));
-        }
-        return myContents;
+
+    private RoomEntity addWall(final String theDir) {
+        return WallFactory.spawnWall(WallFactory.getWall(theDir));
     }
 
     /**
      * This method adds a Trap to the room and applys damage to the hero.
      */
-    private ArrayList<RoomEntity> addTrap(ArrayList<RoomEntity> myContents){
-        Item myItem = ItemFactory.spawnItem(ItemFactory.TRAP);
-        myContents.add(myItem);
-        return myContents;
+    private RoomEntity addTrap(){
+        return ItemFactory.spawnItem(ItemFactory.TRAP);
     }
 
     /**
@@ -226,21 +218,11 @@ public class EntityController {
             } else if(isItem(s)){
                 myContents.add(ItemFactory.spawnItem(s));
             }else if(isWall(s)){
-                switch(s){
-                    case "wallup" -> myContents = addWall(myContents,"w");
-                    case "walldown" -> myContents = addWall(myContents,"s");
-                    case "wallleft" -> myContents = addWall(myContents,"a");
-                    case "wallright" -> myContents = addWall(myContents,"d");
-                }
+                myContents.add(addWall(s));
             } else if (isDoor(s)){
-                switch(s){
-                    case "doorup" -> myContents = addDoor(myContents,"w");
-                    case "downdoor" -> myContents = addDoor(myContents,"s");
-                    case "doorleft" -> myContents = addDoor(myContents,"a");
-                    case "doorightr" -> myContents = addDoor(myContents,"d");
-                }
+                myContents = addDoor(myContents,s);
             } else if (isTrap(s)){
-                myContents = addTrap(myContents);
+                myContents.add(addTrap());
             }
         }
         return myContents;
