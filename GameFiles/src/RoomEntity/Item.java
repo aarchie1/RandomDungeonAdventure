@@ -7,7 +7,9 @@ package RoomEntity;
  * It is currently stubbed out for testing purposes
  * @author Rowan W Osmon
  */
-public class Item implements RoomEntity {
+ class Item implements RoomEntity {
+
+
     private final String myName;
 
     private String myFlavorText = "";

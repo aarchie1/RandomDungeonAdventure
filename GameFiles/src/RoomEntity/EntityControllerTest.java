@@ -3,6 +3,8 @@ package RoomEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EntityControllerTest {
@@ -17,13 +19,15 @@ class EntityControllerTest {
     void getStartingRoom() {
         StringBuilder sb = new StringBuilder();
         for (String s: ec.getStartingRoom()) {
-            sb.append(s+"\n");
+            sb.append(s+" ");
         }
         System.out.println(sb);
+
     }
 
     @Test
     void getBasicRoom() {
+
     }
 
     @Test
