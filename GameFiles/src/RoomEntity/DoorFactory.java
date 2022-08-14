@@ -1,5 +1,7 @@
 package RoomEntity;
 
+import GameModel.Directions;
+
 public enum DoorFactory implements RoomEntity {
     DOORUP,
     DOORDOWN,
@@ -8,24 +10,42 @@ public enum DoorFactory implements RoomEntity {
 
 
     static DoorFactory getDoor(final String s){
-        DoorFactory myD = switch (s) {
-            case "w" -> DOORUP;
-            case "s" -> DOORDOWN;
-            case "a" -> DOORLEFT;
-            case "d" -> DOORRIGHT;
-            default -> null;
+        DoorFactory df;
+        switch (s) {
+            case "DOORUP" -> {
+                return DOORUP;
+            }
+            case "DOORDOWN" -> {
+                return DOORDOWN;
+            }
+            case "DOORLEFT" -> {
+                return  DOORLEFT;
+            }
+            case "DOORRIGHT" -> {
+                return DOORRIGHT;
+            }
+        }
+        Directions d = Directions.getDirection(s);
+        return switch (d) {
+            case UP -> DOORUP;
+            case DOWN -> DOORDOWN;
+            case LEFT -> DOORLEFT;
+            case RIGHT -> DOORRIGHT;
         };
-        return myD;
     }
 
+    /**
+     * This Switch spawns one of our doors when called on
+     * @param theDoor the door type that you want
+     * @return a door RoomEntity
+     */
     static Door spawnDoor(DoorFactory theDoor){
-        Door newDoor = switch (theDoor) {
-            case DOORUP ->newDoor = new Door("DOORUP");
-            case DOORDOWN ->newDoor = new Door("DOORDOWN");
-            case DOORLEFT ->newDoor = new Door("DOORLEFT");
-            case DOORRIGHT ->newDoor = new Door("DOORRIGHT");
+        return switch (theDoor) {
+            case DOORUP -> new Door("DOORUP");
+            case DOORDOWN -> new Door("DOORDOWN");
+            case DOORLEFT -> new Door("DOORLEFT");
+            case DOORRIGHT -> new Door("DOORRIGHT");
         };
-        return newDoor;
     }
 
     @Override

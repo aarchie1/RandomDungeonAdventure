@@ -28,12 +28,20 @@ public class MapController {
 
     RoomController myRoom ;
 
+    /**
+     *
+     */
     public MapController(){
         explored = 0;
         myMap = new BasicMap();
         myLocal = new Location(0,0);
         myRoom = new RoomController();
     }
+
+    /**
+     *
+     * @param theLocation
+     */
     public void setLocal(final Location theLocation) {
         myLocal = theLocation;
         if (Math.abs(theLocation.getMyX()) > explored){
@@ -49,11 +57,19 @@ public class MapController {
     // take as input the map,
     // produce a map with door edited so that object can be reached.
 
-
+    /**
+     *
+     * @param theCoordinates
+     * @return
+     */
     public Room getRoomAt(final Location theCoordinates){
         return myMap.getRoomAt(theCoordinates);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFullMap(){
         return myMap.fullMap(explored);
     }
@@ -62,5 +78,10 @@ public class MapController {
         return myMap.localMap(theLocal);
     }
 
+    public void removeEntity(final Location theLocal, String theName) {
+        Room theCurrent = myMap.getRoomAt(theLocal);
+        theCurrent.removeEntity(theName);
+        myMap.replaceRoom(theLocal, theCurrent);
+    }
 
 }

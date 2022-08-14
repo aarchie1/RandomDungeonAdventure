@@ -63,9 +63,6 @@ class BasicMap implements RADSMap {
             }
 
         }
-
-
-
     }
 
     private Location keyCheck(){
@@ -158,9 +155,10 @@ class BasicMap implements RADSMap {
     @Override
     public String localMap(Location theLocation) {
         Location l;
+        int sizeOfVisionOutput = 3;
         StringBuilder sb = new StringBuilder();
-        for (int i = -1; i < 2; i++){
-            for (int j = -1; j< 2; j++){
+        for (int i = -sizeOfVisionOutput; i <= sizeOfVisionOutput; i++){
+            for (int j = -sizeOfVisionOutput; j <= sizeOfVisionOutput; j++){
                 l = new Location(theLocation.getMyX()+i, theLocation.getMyY()+j);
                 if(!myMap.containsKey(l)){
                     generateRoom(l);
