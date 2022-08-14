@@ -13,8 +13,14 @@ public class MenuGUI extends GUIController implements ActionListener {
     private JPanel newGamePanel, loadGamePanel;
     int screenWidth,screenHeight;
 
+    /**
+     * Constructor
+     */
     MenuGUI() {menuGUIComponents();}
 
+    /**
+     * Method that creates menu GUI along with menuGUI.form
+     */
     private void menuGUIComponents() {
         screenWidth = 1280;
         screenHeight = 800;
@@ -49,6 +55,10 @@ public class MenuGUI extends GUIController implements ActionListener {
         loadGameButton.setFocusPainted(false);
     }
 
+    /**
+     * Action performed if a button is clicked
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == newGameButton) {

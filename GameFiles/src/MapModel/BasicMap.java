@@ -6,6 +6,7 @@ import RoomModel.RoomController;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 
 
 /**
@@ -44,7 +45,31 @@ class BasicMap implements RADSMap {
         myMap = new HashMap<>();
         myRoomControl = new RoomController();
         generateRoom(myCoordinate);
+        placeStartingRooms();
+    }
+
+    private void placeStartingRooms(){
         replaceRoom(myCoordinate, myRoomControl.startRoom());
+        int numObjectives = 5;
+        for (int i = 0; i < numObjectives; i++){
+            Location l = keyCheck();
+            while (myMap.containsKey(l)){
+                l = keyCheck();
+            }
+            if (i == numObjectives-1){
+                replaceRoom(l, myRoomControl.generateRoom("EXIT"));
+            } else{
+                replaceRoom(l, myRoomControl.generateRoom("OBJECTIVE"));
+            }
+
+        }
+    }
+
+    private Location keyCheck(){
+        Random b = new Random();
+        int myX = b.nextInt(-2, 2);
+        int myY = b.nextInt(-2, 2);
+        return new Location(myX, myY);
     }
 
     /**
@@ -56,7 +81,6 @@ class BasicMap implements RADSMap {
      */
     @Override
     public void replaceRoom(Location theLocation, Room theRoom) {
-
         myMap.put(theLocation, theRoom);
     }
 
@@ -131,9 +155,10 @@ class BasicMap implements RADSMap {
     @Override
     public String localMap(Location theLocation) {
         Location l;
+        int sizeOfVisionOutput = 3;
         StringBuilder sb = new StringBuilder();
-        for (int i = -1; i < 2; i++){
-            for (int j = -1; j< 2; j++){
+        for (int i = -sizeOfVisionOutput; i <= sizeOfVisionOutput; i++){
+            for (int j = -sizeOfVisionOutput; j <= sizeOfVisionOutput; j++){
                 l = new Location(theLocation.getMyX()+i, theLocation.getMyY()+j);
                 if(!myMap.containsKey(l)){
                     generateRoom(l);

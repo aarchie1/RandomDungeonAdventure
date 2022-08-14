@@ -98,10 +98,10 @@
               </component>
             </children>
           </grid>
-          <grid id="4639f" binding="logPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="4639f" binding="logPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="9" fill="0" indent="0" use-parent-layout="true">
                 <minimum-size width="200" height="550"/>
                 <preferred-size width="200" height="550"/>
                 <maximum-size width="200" height="550"/>
@@ -113,19 +113,45 @@
               <background color="-1"/>
             </properties>
             <border type="etched" title="History Log" title-justification="2"/>
-            <children/>
+            <children>
+              <component id="9decc" class="javax.swing.JTextArea" binding="logHistory">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="180" height="520"/>
+                    <preferred-size width="180" height="520"/>
+                    <maximum-size width="180" height="520"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-1"/>
+                  <dropMode value="INSERT"/>
+                  <editable value="false"/>
+                  <focusable value="false"/>
+                  <font name="Comic Sans MS" size="10" style="2"/>
+                  <foreground color="-16777216"/>
+                  <lineWrap value="true"/>
+                  <opaque value="true"/>
+                  <requestFocusEnabled value="false"/>
+                  <rows value="1"/>
+                  <text value="Hero Health:"/>
+                  <wrapStyleWord value="true"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <grid id="baf24" binding="mapPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="baf24" binding="mapPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="1050" height="550"/>
-                <preferred-size width="1050" height="550"/>
-                <maximum-size width="1050" height="550"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="9" fill="0" indent="0" use-parent-layout="true">
+                <minimum-size width="1075" height="550"/>
+                <preferred-size width="1075" height="550"/>
+                <maximum-size width="1075" height="550"/>
               </grid>
             </constraints>
             <properties>
               <background color="-6579301"/>
+              <focusable value="false"/>
+              <foreground color="-16777216"/>
             </properties>
             <border type="etched"/>
             <children/>

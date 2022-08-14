@@ -106,7 +106,7 @@ public class GameController {
      */
     private Location inputDirection(final String theDirection){
         Location nextLoc;
-        Directions d = Directions.getDirection(theDirection);
+        Directions d = Directions.getInputDirection(theDirection);
         if (d == null) {
             return myCurrentLocation;
         }
