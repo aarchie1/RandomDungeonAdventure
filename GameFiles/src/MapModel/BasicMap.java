@@ -50,12 +50,13 @@ class BasicMap implements RADSMap {
 
     private void placeStartingRooms(){
         replaceRoom(myCoordinate, myRoomControl.startRoom());
-        for (int i = 0; i < 5; i++){
+        int numObjectives = 5;
+        for (int i = 0; i < numObjectives; i++){
             Location l = keyCheck();
             while (myMap.containsKey(l)){
                 l = keyCheck();
             }
-            if (i == 4){
+            if (i == numObjectives-1){
                 replaceRoom(l, myRoomControl.generateRoom("EXIT"));
             } else{
                 replaceRoom(l, myRoomControl.generateRoom("OBJECTIVE"));
@@ -69,14 +70,8 @@ class BasicMap implements RADSMap {
 
     private Location keyCheck(){
         Random b = new Random();
-        int myX = b.nextInt(1, 10);
-        int myY = b.nextInt(1, 10);
-        if(b.nextBoolean()){
-            myX = -myX;
-        }
-        if (b.nextBoolean()){
-            myX = -myY;
-        }
+        int myX = b.nextInt(-2, 2);
+        int myY = b.nextInt(-2, 2);
         return new Location(myX, myY);
     }
 
