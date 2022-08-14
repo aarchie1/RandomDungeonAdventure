@@ -1,6 +1,7 @@
 package MapModel;
 
 import GameModel.Location;
+import RoomModel.Room;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,5 +39,16 @@ class MapControllerTest {
     @Test
     void getLocalMap() {
         System.out.println(m.getLocalMap(new Location(0,0)));
+    }
+
+    @Test
+    void removeEntity() {
+        Location l = new Location(0,0);
+        Room r = m.getRoomAt(l);
+        System.out.println(r);
+
+        m.removeEntity(l, "START");
+        System.out.println(m.getRoomAt(l));
+
     }
 }

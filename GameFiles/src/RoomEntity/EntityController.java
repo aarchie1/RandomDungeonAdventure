@@ -1,5 +1,7 @@
 package RoomEntity;
 
+import GameModel.Directions;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,8 +31,8 @@ public class EntityController {
      */
     public ArrayList<String> getStartingRoom(){
         ArrayList<RoomEntity> myContents = basicRoom();
-        myContents.add(ItemFactory.DEVAMULET);
-        myContents = addDoor(myContents,"w");
+        myContents.add(ItemFactory.START);
+        myContents = addDoor(myContents, Directions.UP.toString());
         return getContents(myContents);
     }
 
@@ -67,6 +69,16 @@ public class EntityController {
         roll = r.nextInt(0,6);
         if (roll == 6) {
             myContents.add(ItemFactory.spawnItem(ItemFactory.TRAP));
+        }
+        for (int i = 0 ; i < 4; i++){
+            if (r.nextBoolean()){
+                switch (i){
+                    case 0 -> myContents = addDoor(myContents,Directions.UP.toString());
+                    case 1 -> myContents = addDoor(myContents,Directions.DOWN.toString());
+                    case 2 -> myContents = addDoor(myContents,Directions.LEFT.toString());
+                    case 3 -> myContents = addDoor(myContents,Directions.RIGHT.toString());
+                }
+            }
         }
         return myContents;
     }
@@ -210,6 +222,7 @@ public class EntityController {
             }else if(isWall(s)){
                 myContents.add(addWall(s));
             } else if (isDoor(s)){
+
                 myContents = addDoor(myContents,s);
             } else if (isTrap(s)){
                 myContents.add(addTrap());
@@ -230,13 +243,13 @@ public class EntityController {
     public ArrayList<String> getEndRoom() {
         ArrayList<RoomEntity> myContents = basicRoom();
         myContents.add(ItemFactory.spawnItem(ItemFactory.EXIT));
-        myContents = addDoor(myContents,"w");
+        myContents = addDoor(myContents,Directions.DOWN.toString());
         return getContents(myContents);
     }
 
     public ArrayList<String> getObjectiveRoom() {
-        ArrayList<RoomEntity> myContents = basicRoom();
-        myContents.add(ItemFactory.spawnItem(ItemFactory.OBJECTIVE));
-        return getContents(myContents);
+        ArrayList <String> myContents = getRandomRoom();
+        myContents.add(ItemFactory.OBJECTIVE.toString());
+        return myContents;
     }
 }

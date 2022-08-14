@@ -25,6 +25,8 @@
         </constraints>
         <properties>
           <background color="-16777216"/>
+          <name value="buttonPanel"/>
+          <opaque value="true"/>
         </properties>
         <border type="none"/>
         <children>
@@ -90,12 +92,12 @@
         </constraints>
         <properties>
           <alignmentY value="0.0"/>
-          <background color="-8716288"/>
-          <font name="Comic Sans MS" size="72" style="1"/>
-          <foreground color="-6579301"/>
+          <background color="-16777216"/>
+          <font name="Comic Sans MS" size="96" style="1"/>
+          <foreground color="-8716288"/>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
-          <text value="GAME OVER"/>
+          <text value="YOU DIED"/>
         </properties>
       </component>
     </children>

@@ -3,7 +3,7 @@ import RoomEntity.EntityController;
 
 import java.util.ArrayList;
 
-enum PreSetRoom implements Room {
+enum PreSetRoom {
     STARTROOM,
     EXITROOM,
     OBJECTIVEROOM,
@@ -22,25 +22,13 @@ enum PreSetRoom implements Room {
             case OBJECTIVEROOM -> {
                 myItem = new BasicRoom(ec.getObjectiveRoom());
             }
+            case GENERICROOM -> {
+                myItem = new BasicRoom(ec.getRandomRoom());
+            }
         }
         return  myItem;
     }
 
-
-    @Override
-    public void addEntity(String theEntityName) {
-
-    }
-
-    @Override
-    public ArrayList<String> getMyEntities() {
-        return null;
-    }
-
-    @Override
-    public void removeEntity(String theTargetName) {
-
-    }
     @Override
     public String toString(){
         return this.toString();
