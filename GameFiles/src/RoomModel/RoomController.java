@@ -30,7 +30,6 @@ public class RoomController {
      * Default Constructor
       */
     public RoomController(){
-
         myEntityEditor = new EntityController();
     }
 
@@ -39,10 +38,7 @@ public class RoomController {
      * @return Room object representing the starting room
      */
     public Room startRoom() {
-
-        Room start = new BasicRoom(myEntityEditor.getStartingRoom());
-
-        return start;
+        return PreSetRoom.spawnRoom(PreSetRoom.STARTROOM);
     }
 
     /**
@@ -50,8 +46,7 @@ public class RoomController {
      * @return Room Object containing a basic room
      */
     public Room genericRoom() {
-        Room theRoom = new BasicRoom(myEntityEditor.getBasicRoom());
-        return theRoom;
+        return PreSetRoom.spawnRoom(PreSetRoom.GENERICROOM);
     }
 
     /**
@@ -59,22 +54,22 @@ public class RoomController {
      * @param theRoom this is the room that is being set
      * @return returns a presetroom
      */
-    public PreSetRoom generateRoom(final String theRoom) {
-        PreSetRoom specialRoom = PreSetRoom.GENERIC;
+    public Room generateRoom(final String theRoom) {
+        PreSetRoom specialRoom = PreSetRoom.GENERICROOM;
         switch(theRoom) {
-            case "start":
-                specialRoom = PreSetRoom.START;
+            case "START":
+                specialRoom = PreSetRoom.STARTROOM;
                 break;
-            case "exit":
-                specialRoom = PreSetRoom.EXIT;
+            case "EXIT":
+                specialRoom = PreSetRoom.EXITROOM;
                 break;
-            case "object":
-                specialRoom = PreSetRoom.OBJECTIVE;
+            case "OBJECTIVE":
+                specialRoom = PreSetRoom.OBJECTIVEROOM;
                 break;
             default:
                 break;
         }
-        return specialRoom;
+        return PreSetRoom.spawnRoom(specialRoom);
     }
 
     // take input from the map which indicate where doors should be in the room -
@@ -99,7 +94,6 @@ public class RoomController {
         for (String s: theCurrent.getMyEntities()){
             if (myEntityEditor.isMonster(s)){
                 theCurrent.removeEntity(s);
-                myEntityEditor.removeMonster(s);
             }
         }
         return theCurrent;

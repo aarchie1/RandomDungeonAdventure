@@ -3,40 +3,35 @@ package RoomEntity;
 /**
  * This Class serves as the bridge between the CreatureEntityModel and the RoomEntityModel.
  * This Class should instantiate a CreatureEntityController in order to make use of the controller
- * to place monster and heroes in rooms as necessary.
+ * to get monster name Strings.
+ * This class stores a string of a single monster name. The Entity controller should place a copy of this entity whenever directed to.
+ * The EntityController when being asked about a String entity will ask this class if the string in question is a monster name
+ *
  * @author Anthony Archie
  * @author Rowan W Osmon
- * @version 0.01
+ * @version 0.02
  */
 import CreatureEntityModel.CreatureEntityController;
 
-public class CreatureCrossover implements RoomEntity {
+class CreatureCrossover implements RoomEntity {
 
-    public final CreatureEntityController myCreatureController;
+    String myName;
+
 
     CreatureCrossover() {
-        myCreatureController = new CreatureEntityController();
+        myName = "GREMLIN";
     }
 
-    public CreatureEntityController getMyCreatureController() {
-        return myCreatureController;
+
+    CreatureCrossover addRandMonster(){
+        CreatureEntityController myCreatureController = new CreatureEntityController();
+        myName = myCreatureController.getMonster();
+        return this;
     }
 
-    // Method to addMonster
-    public void addMonster(){
-
-        myCreatureController.createMonster("gremlin");
-        myCreatureController.getMyMonster();
-    }
-
-    // Method to addMonster
-    public void addHero(){
-        myCreatureController.createHero("thief");
-    }
-
-    // Method to RemoveMonster
-    public void removeMonster(final String theMonsterName){
-        myCreatureController.removeMonster(theMonsterName);
+    static Boolean isAMonster(final String theName){
+        CreatureEntityController myCreatureController = new CreatureEntityController();
+        return myCreatureController.isAMonster(theName);
     }
 
     @Override
@@ -47,7 +42,7 @@ public class CreatureCrossover implements RoomEntity {
 
     @Override
     public String getMyName() {
-        return myCreatureController.getMyMonster();
+        return myName;
     }
 
 }

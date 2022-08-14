@@ -3,6 +3,7 @@ package CreatureEntityModel;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import static java.lang.Integer.parseInt;
 
@@ -208,4 +209,38 @@ public class CreatureEntityController {
         }
     }
 
+    /**
+     * Generates a random Monster name string
+     * Used by Creature Crossover
+     * @return a monster name string
+     */
+    public String getMonster() {
+        Random r = new Random();
+        int next = r.nextInt(0,3);
+        String s = MonsterFactory.GREMLIN.toString();
+        switch (next) {
+            case 0 -> {
+                s = MonsterFactory.GREMLIN.toString();
+            }
+            case 1 -> {
+                s = MonsterFactory.OGRE.toString();
+            }
+            case 2 -> {
+                s = MonsterFactory.SKELETON.toString();
+            }
+            default -> {
+                return s;
+            }
+        }
+        return s;
+    }
+
+    /**
+     * Used to check if a string matches a monster name
+     * returns true if it does, false otherwise;
+     * Used by Creature Crossover
+     */
+    public Boolean isAMonster(final String theName) {
+        return MonsterFactory.IsMonster(theName);
+    }
 }
