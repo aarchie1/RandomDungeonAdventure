@@ -90,7 +90,7 @@ public class CreatureEntityController {
      */
     public String getMyHeroStats() {
         StringBuilder stats = new StringBuilder();
-        stats.append(myHero.getMyHealthPotions());
+        stats.append(myHero.getMyHitPoints());
         return stats.toString();
     }
 
@@ -204,7 +204,7 @@ public class CreatureEntityController {
      * players HP
      */
     public void useHealthPotion(){
-        if( myHero.getMyHealthPotions() > 0){
+        if( myHero.getMyHealthPotions() > 0) {
             myHero.setMyHealthPotions(myHero.getMyHealthPotions() - 1);
             myHero.setMyHitPoints(myHero.getMyHitPoints() + HEALTH_Potion_Value);
             myHero.removeMyItems("HealthPotion");

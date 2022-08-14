@@ -154,7 +154,7 @@ public class GameController {
                     chosenAction += "\n" + myMap.getLocalMap(myCurrentLocation);
                     break;
                 case PLAYERINV:
-                    chosenAction = myCreatures.getMyHeroItems();
+                    chosenAction = myCreatures.getMyHeroStats();
                     break;
                 default:
                     chosenAction = "Not a valid Action!";
@@ -172,7 +172,7 @@ public class GameController {
                 return "Used a VisionPotion\n" + myMap.getLocalMap(myCurrentLocation);
             }
             case PLAYERINV -> {
-                return myCreatures.getMyHeroItems();
+                return myCreatures.getMyHeroStats();
             }
             default -> {
                 return "Not a valid PlayerAction!";
