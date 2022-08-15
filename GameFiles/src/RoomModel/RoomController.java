@@ -28,13 +28,14 @@ public class RoomController {
 
     /**
      * Default Constructor
-      */
-    public RoomController(){
+     */
+    public RoomController() {
         myEntityEditor = new EntityController();
     }
 
     /**
      * This method generates the start room.
+     *
      * @return Room object representing the starting room
      */
     public Room startRoom() {
@@ -43,6 +44,7 @@ public class RoomController {
 
     /**
      * Generates a basic room
+     *
      * @return Room Object containing a basic room
      */
     public Room genericRoom() {
@@ -51,12 +53,13 @@ public class RoomController {
 
     /**
      * This room generates the special rooms of the Dungeons
+     *
      * @param theRoom this is the room that is being set
      * @return returns a presetroom
      */
     public Room generateRoom(final String theRoom) {
         PreSetRoom specialRoom = PreSetRoom.GENERICROOM;
-        switch(theRoom) {
+        switch (theRoom) {
             case "START":
                 specialRoom = PreSetRoom.STARTROOM;
                 break;
@@ -75,28 +78,12 @@ public class RoomController {
     // take input from the map which indicate where doors should be in the room -
     // call on the RoomEntity controller to get those room objects and add them to the room.
 
-    public Room doorCheck(final String[] doorLocations,final Room theCurrent){
+    public Room doorCheck(final String[] doorLocations, final Room theCurrent) {
         ArrayList<RoomEntity> arr = myEntityEditor.LoadContents(theCurrent.getMyEntities());
-        for (String s: doorLocations){
-            arr = myEntityEditor.addDoor(arr,s);
+        for (String s : doorLocations) {
+            arr = myEntityEditor.addDoor(arr, s);
         }
         BasicRoom update = new BasicRoom(myEntityEditor.getContents(arr));
         return update;
-    }
-
-    /**
-     * This method should check for a monster, if a string matching a monster is found,
-     * then the monster is removed. The room should be saved with its updated state.
-     * @param theCurrent the current room being checked for monsters.
-     * @return Room the room which was altered
-     */
-    public Room removeMonsters(Room theCurrent) {
-        for (String s: theCurrent.getMyEntities()){
-            if (myEntityEditor.isMonster(s)){
-                theCurrent.removeEntity(s);
-            }
-        }
-        return theCurrent;
-
     }
 }

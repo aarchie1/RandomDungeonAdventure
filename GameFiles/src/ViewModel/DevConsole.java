@@ -7,9 +7,14 @@ import java.util.Scanner;
 
 /**
  * This class is used for player interaction with the game model.
+ * It uses a Scanner to parse player input
  * It uses the console for input/output.
  */
 public class DevConsole {
+    /**
+     * Our game model is interacted with in this game controller.
+     *
+     */
     GameController myGame;
     Scanner s;
 

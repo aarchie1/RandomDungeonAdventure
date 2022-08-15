@@ -1,6 +1,7 @@
 package RoomModel;
 
 import RoomEntity.EntityController;
+import RoomEntity.RoomEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,10 +113,11 @@ import java.util.List;
         if (isEmpty){
             return "EmptyRoom";
         }
-
         StringBuilder sb = new StringBuilder();
         for (String r : myEntities) {
+
             sb.append(" " + r + " ");
+
         }
         return sb.toString();
     }
