@@ -48,6 +48,7 @@ class EntityControllerTest {
 
     @Test
     void isItem() {
+        assertTrue(ec.isItem(ItemFactory.HEALPOT.toString()));
     }
 
     @Test

@@ -88,7 +88,7 @@ class BasicMap implements RADSMap {
      * @param theLocation
      */
     @Override
-    public void generateRoom(Location theLocation) {
+    public void generateRoom(final Location theLocation) {
 
         if (!myMap.containsKey(theLocation)) {
             myMap.put(theLocation, myRoomControl.genericRoom());
@@ -134,7 +134,7 @@ class BasicMap implements RADSMap {
      * @return
      */
     @Override
-    public Room getRoomAt(Location theLocation) {
+    public Room getRoomAt(final Location theLocation) {
         Room r;
         if (!myMap.containsKey(theLocation)) {
             generateRoom(theLocation);
@@ -153,7 +153,7 @@ class BasicMap implements RADSMap {
     @Override
     public String localMap(Location theLocation) {
         Location l;
-        int sizeOfVisionOutput = 2;
+        int sizeOfVisionOutput = 1;
         StringBuilder sb = new StringBuilder();
         for (int i = -sizeOfVisionOutput; i <= sizeOfVisionOutput; i++){
             for (int j = -sizeOfVisionOutput; j <= sizeOfVisionOutput; j++){
@@ -168,17 +168,4 @@ class BasicMap implements RADSMap {
         return sb.toString();
     }
 
-    /**
-     * This method is used to generate the rooms surrounding the input location.
-     * @param theLocation
-     */
-    private void generateLocalRooms(Location theLocation){
-        Location l;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                l = new Location(theLocation.getMyX()+i, theLocation.getMyY()+j);
-                generateRoom(l);
-            }
-        }
-    }
 }
