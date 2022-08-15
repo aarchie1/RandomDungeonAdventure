@@ -85,6 +85,16 @@ public class CreatureEntityController {
     }
 
     /**
+     * This method is used return the Hero's Stats as a String
+     * @return String representing the hero's name
+     */
+    public String getMyHeroStats() {
+        StringBuilder stats = new StringBuilder();
+        stats.append(myHero.getMyHitPoints());
+        return stats.toString();
+    }
+
+    /**
      * This method is a mock method for testing purpose of apply damage to a hero
      * @param theDamage this is an integer representing the amount of damage to be applied to the hero
      */
@@ -155,6 +165,10 @@ public class CreatureEntityController {
         return str;
     }
 
+    public int getMyHeroObjectives(){
+        return myHero.getMyObjectives();
+    }
+
     /**
      * This method makes a call to the Dungeon Character to see if the Character is Alive.
      * @return boolean representing true if the Dungeon Character is alive, and false otherwise
@@ -190,7 +204,7 @@ public class CreatureEntityController {
      * players HP
      */
     public void useHealthPotion(){
-        if( myHero.getMyHealthPotions() > 0){
+        if( myHero.getMyHealthPotions() > 0) {
             myHero.setMyHealthPotions(myHero.getMyHealthPotions() - 1);
             myHero.setMyHitPoints(myHero.getMyHitPoints() + HEALTH_Potion_Value);
             myHero.removeMyItems("HealthPotion");
