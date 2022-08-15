@@ -210,17 +210,15 @@ public class GameController {
             if (myREntity.isTrap(s)){
                 myCreatures.setHeroDamage(TRAP_DAMAGE);
             }
-        }
         //check for monster
-        for(String s: theRoomContents){
             if (myREntity.isMonster(s)){
                 myCreatures.fightAMonster(s);
+                myMap.removeEntity(myCurrentLocation,s);
             }
-        }
         // check for item
-        for(String s: theRoomContents){
             if (myREntity.isItem(s)){
                 myCreatures.giveItem(s);
+                myMap.removeEntity(myCurrentLocation,s);
             }
         }
     }
