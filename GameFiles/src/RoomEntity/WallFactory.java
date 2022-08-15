@@ -1,5 +1,7 @@
 package RoomEntity;
 
+import GameModel.Directions;
+
 public enum WallFactory implements RoomEntity {
     WALLUP,
     WALLDOWN,
@@ -7,14 +9,14 @@ public enum WallFactory implements RoomEntity {
     WALLRIGHT;
 
     static WallFactory getWall(final String s) {
-        WallFactory myWall = switch (s) {
-            case "w" -> WALLUP;
-            case "s" -> WALLDOWN;
-            case "a" -> WALLLEFT;
-            case "d" -> WALLRIGHT;
+        Directions d = Directions.getDirection(s);
+        return switch (d) {
+            case UP -> WALLUP;
+            case DOWN -> WALLDOWN;
+            case LEFT -> WALLLEFT;
+            case RIGHT -> WALLRIGHT;
             default -> null;
         };
-        return myWall;
     }
 
     static Wall spawnWall(WallFactory theWall) {

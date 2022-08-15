@@ -37,7 +37,7 @@ public class DevConsole {
     }
     private void gameLogicLoop() {
         // at start of each loop, check for win condition
-        while (myGame.hasWon()){
+        while (!myGame.hasWon()){
             // display stuff
          System.out.println(myGame.showCurrentRoom());
          takeAction(promptAction());

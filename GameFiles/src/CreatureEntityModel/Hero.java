@@ -19,6 +19,9 @@ public class Hero extends DungeonCharacter {
     private static final int VISION_POTION_VALUE = 20;
     private int myHealthPotions;
     private int myVisionPotions;
+
+
+    private int myObjectives;
     private ArrayList<String> myItems;
     /**
      *
@@ -97,6 +100,10 @@ public class Hero extends DungeonCharacter {
 
     int getMyVisionPotions() {
         return myVisionPotions;
+    }
+
+    public int getMyObjectives() {
+        return myObjectives;
     }
 
     ArrayList<String> getMyItems() {

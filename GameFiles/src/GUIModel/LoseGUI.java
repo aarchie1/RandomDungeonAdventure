@@ -9,13 +9,19 @@ import java.io.IOException;
 public class LoseGUI extends GUIController implements ActionListener {
 
     private JFrame loseFrame;
-    private JPanel losePanel, buttonPanel;
-    private JLabel loseLabel;
+    private JPanel losePanel,buttonPanel;
     private JButton newGameButton, loadGameButton;
+    private JLabel loseLabel;
     private int screenWidth,screenHeight;
 
+    /**
+     * Constructor
+     */
     LoseGUI() {loseGUIComponents();}
 
+    /**
+     * Creates lose GUI along with loseGUI.form
+     */
     private void loseGUIComponents() {
         screenWidth = 1280;
         screenHeight = 800;
@@ -34,9 +40,6 @@ public class LoseGUI extends GUIController implements ActionListener {
         losePanel.setBounds(0,0,screenWidth,screenHeight);
         losePanel.setBackground(Color.black);
 
-        // Lose Label
-       // losePanel.add(loseLabel);
-
         // New Game button
         newGameButton.addActionListener(this);
         newGameButton.setFocusPainted(false);
@@ -46,6 +49,10 @@ public class LoseGUI extends GUIController implements ActionListener {
         loadGameButton.setFocusPainted(false);
     }
 
+    /**
+     * Action if button clicked
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == newGameButton) {

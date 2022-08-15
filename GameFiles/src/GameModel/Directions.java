@@ -7,7 +7,29 @@ public enum Directions {
     RIGHT
     ;
 
-   static Directions getDirection(final String theDirection){
+   public static Directions getDirection(final String theDirection){
+        Directions myD;
+        switch (theDirection) {
+            case "UP":
+                myD = Directions.UP;
+                break;
+            case "DOWN":
+                myD = Directions.DOWN;
+                break;
+            case "LEFT" :
+                myD = Directions.LEFT;
+                break;
+            case "RIGHT":
+                myD = Directions.RIGHT;
+                break;
+            default:
+                myD = null;
+                break;
+        }
+        return myD;
+    }
+
+    public static Directions getInputDirection(String theDirection) {
         Directions myD;
         switch (theDirection) {
             case "w":
@@ -19,7 +41,7 @@ public enum Directions {
             case "a" :
                 myD = Directions.LEFT;
                 break;
-            case "d" :
+            case "d":
                 myD = Directions.RIGHT;
                 break;
             default:

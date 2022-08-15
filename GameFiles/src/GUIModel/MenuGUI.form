@@ -30,6 +30,7 @@
         </constraints>
         <properties>
           <background color="-16777216"/>
+          <focusable value="false"/>
         </properties>
         <border type="none"/>
         <children>
@@ -45,6 +46,8 @@
               </grid>
             </constraints>
             <properties>
+              <focusable value="false"/>
+              <font name="Comic Sans MS" size="12" style="1"/>
               <text value="New Game"/>
             </properties>
           </component>
@@ -67,6 +70,8 @@
               </grid>
             </constraints>
             <properties>
+              <focusable value="false"/>
+              <font name="Comic Sans MS" size="12" style="1"/>
               <text value="Load Game"/>
             </properties>
           </component>

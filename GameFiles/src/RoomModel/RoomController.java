@@ -30,7 +30,6 @@ public class RoomController {
      * Default Constructor
       */
     public RoomController(){
-
         myEntityEditor = new EntityController();
     }
 
@@ -39,10 +38,7 @@ public class RoomController {
      * @return Room object representing the starting room
      */
     public Room startRoom() {
-
-        Room start = new BasicRoom(myEntityEditor.getStartingRoom());
-
-        return start;
+        return PreSetRoom.spawnRoom(PreSetRoom.STARTROOM);
     }
 
     /**
@@ -50,8 +46,7 @@ public class RoomController {
      * @return Room Object containing a basic room
      */
     public Room genericRoom() {
-        Room theRoom = new BasicRoom(myEntityEditor.getRandomRoom());
-        return theRoom;
+        return PreSetRoom.spawnRoom(PreSetRoom.GENERICROOM);
     }
 
     /**
@@ -62,19 +57,19 @@ public class RoomController {
     public Room generateRoom(final String theRoom) {
         PreSetRoom specialRoom = PreSetRoom.GENERICROOM;
         switch(theRoom) {
-            case "start":
+            case "START":
                 specialRoom = PreSetRoom.STARTROOM;
                 break;
-            case "exit":
+            case "EXIT":
                 specialRoom = PreSetRoom.EXITROOM;
                 break;
-            case "object":
+            case "OBJECTIVE":
                 specialRoom = PreSetRoom.OBJECTIVEROOM;
                 break;
             default:
                 break;
         }
-        return specialRoom;
+        return PreSetRoom.spawnRoom(specialRoom);
     }
 
     // take input from the map which indicate where doors should be in the room -
