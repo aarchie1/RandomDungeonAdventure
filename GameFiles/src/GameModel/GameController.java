@@ -103,7 +103,7 @@ public class GameController {
      * It does nothing if given an incorrect string
      * It will tell the MapController to move once in the specified direction.
      *
-     * @param theDirection U,D,L,R are the only accepted inputs.
+     * @param theDirection w,a,s,d are the only accepted inputs, for all other it defaults to no move.
      */
     private Location inputDirection(final String theDirection){
         Location nextLoc;
