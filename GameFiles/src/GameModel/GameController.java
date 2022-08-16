@@ -112,9 +112,9 @@ public class GameController {
             return myCurrentLocation;
         }
         nextLoc = switch (d) {
-            case UP -> new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()-1);
+            case UP -> new Location(myCurrentLocation.getMyX()-1, myCurrentLocation.getMyY());
             case DOWN -> new Location(myCurrentLocation.getMyX()+1, myCurrentLocation.getMyY());
-            case LEFT -> new Location(myCurrentLocation.getMyX()-1, myCurrentLocation.getMyY());
+            case LEFT -> new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()-1);
             case RIGHT -> new Location(myCurrentLocation.getMyX() , myCurrentLocation.getMyY()+1);
             default -> new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY());
         };
