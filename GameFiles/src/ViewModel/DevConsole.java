@@ -13,12 +13,11 @@ import java.util.Scanner;
 public class DevConsole {
     /**
      * Our game model is interacted with in this game controller.
-     *
      */
     GameController myGame;
     Scanner s;
 
-    public DevConsole(){
+    public DevConsole() {
         s = new Scanner(System.in);
         System.out.println("Welcome to RADS!");
         myGame = new GameController();
@@ -35,28 +34,28 @@ public class DevConsole {
         return "charSelect placeholder";
     }
 
-    public void playNewGame(){
+    public void playNewGame() {
         myGame.newGame();
         gameLogicLoop();
 
     }
+
     private void gameLogicLoop() {
         // at start of each loop, check for win condition
-        while (!myGame.hasWon()){
+        while (!myGame.hasWon()) {
             // display stuff
             System.out.println(myGame.showCurrentRoom());
-            if(myGame.hasWon()){
-                System.out.println("Hero has WON!");
-              break;
-             }
-             takeAction(promptAction());
-            if(myGame.hasLost()){
-              System.out.println("Hero has has lost! GAME OVER!");
-               break;
-             }
+            takeAction(promptAction());
+            if (myGame.hasLost()) {
+                System.out.println("Hero has has lost! GAME OVER!");
+                break;
+            }
         }
-        System.out.println("Hero has WON! CONGRATS!");
-        System.out.println(myGame.showFullMap());
+        if(myGame.hasWon()){
+            System.out.println("Hero has WON! CONGRATS!");
+        }
+
+        //System.out.println(myGame.showFullMap()); Not Currently Working
         // end game stuff
     }
 

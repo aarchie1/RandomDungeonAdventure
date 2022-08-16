@@ -168,8 +168,7 @@ public class GameController {
         if(myCreatures.getMyHeroVisionPotions() > 0){
             return true;
         }
-        //default for debug
-        return true;
+        return false;
     }
 
     private boolean canUseHealthPotion() {
@@ -305,16 +304,14 @@ public class GameController {
      * @return
      */
     public boolean hasWon() {
-        //code to check for endgame, return false if game is won
-        //if for room exit. parse showCurrentRoom
         String currentRoom = showCurrentRoom();
         String[] roomSplit = currentRoom.split(" ");
         ArrayList<String> roomList = new ArrayList<String>(
                 Arrays.asList(roomSplit));
         for(String s: roomList){
             if (s.equals("EXIT")){
-                //change back to == after debug
-                if (myCreatures.getMyHeroObjectives() >= 0){
+                if (myCreatures.getMyHeroObjectives() == 4){
+                    myMap.setLocal(myCurrentLocation);
                     return true;
                 }
             }
