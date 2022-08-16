@@ -8,6 +8,7 @@ import RoomModel.RoomController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * This Class will control and consolidate all the game models into the game logic
@@ -102,7 +103,7 @@ public class GameController {
      * It does nothing if given an incorrect string
      * It will tell the MapController to move once in the specified direction.
      *
-     * @param theDirection U,D,L,R are the only accepted inputs.
+     * @param theDirection w,a,s,d are the only accepted inputs, for all other it defaults to no move.
      */
     private Location inputDirection(final String theDirection){
         Location nextLoc;
@@ -110,23 +111,13 @@ public class GameController {
         if (d == null) {
             return myCurrentLocation;
         }
-        switch (d) {
-            case UP:
-                nextLoc = new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()-1);
-                break;
-            case DOWN:
-                nextLoc = new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()+1);
-                break;
-            case LEFT:
-                nextLoc = new Location(myCurrentLocation.getMyX()-1, myCurrentLocation.getMyY());
-                break;
-            case RIGHT:
-                nextLoc = new Location(myCurrentLocation.getMyX()+1, myCurrentLocation.getMyY());
-                break;
-            default:
-                nextLoc = new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY());
-                break;
-        }
+        nextLoc = switch (d) {
+            case UP -> new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()-1);
+            case DOWN -> new Location(myCurrentLocation.getMyX()+1, myCurrentLocation.getMyY());
+            case LEFT -> new Location(myCurrentLocation.getMyX()-1, myCurrentLocation.getMyY());
+            case RIGHT -> new Location(myCurrentLocation.getMyX() , myCurrentLocation.getMyY()+1);
+            default -> new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY());
+        };
         return nextLoc;
     }
 
