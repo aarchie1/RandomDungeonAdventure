@@ -129,9 +129,6 @@ class BasicMap implements RADSMap {
         return Arrays.deepToString(arr).replace("], ", "]\n");
     }
 
-
-
-
     /**
      * This Method is used to return a Room out of the map
      * It takes the room location as input.
