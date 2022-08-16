@@ -90,7 +90,10 @@ public class CreatureEntityController {
      */
     public String getMyHeroStats() {
         StringBuilder stats = new StringBuilder();
-        stats.append(myHero.getMyHitPoints());
+        stats.append("Hero Health: " + myHero.getMyHitPoints());
+        stats.append("\nHero Vision Potions: " + myHero.getMyVisionPotions());
+        stats.append("\nHero Health Potions: " + myHero.getMyHealthPotions());
+        stats.append("\nHero Objectives: " + myHero.getMyObjectives());
         return stats.toString();
     }
 
@@ -102,6 +105,10 @@ public class CreatureEntityController {
         myHero.setDamage(theDamage);
     }
 
+
+    public void setGodMode(){
+        myHero.setMyHitPoints(99999999);
+    }
 
     /**
      * This method is called to fight a monster.
@@ -169,6 +176,13 @@ public class CreatureEntityController {
         return myHero.getMyObjectives();
     }
 
+    public int getMyHeroHealthPotions(){
+        return myHero.getMyHealthPotions();
+    }
+    public int getMyHeroVisionPotions(){
+        return myHero.getMyVisionPotions();
+    }
+
     /**
      * This method makes a call to the Dungeon Character to see if the Character is Alive.
      * @return boolean representing true if the Dungeon Character is alive, and false otherwise
@@ -186,12 +200,15 @@ public class CreatureEntityController {
      * @param theItem this is a String representing the item to be given to the player
      * @return this is an integer representing the number of items a player has
      */
-    public int giveItem(final String theItem){
-        if(theItem.equals("HealthPotion")){
+    public int giveItem(final String theItem) {
+        if (theItem.equals("HEALPOT")) {
             myHero.setMyHealthPotions(myHero.getMyHealthPotions() + 1);
             myHero.addMyItems(theItem);
-        } else if(theItem.equals("VisionPotion")){
+        } else if (theItem.equals("VISONPOT")) {
             myHero.setMyVisionPotions(myHero.getMyVisionPotions() + 1);
+            myHero.addMyItems(theItem);
+        } else if (theItem.equals("OBJECTIVE")) {
+            myHero.setMyObjectives();
             myHero.addMyItems(theItem);
         } else {
             myHero.addMyItems(theItem);

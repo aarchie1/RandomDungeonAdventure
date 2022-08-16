@@ -45,9 +45,15 @@ public class DevConsole {
         while (!myGame.hasWon()){
             // display stuff
          System.out.println(myGame.showCurrentRoom());
+         if(myGame.hasWon()){
+             System.out.println("Hero has WON!");
+             break;
+         }
          takeAction(promptAction());
-            // return new state in loop
-         //System.out.println (myGame.combatLog());
+         if(myGame.hasLost()){
+             System.out.println("Hero has has lost! GAME OVER!");
+             break;
+         }
         }
         // end game stuff
     }
@@ -82,7 +88,7 @@ public class DevConsole {
 
 
            if (choice == 1 || choice == 2 ||
-            choice == 3 || choice == 4){
+            choice == 3 || choice == 4 || choice == 5){
                goodChoice = false;
            }
         }
@@ -107,6 +113,10 @@ public class DevConsole {
             }
             case 4 -> {
                 System.out.println("VisionPotion selected!\n" + myGame.actionMenu(PlayerActions.VISONPOT));
+                break;
+            }
+            case 5 -> {
+                System.out.println("GODMODE SELECTED!\n" + myGame.actionMenu(PlayerActions.GODMODE));
                 break;
             }
             default -> {

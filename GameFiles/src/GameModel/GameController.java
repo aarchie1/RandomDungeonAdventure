@@ -142,19 +142,29 @@ public class GameController {
             PlayerActions myA = PlayerActions.getAct(theAction);
 
             switch (myA) {
-                // Consider a refactor to make UseHealthPostion take no input.
                 case HEALPOT:
-                    chosenAction = "Used a HealthPotion";
-                    //CanUseHealthPotion
-                    myCreatures.useHealthPotion();
+                    if(canUseHealthPotion()){
+                        chosenAction = "Used a HealthPotion";
+                        myCreatures.useHealthPotion();
+                    } else {
+                        chosenAction = "No potions available";
+                    }
                     break;
                 case VISONPOT:
-                    chosenAction = "Used a VisionPotion";
-                    //CanUseVisionPotion
+                    if(canUseVisionPotion()){
+                        chosenAction = "Used a VisionPotion";
+                        myCreatures.useHealthPotion();
+                    } else {
+                        chosenAction = "No potions available";
+                    }
+
                     chosenAction += "\n" + myMap.getLocalMap(myCurrentLocation);
                     break;
                 case PLAYERINV:
                     chosenAction = myCreatures.getMyHeroStats();
+                    break;
+                case GODMODE:
+                    chosenAction = "GODMODE ENABLED";
                     break;
                 default:
                     chosenAction = "Not a valid Action!";
@@ -162,17 +172,43 @@ public class GameController {
             }
         return chosenAction;
     }
+
+    private boolean canUseVisionPotion() {
+        if(myCreatures.getMyHeroVisionPotions() > 0){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean canUseHealthPotion() {
+        if(myCreatures.getMyHeroHealthPotions() > 0){
+            return true;
+        }
+        return false;
+    }
+
     public String actionMenu(PlayerActions theAction){
         switch (theAction) {
             case HEALPOT -> {
-                myCreatures.useHealthPotion();
-                return "Used a HealthPotion!";
+                if(canUseHealthPotion()){
+                    myCreatures.useHealthPotion();
+                    return "Used a HealthPotion!";
+                }
+                return "No potions available";
             }
             case VISONPOT -> {
-                return "Used a VisionPotion\n" + myMap.getLocalMap(myCurrentLocation);
+                if(!canUseVisionPotion()){
+                    myCreatures.useVisionPotion();
+                    return "Used a VisionPotion\n" + myMap.getLocalMap(myCurrentLocation);
+                }
+                return "No potions available";
             }
             case PLAYERINV -> {
                 return myCreatures.getMyHeroStats();
+            }
+            case GODMODE -> {
+                myCreatures.setGodMode();
+                return "DEVCOMMAND ACTIVATED... GODMODE";
             }
             default -> {
                 return "Not a valid PlayerAction!";
@@ -188,11 +224,33 @@ public class GameController {
      */
     public void moveLocal(final String theDirection){
         setLocal(inputDirection(theDirection));
+        if(checkInteractables(myMap.getRoomAt(myCurrentLocation).getMyEntities())){
+            System.out.println(showCurrentRoom());
+        }
         // check new room for intractable
         checkForRoomEntity(myMap.getRoomAt(myCurrentLocation).getMyEntities());
 
     }
 
+    private boolean checkInteractables(ArrayList<String> theRoomContents){
+        boolean flag = false;
+        //check for trap
+        int stop = theRoomContents.size();
+        for(String s: theRoomContents){
+            if (myREntity.isTrap(s)){
+                flag = true;
+            }
+            //check for monster
+            else if (myREntity.isMonster(s)){
+                flag = true;
+            }
+            // check for item
+            else if (myREntity.isItem(s)){
+                flag = true;
+            }
+        }
+        return flag;
+    }
     /**
      * This Method is used to check a room for key objects.
      *
@@ -204,21 +262,27 @@ public class GameController {
      * @param theRoomContents
      */
     private void checkForRoomEntity(ArrayList<String> theRoomContents) {
-
         //check for trap
-        for(String s: theRoomContents){
+        int stop = theRoomContents.size();
+        for(int i = 0; i< stop; i++){
+            String s = theRoomContents.get(i);
             if (myREntity.isTrap(s)){
                 myCreatures.setHeroDamage(TRAP_DAMAGE);
             }
         //check for monster
-            if (myREntity.isMonster(s)){
+            else if (myREntity.isMonster(s)){
                 myCreatures.fightAMonster(s);
                 myMap.removeEntity(myCurrentLocation,s);
+                System.out.println(myCreatures.getMyHeroStats());
+                i--;
+                stop--;
             }
         // check for item
-            if (myREntity.isItem(s)){
+            else if (myREntity.isItem(s)){
                 myCreatures.giveItem(s);
                 myMap.removeEntity(myCurrentLocation,s);
+                i--;
+                stop--;
             }
         }
     }
@@ -251,16 +315,25 @@ public class GameController {
     public boolean hasWon() {
         //code to check for endgame, return false if game is won
         //if for room exit. parse showCurrentRoom
-
-        String str = myCreatures.getMyHeroItems();
-        String[] strSplit = str.split(" ");
-        ArrayList<String> strList = new ArrayList<String>(
-                Arrays.asList(strSplit));
-        int heroesItems = strList.size();
-        if (myCreatures.getMyHeroObjectives() == 4){
-            return true;
+        String currentRoom = showCurrentRoom();
+        String[] roomSplit = currentRoom.split(" ");
+        ArrayList<String> roomList = new ArrayList<String>(
+                Arrays.asList(roomSplit));
+        for(String s: roomList){
+            if (s.equals("EXIT")){
+                if (myCreatures.getMyHeroObjectives() == 4){
+                    return true;
+                }
+            }
         }
         return false;
+    }
+
+    public boolean hasLost(){
+        if(myCreatures.checkHeroAlive()){
+           return false;
+        }
+        return true;
     }
 
     /**
