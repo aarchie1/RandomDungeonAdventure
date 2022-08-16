@@ -7,6 +7,7 @@ import RoomEntity.EntityController;
 import RoomModel.RoomController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This Class will control and consolidate all the game models into the game logic
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class GameController {
 
 
+    private static final int TRAP_DAMAGE = 15;
     /**
      * This controls any map actions.
      */
@@ -53,8 +55,6 @@ public class GameController {
         myCurrentLocation = new Location(0,0);
         myMap.setLocal(theStart);
         myCreatures.createHero("thief");
-
-
     }
 
     /**
@@ -64,7 +64,7 @@ public class GameController {
      * @return The stats of the hero as a string.
      */
     public String heroStats() {
-        return myCreatures.getMyHero();
+        return myCreatures.getMyHeroStats();
     }
 
     /**
@@ -106,7 +106,7 @@ public class GameController {
      */
     private Location inputDirection(final String theDirection){
         Location nextLoc;
-        Directions d = Directions.getDirection(theDirection);
+        Directions d = Directions.getInputDirection(theDirection);
         if (d == null) {
             return myCurrentLocation;
         }
@@ -145,14 +145,16 @@ public class GameController {
                 // Consider a refactor to make UseHealthPostion take no input.
                 case HEALPOT:
                     chosenAction = "Used a HealthPotion";
+                    //CanUseHealthPotion
                     myCreatures.useHealthPotion();
                     break;
                 case VISONPOT:
                     chosenAction = "Used a VisionPotion";
+                    //CanUseVisionPotion
                     chosenAction += "\n" + myMap.getLocalMap(myCurrentLocation);
                     break;
                 case PLAYERINV:
-                    chosenAction = myCreatures.getMyHeroItems();
+                    chosenAction = myCreatures.getMyHeroStats();
                     break;
                 default:
                     chosenAction = "Not a valid Action!";
@@ -170,7 +172,7 @@ public class GameController {
                 return "Used a VisionPotion\n" + myMap.getLocalMap(myCurrentLocation);
             }
             case PLAYERINV -> {
-                return myCreatures.getMyHeroItems();
+                return myCreatures.getMyHeroStats();
             }
             default -> {
                 return "Not a valid PlayerAction!";
@@ -204,10 +206,21 @@ public class GameController {
     private void checkForRoomEntity(ArrayList<String> theRoomContents) {
 
         //check for trap
-
+        for(String s: theRoomContents){
+            if (myREntity.isTrap(s)){
+                myCreatures.setHeroDamage(TRAP_DAMAGE);
+            }
         //check for monster
-
+            if (myREntity.isMonster(s)){
+                myCreatures.fightAMonster(s);
+                myMap.removeEntity(myCurrentLocation,s);
+            }
         // check for item
+            if (myREntity.isItem(s)){
+                myCreatures.giveItem(s);
+                myMap.removeEntity(myCurrentLocation,s);
+            }
+        }
     }
 
 
@@ -229,6 +242,7 @@ public class GameController {
 
     public String showFullMap() {
         return myMap.getFullMap();}
+
     /**
      * This method should check for the end game condition.
      * It returns false when the condition is set, true otherwise.
@@ -236,8 +250,17 @@ public class GameController {
      */
     public boolean hasWon() {
         //code to check for endgame, return false if game is won
-        //insert code here!
-        return true;
+        //if for room exit. parse showCurrentRoom
+
+        String str = myCreatures.getMyHeroItems();
+        String[] strSplit = str.split(" ");
+        ArrayList<String> strList = new ArrayList<String>(
+                Arrays.asList(strSplit));
+        int heroesItems = strList.size();
+        if (myCreatures.getMyHeroObjectives() == 4){
+            return true;
+        }
+        return false;
     }
 
     /**

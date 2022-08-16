@@ -11,16 +11,14 @@ import java.util.Random;
 
 /**
  * A basic map. It implements the methods in the RADSMap
+ * This class is can be though of as a graph of a Integer (X,Y) coordinate pair. as the
  * It may be used for inheritance, testing, and modeling a Map class.
+ * This class is used to place a starting room, the 4 objectives, and the ExitRoom
  * @author Rowan W Osmon
  * @version 0.01
  *
  * Rowan's notes:
- * This class needs a tester.
- * This class needs to be refactored.
- * It should use RoomController for its Room operations.
- * This class (or an extension of it) should also
- *      place a starting room, the 4 objectives, and the ExitRoom
+ *
  */
 class BasicMap implements RADSMap {
 
@@ -63,9 +61,6 @@ class BasicMap implements RADSMap {
             }
 
         }
-
-
-
     }
 
     private Location keyCheck(){
@@ -158,9 +153,10 @@ class BasicMap implements RADSMap {
     @Override
     public String localMap(Location theLocation) {
         Location l;
+        int sizeOfVisionOutput = 2;
         StringBuilder sb = new StringBuilder();
-        for (int i = -1; i < 2; i++){
-            for (int j = -1; j< 2; j++){
+        for (int i = -sizeOfVisionOutput; i <= sizeOfVisionOutput; i++){
+            for (int j = -sizeOfVisionOutput; j <= sizeOfVisionOutput; j++){
                 l = new Location(theLocation.getMyX()+i, theLocation.getMyY()+j);
                 if(!myMap.containsKey(l)){
                     generateRoom(l);

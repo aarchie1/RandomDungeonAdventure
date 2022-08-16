@@ -11,8 +11,8 @@ public enum ItemFactory implements RoomEntity{
     START,
     DEVAMULET;
 
-    public static boolean isItem(final String theName) {
-        ItemFactory[] arr = {HEALPOT,VISONPOT,OBJECTIVE,TRAP,DEVAMULET,EXIT,START};
+    static boolean isItem(final String theName) {
+        ItemFactory[] arr = {HEALPOT,VISONPOT,OBJECTIVE,DEVAMULET};
         for (ItemFactory i : arr){
             if (i.toString() == theName){
                 return true;
@@ -21,6 +21,15 @@ public enum ItemFactory implements RoomEntity{
         return false;
     }
 
+    static boolean isSpecialItem(final String theName) {
+        ItemFactory[] arr = {EXIT,START};
+        for (ItemFactory i : arr){
+            if (i.toString() == theName){
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * When called, returns the enum name as a string (ex: "OGER")
      * @return

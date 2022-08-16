@@ -1,5 +1,7 @@
 package RoomEntity;
 
+import GameModel.Directions;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,8 +31,8 @@ public class EntityController {
      */
     public ArrayList<String> getStartingRoom(){
         ArrayList<RoomEntity> myContents = basicRoom();
-        myContents.add(ItemFactory.DEVAMULET);
-        myContents = addDoor(myContents,"w");
+        myContents.add(ItemFactory.START);
+        myContents = addDoor(myContents, Directions.UP.toString());
         return getContents(myContents);
     }
 
@@ -67,6 +69,16 @@ public class EntityController {
         roll = r.nextInt(0,6);
         if (roll == 6) {
             myContents.add(ItemFactory.spawnItem(ItemFactory.TRAP));
+        }
+        for (int i = 0 ; i < 4; i++){
+            if (r.nextBoolean()){
+                switch (i){
+                    case 0 -> myContents = addDoor(myContents,Directions.UP.toString());
+                    case 1 -> myContents = addDoor(myContents,Directions.DOWN.toString());
+                    case 2 -> myContents = addDoor(myContents,Directions.LEFT.toString());
+                    case 3 -> myContents = addDoor(myContents,Directions.RIGHT.toString());
+                }
+            }
         }
         return myContents;
     }
@@ -106,22 +118,18 @@ public class EntityController {
     }
 
     /**
-     * This method should be used to determine if a string theName is an objective
+     * This method should be used to determine if a string theName is a START,EXIT or TRAP item
      * If it is a match return true.
      * else false.
      * @param theName the string for the objective name to look for.
-     * @return true if the name matches an objective, false otherwise
+     * @return true if the name matches a special item, false otherwise
      */
-    public boolean isObjective(final String theName){
-        boolean flag;
-        flag = "objective".equalsIgnoreCase(theName);
-        return flag;
+    public boolean isSpecial(final String theName){
+        return ItemFactory.isSpecialItem(theName);
     }
 
     public boolean isExit(final String theName) {
-        boolean flag;
-        flag = "exit".equalsIgnoreCase(theName);
-        return flag;
+        return theName.equalsIgnoreCase(ItemFactory.EXIT.toString());
     }
 
     /**
@@ -162,9 +170,7 @@ public class EntityController {
      * @return true if the keyword is a trap, else false
      */
     public boolean isTrap(final String theName) {
-        boolean flag;
-        flag = "trap".equalsIgnoreCase(theName);
-        return flag;
+        return theName.equalsIgnoreCase(ItemFactory.TRAP.toString());
     }
 
     /**
@@ -207,9 +213,12 @@ public class EntityController {
                 myContents.add(new CreatureCrossover());
             } else if(isItem(s)){
                 myContents.add(ItemFactory.spawnItem(s));
-            }else if(isWall(s)){
+            } else if(isSpecial(s)){
+                myContents.add(ItemFactory.spawnItem(s));
+            } else if(isWall(s)){
                 myContents.add(addWall(s));
             } else if (isDoor(s)){
+
                 myContents = addDoor(myContents,s);
             } else if (isTrap(s)){
                 myContents.add(addTrap());
@@ -230,7 +239,7 @@ public class EntityController {
     public ArrayList<String> getEndRoom() {
         ArrayList<RoomEntity> myContents = basicRoom();
         myContents.add(ItemFactory.spawnItem(ItemFactory.EXIT));
-        myContents = addDoor(myContents,"w");
+        myContents = addDoor(myContents,Directions.DOWN.toString());
         return getContents(myContents);
     }
 
