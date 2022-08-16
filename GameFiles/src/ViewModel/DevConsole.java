@@ -1,7 +1,10 @@
 package ViewModel;
 
 import GameModel.GameModelController;
+import GameModel.Directions;
+
 import GameModel.PlayerActions;
+import RoomEntity.EntityController;
 
 import java.util.Scanner;
 
@@ -13,12 +16,11 @@ import java.util.Scanner;
 public class DevConsole {
     /**
      * Our game model is interacted with in this game controller.
-     *
      */
     GameModelController myGame;
     Scanner s;
 
-    public DevConsole(){
+    public DevConsole() {
         s = new Scanner(System.in);
         System.out.println("Welcome to RADS!");
         myGame = new GameModelController();
@@ -35,20 +37,28 @@ public class DevConsole {
         return "charSelect placeholder";
     }
 
-    public void playNewGame(){
+    public void playNewGame() {
         myGame.newGame();
         gameLogicLoop();
 
     }
+
     private void gameLogicLoop() {
         // at start of each loop, check for win condition
-        while (!myGame.hasWon()){
+        while (!myGame.hasWon()) {
             // display stuff
-         System.out.println(myGame.showCurrentRoom());
-         takeAction(promptAction());
-            // return new state in loop
-         //System.out.println (myGame.combatLog());
+            System.out.println(myGame.showCurrentRoom());
+            takeAction(promptAction());
+            if (myGame.hasLost()) {
+                System.out.println("Hero has has lost! GAME OVER!");
+                break;
+            }
         }
+        if(myGame.hasWon()){
+            System.out.println("Hero has WON! CONGRATS!");
+        }
+
+        System.out.println(myGame.showFullMap()); //Not Currently Working
         // end game stuff
     }
 
@@ -56,7 +66,13 @@ public class DevConsole {
         System.out.println("Please input w, a, s, or d");
         // take player inputs
         String in = s.nextLine();
-        myGame.moveLocal(in);
+        Directions choice = Directions.getInputDirection(in);
+        if (choice != null){
+           System.out.println(myGame.moveLocal(choice));
+        } else {
+            System.out.println("Not a valid move!");
+        }
+
     }
 
 
@@ -82,7 +98,7 @@ public class DevConsole {
 
 
            if (choice == 1 || choice == 2 ||
-            choice == 3 || choice == 4){
+            choice == 3 || choice == 4 || choice == 5){
                goodChoice = false;
            }
         }
@@ -107,6 +123,10 @@ public class DevConsole {
             }
             case 4 -> {
                 System.out.println("VisionPotion selected!\n" + myGame.actionMenu(PlayerActions.VISONPOT));
+                break;
+            }
+            case 5 -> {
+                System.out.println("GODMODE SELECTED!\n" + myGame.actionMenu(PlayerActions.GODMODE));
                 break;
             }
             default -> {

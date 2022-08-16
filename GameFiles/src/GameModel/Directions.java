@@ -50,4 +50,21 @@ public enum Directions {
         }
         return myD;
     }
+    /**
+     *
+     */
+    static Location nextLocation(final Directions d, final Location current){
+        if ((d != null)) {
+            return switch (d) {
+                case UP -> new Location(current.getMyX() - 1, current.getMyY());
+                case DOWN -> new Location(current.getMyX() + 1, current.getMyY());
+                case LEFT -> new Location(current.getMyX(), current.getMyY() - 1);
+                case RIGHT -> new Location(current.getMyX(), current.getMyY() + 1);
+                default -> new Location(current.getMyX(), current.getMyY());
+            };
+        }
+        return current;
+    }
+
+
 }

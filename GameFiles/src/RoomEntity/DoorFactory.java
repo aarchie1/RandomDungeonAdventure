@@ -9,7 +9,7 @@ public enum DoorFactory implements RoomEntity {
     DOORRIGHT;
 
 
-    static DoorFactory getDoor(final String s){
+    public static DoorFactory getDoor(final String s){
         DoorFactory df;
         switch (s) {
             case "DOORUP" -> {

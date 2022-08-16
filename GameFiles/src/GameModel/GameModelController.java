@@ -3,12 +3,12 @@ package GameModel;
 import CreatureEntityModel.CreatureEntityController;
 import MapModel.MapController;
 
+import RoomEntity.DoorFactory;
 import RoomEntity.EntityController;
 import RoomModel.RoomController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * This Class will control and consolidate all the game models into the game logic
@@ -43,6 +43,8 @@ public class GameModelController {
      */
     private Location myCurrentLocation;
 
+    private boolean noClip;
+
 
     /**
      * The constructor creates a new GameController
@@ -54,7 +56,8 @@ public class GameModelController {
         myREntity = new EntityController();
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
-        myMap.setLocal(theStart);
+        noClip = false;
+        myMap.exploredUpdate(theStart);
         myCreatures.createHero("thief");
     }
 
@@ -97,29 +100,7 @@ public class GameModelController {
         return "";
     }
 
-    /**
-     * This method takes a string that represents up, down, left, or right.
-     * Acceptable inputs are (U, D, L, R)
-     * It does nothing if given an incorrect string
-     * It will tell the MapController to move once in the specified direction.
-     *
-     * @param theDirection w,a,s,d are the only accepted inputs, for all other it defaults to no move.
-     */
-    private Location inputDirection(final String theDirection){
-        Location nextLoc;
-        Directions d = Directions.getInputDirection(theDirection);
-        if (d == null) {
-            return myCurrentLocation;
-        }
-        nextLoc = switch (d) {
-            case UP -> new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()-1);
-            case DOWN -> new Location(myCurrentLocation.getMyX()+1, myCurrentLocation.getMyY());
-            case LEFT -> new Location(myCurrentLocation.getMyX()-1, myCurrentLocation.getMyY());
-            case RIGHT -> new Location(myCurrentLocation.getMyX() , myCurrentLocation.getMyY()+1);
-            default -> new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY());
-        };
-        return nextLoc;
-    }
+
 
     /**
      * This method is called on by a view to get possible actions.
@@ -133,19 +114,29 @@ public class GameModelController {
             PlayerActions myA = PlayerActions.getAct(theAction);
 
             switch (myA) {
-                // Consider a refactor to make UseHealthPostion take no input.
                 case HEALPOT:
-                    chosenAction = "Used a HealthPotion";
-                    //CanUseHealthPotion
-                    myCreatures.useHealthPotion();
+                    if(canUseHealthPotion()){
+                        chosenAction = "Used a HealthPotion";
+                        myCreatures.useHealthPotion();
+                    } else {
+                        chosenAction = "No potions available";
+                    }
                     break;
                 case VISONPOT:
-                    chosenAction = "Used a VisionPotion";
-                    //CanUseVisionPotion
+                    if(canUseVisionPotion()){
+                        chosenAction = "Used a VisionPotion";
+                        myCreatures.useHealthPotion();
+                    } else {
+                        chosenAction = "No potions available";
+                    }
+
                     chosenAction += "\n" + myMap.getLocalMap(myCurrentLocation);
                     break;
                 case PLAYERINV:
                     chosenAction = myCreatures.getMyHeroStats();
+                    break;
+                case GODMODE:
+                    chosenAction = "GODMODE ENABLED";
                     break;
                 default:
                     chosenAction = "Not a valid Action!";
@@ -153,17 +144,44 @@ public class GameModelController {
             }
         return chosenAction;
     }
+
+    private boolean canUseVisionPotion() {
+        if(myCreatures.getMyHeroVisionPotions() > 0){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean canUseHealthPotion() {
+        if(myCreatures.getMyHeroHealthPotions() > 0){
+            return true;
+        }
+        return false;
+    }
+
     public String actionMenu(PlayerActions theAction){
         switch (theAction) {
             case HEALPOT -> {
-                myCreatures.useHealthPotion();
-                return "Used a HealthPotion!";
+                if(canUseHealthPotion()){
+                    myCreatures.useHealthPotion();
+                    return "Used a HealthPotion!";
+                }
+                return "No potions available";
             }
             case VISONPOT -> {
-                return "Used a VisionPotion\n" + myMap.getLocalMap(myCurrentLocation);
+                if(canUseVisionPotion()){
+                    myCreatures.useVisionPotion();
+                    return "Used a VisionPotion\n" + myMap.getLocalMap(myCurrentLocation);
+                }
+                return "No potions available";
             }
             case PLAYERINV -> {
                 return myCreatures.getMyHeroStats();
+            }
+            case GODMODE -> {
+                myCreatures.setGodMode();
+                noClip = true;
+                return "DEVCOMMAND ACTIVATED... GODMODE";
             }
             default -> {
                 return "Not a valid PlayerAction!";
@@ -177,13 +195,53 @@ public class GameModelController {
      * methods that need to happen after a player moves go here.
      * @param theDirection
      */
-    public void moveLocal(final String theDirection){
-        setLocal(inputDirection(theDirection));
+    public String moveLocal(final Directions theDirection){
+        //check for a valid move
+        if (!checkForDoor(theDirection)) {
+            return "A Wall bars your path!";
+        }
+        String out = "";
+        //update the location
+        Location next = Directions.nextLocation(theDirection,myCurrentLocation);
+        setLocal(next);
+        // check for interactable
+        if(checkInteractables(myMap.getRoomAt(myCurrentLocation).getMyEntities())){
+            // This should be replaced with a call to return a string instead on v0.03
+            out = showCurrentRoom();
+        }
         // check new room for intractable
-        checkForRoomEntity(myMap.getRoomAt(myCurrentLocation).getMyEntities());
-
+            checkForRoomEntity(myMap.getRoomAt(myCurrentLocation).getMyEntities());
+        return out;
     }
 
+
+
+    private boolean checkForDoor(Directions theNext) {
+            if (noClip) {
+                return noClip;
+            }
+        return showCurrentRoom().contains(DoorFactory.getDoor(theNext.toString()).toString());
+    }
+
+    private boolean checkInteractables(ArrayList<String> theRoomContents){
+        boolean flag = false;
+        //check for trap
+        int stop = theRoomContents.size();
+        for(String s: theRoomContents){
+            if (myREntity.isTrap(s)){
+                flag = true;
+            }
+            //check for monster
+            else if (myREntity.isMonster(s)){
+                flag = true;
+            }
+            // check for item
+            else if (myREntity.isItem(s)){
+                flag = true;
+            }
+        }
+        return flag;
+    }
     /**
      * This Method is used to check a room for key objects.
      *
@@ -194,26 +252,28 @@ public class GameModelController {
      *  call to Creature control/Hero if item/obj/trap found
      * @param theRoomContents
      */
-    private void checkForRoomEntity(final ArrayList<String> theRoomContents) {
-        List<String> myContents = List.copyOf(theRoomContents);
+    private void checkForRoomEntity(ArrayList<String> theRoomContents) {
         //check for trap
-        for(String s: myContents) {
-            if (myREntity.isTrap(s)) {
+        int stop = theRoomContents.size();
+        for(int i = 0; i< stop; i++){
+            String s = theRoomContents.get(i);
+            if (myREntity.isTrap(s)){
                 myCreatures.setHeroDamage(TRAP_DAMAGE);
             }
-        }//check for monster
-
-        for(String s: myContents) {
-            if (myREntity.isMonster(s)) {
+        //check for monster
+            else if (myREntity.isMonster(s)){
                 myCreatures.fightAMonster(s);
-                myMap.removeEntity(myCurrentLocation, s);
+                myMap.removeEntity(myCurrentLocation,s);
+                System.out.println(myCreatures.getMyHeroStats());
+                i--;
+                stop--;
             }
-        }
-        for(String s: myContents){
         // check for item
-            if (myREntity.isItem(s)){
+            else if (myREntity.isItem(s)){
                 myCreatures.giveItem(s);
                 myMap.removeEntity(myCurrentLocation,s);
+                i--;
+                stop--;
             }
         }
     }
@@ -244,18 +304,20 @@ public class GameModelController {
      * @return
      */
     public boolean hasWon() {
-        //code to check for endgame, return false if game is won
-        //if for room exit. parse showCurrentRoom
-
-        String str = myCreatures.getMyHeroItems();
-        String[] strSplit = str.split(" ");
-        ArrayList<String> strList = new ArrayList<String>(
-                Arrays.asList(strSplit));
-        int heroesItems = strList.size();
-        if (myCreatures.getMyHeroObjectives() == 4){
-            return true;
+        if(showCurrentRoom().contains("EXIT")){
+            if (myCreatures.getMyHeroObjectives() == 4){
+                return true;
+            }
         }
         return false;
+
+    }
+
+    public boolean hasLost(){
+        if(myCreatures.checkHeroAlive()){
+           return false;
+        }
+        return true;
     }
 
     /**

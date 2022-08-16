@@ -6,7 +6,8 @@ package GameModel;
 public enum PlayerActions {
     HEALPOT,
     VISONPOT,
-    PLAYERINV;
+    PLAYERINV,
+    GODMODE;
 
     /**
      * This is used to decide which action is wanted.
@@ -16,6 +17,8 @@ public enum PlayerActions {
     static PlayerActions getAct(final String theAction){
         PlayerActions myA = null;
         switch (theAction) {
+            case "g":
+                myA = PlayerActions.GODMODE;
             case "h":
                 myA = PlayerActions.HEALPOT;
                 break;

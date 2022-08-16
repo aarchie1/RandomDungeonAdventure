@@ -58,7 +58,7 @@ public class Location implements Comparator<Location>{
     }
 
     private final Coordinates myCoordinates;
-    public Location(final int theY, final int theX){
+    public Location( final int theX,final int theY){
         myCoordinates = new Coordinates(theX,theY);
     }
 

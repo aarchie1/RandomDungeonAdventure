@@ -106,7 +106,11 @@ class BasicMap implements RADSMap {
      * @return
      */
     @Override
-    public String fullMap(final int theI) {
+    public String fullMap(int theI) {
+
+        if (theI < 3) {
+            theI =3;
+        }
         int rowOffset = -theI;
         int columnOffset = -theI;
         String[][] arr = new String[2*Math.abs(theI)][2*Math.abs(theI)];
@@ -124,6 +128,9 @@ class BasicMap implements RADSMap {
 
         return Arrays.deepToString(arr).replace("], ", "]\n");
     }
+
+
+
 
     /**
      * This Method is used to return a Room out of the map
@@ -153,7 +160,7 @@ class BasicMap implements RADSMap {
     @Override
     public String localMap(Location theLocation) {
         Location l;
-        int sizeOfVisionOutput = 1;
+        int sizeOfVisionOutput = 2;
         StringBuilder sb = new StringBuilder();
         for (int i = -sizeOfVisionOutput; i <= sizeOfVisionOutput; i++){
             for (int j = -sizeOfVisionOutput; j <= sizeOfVisionOutput; j++){

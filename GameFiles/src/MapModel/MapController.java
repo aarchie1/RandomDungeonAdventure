@@ -24,8 +24,6 @@ import RoomModel.RoomController;
 public class MapController {
     int explored;
     RADSMap myMap;
-    Location myLocal;
-
     RoomController myRoom ;
 
     /**
@@ -34,23 +32,20 @@ public class MapController {
     public MapController(){
         explored = 0;
         myMap = new BasicMap();
-        myLocal = new Location(0,0);
         myRoom = new RoomController();
     }
 
     /**
-     *
+     * porivate update room count when move
      * @param theLocation
      */
-    public void setLocal(final Location theLocation) {
-        myLocal = theLocation;
+    public void exploredUpdate(final Location theLocation) {
         if (Math.abs(theLocation.getMyX()) > explored){
             explored = theLocation.getMyX();;
         }
         if (Math.abs(theLocation.getMyY()) > explored){
             explored = theLocation.getMyY();
         }
-        myMap.generateRoom(myLocal);
     }
 
     //navigate through locations from start to dest
@@ -90,6 +85,7 @@ public class MapController {
      * @return
      */
     public Room getRoomAt(final Location theCoordinates){
+        exploredUpdate(theCoordinates);
         return myMap.getRoomAt(theCoordinates);
     }
 
