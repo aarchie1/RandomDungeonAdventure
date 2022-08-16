@@ -3,6 +3,7 @@ package GameModel;
 import CreatureEntityModel.CreatureEntityController;
 import MapModel.MapController;
 
+import RoomEntity.DoorFactory;
 import RoomEntity.EntityController;
 import RoomModel.RoomController;
 
@@ -97,29 +98,7 @@ public class GameController {
         return "";
     }
 
-    /**
-     * This method takes a string that represents up, down, left, or right.
-     * Acceptable inputs are (U, D, L, R)
-     * It does nothing if given an incorrect string
-     * It will tell the MapController to move once in the specified direction.
-     *
-     * @param theDirection w,a,s,d are the only accepted inputs, for all other it defaults to no move.
-     */
-    private Location inputDirection(final String theDirection){
-        Location nextLoc;
-        Directions d = Directions.getInputDirection(theDirection);
-        if (d == null) {
-            return myCurrentLocation;
-        }
-        nextLoc = switch (d) {
-            case UP -> new Location(myCurrentLocation.getMyX()-1, myCurrentLocation.getMyY());
-            case DOWN -> new Location(myCurrentLocation.getMyX()+1, myCurrentLocation.getMyY());
-            case LEFT -> new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY()-1);
-            case RIGHT -> new Location(myCurrentLocation.getMyX() , myCurrentLocation.getMyY()+1);
-            default -> new Location(myCurrentLocation.getMyX(), myCurrentLocation.getMyY());
-        };
-        return nextLoc;
-    }
+
 
     /**
      * This method is called on by a view to get possible actions.
@@ -213,14 +192,29 @@ public class GameController {
      * methods that need to happen after a player moves go here.
      * @param theDirection
      */
-    public void moveLocal(final String theDirection){
-        setLocal(inputDirection(theDirection));
+    public String moveLocal(final Directions theDirection){
+        //check for a valid move
+        if (!checkForDoor(theDirection)) {
+            return "A Wall bars your path!";
+        }
+        String out = "";
+        //update the location
+        Location next = Directions.nextLocation(theDirection,myCurrentLocation);
+        setLocal(next);
+        // check for interactable
         if(checkInteractables(myMap.getRoomAt(myCurrentLocation).getMyEntities())){
-            System.out.println(showCurrentRoom());
+            // This should be replaced with a call to return a string instead on v0.03
+            out = showCurrentRoom();
         }
         // check new room for intractable
-        checkForRoomEntity(myMap.getRoomAt(myCurrentLocation).getMyEntities());
+            checkForRoomEntity(myMap.getRoomAt(myCurrentLocation).getMyEntities());
+        return out;
+    }
 
+
+
+    private boolean checkForDoor(Directions theNext) {
+        return showCurrentRoom().contains(DoorFactory.getDoor(theNext.toString()).toString());
     }
 
     private boolean checkInteractables(ArrayList<String> theRoomContents){
