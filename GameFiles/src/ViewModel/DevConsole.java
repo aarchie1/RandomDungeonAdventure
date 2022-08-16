@@ -44,17 +44,19 @@ public class DevConsole {
         // at start of each loop, check for win condition
         while (!myGame.hasWon()){
             // display stuff
-         System.out.println(myGame.showCurrentRoom());
-         if(myGame.hasWon()){
-             System.out.println("Hero has WON!");
-             break;
-         }
-         takeAction(promptAction());
-         if(myGame.hasLost()){
-             System.out.println("Hero has has lost! GAME OVER!");
-             break;
-         }
+            System.out.println(myGame.showCurrentRoom());
+            if(myGame.hasWon()){
+                System.out.println("Hero has WON!");
+              break;
+             }
+             takeAction(promptAction());
+            if(myGame.hasLost()){
+              System.out.println("Hero has has lost! GAME OVER!");
+               break;
+             }
         }
+        System.out.println("Hero has WON! CONGRATS!");
+        System.out.println(myGame.showFullMap());
         // end game stuff
     }
 

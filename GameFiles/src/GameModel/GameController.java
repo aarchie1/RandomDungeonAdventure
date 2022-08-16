@@ -168,7 +168,8 @@ public class GameController {
         if(myCreatures.getMyHeroVisionPotions() > 0){
             return true;
         }
-        return false;
+        //default for debug
+        return true;
     }
 
     private boolean canUseHealthPotion() {
@@ -188,7 +189,7 @@ public class GameController {
                 return "No potions available";
             }
             case VISONPOT -> {
-                if(!canUseVisionPotion()){
+                if(canUseVisionPotion()){
                     myCreatures.useVisionPotion();
                     return "Used a VisionPotion\n" + myMap.getLocalMap(myCurrentLocation);
                 }
@@ -312,7 +313,8 @@ public class GameController {
                 Arrays.asList(roomSplit));
         for(String s: roomList){
             if (s.equals("EXIT")){
-                if (myCreatures.getMyHeroObjectives() == 4){
+                //change back to == after debug
+                if (myCreatures.getMyHeroObjectives() >= 0){
                     return true;
                 }
             }
