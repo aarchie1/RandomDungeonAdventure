@@ -16,7 +16,7 @@ import java.util.List;
  * @author Rowan W Osmon
  * @version 0.01
  */
-public class GameController {
+public class GameModelController {
 
 
     private static final int TRAP_DAMAGE = 15;
@@ -47,7 +47,7 @@ public class GameController {
     /**
      * The constructor creates a new GameController
      */
-    public GameController(){
+    public GameModelController(){
         myMap = new MapController();
         myRoom = new RoomController();
         myCreatures = new CreatureEntityController();

@@ -10,10 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class GameControllerTest {
 
-    GameController testGame = new GameController();
+    GameModelController testGame = new GameModelController();
     @BeforeEach
     void setUp() {
-        testGame = new GameController();
+        testGame = new GameModelController();
     }
 
     @Test

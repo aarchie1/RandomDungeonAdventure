@@ -1,6 +1,6 @@
 package ViewModel;
 
-import GameModel.GameController;
+import GameModel.GameModelController;
 import GameModel.PlayerActions;
 
 import java.util.Scanner;
@@ -15,13 +15,13 @@ public class DevConsole {
      * Our game model is interacted with in this game controller.
      *
      */
-    GameController myGame;
+    GameModelController myGame;
     Scanner s;
 
     public DevConsole(){
         s = new Scanner(System.in);
         System.out.println("Welcome to RADS!");
-        myGame = new GameController();
+        myGame = new GameModelController();
         //Character selection choice prompt here
         String myHero = charSelect();
         System.out.println("Selected " + myHero);
