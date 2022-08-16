@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'application'
+}
+
+version = '0.0.1'
+
+repositories {
+    mavenCentral();
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['GameFiles/src']
+        }
+    }
+}
+
+
+
+jar{
+    archiveBaseName ='RADS'
+    archiveVersion = '0.1.0'
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.5.32'
+    implementation 'com.github.almasb:fxgl:17.1'
+    implementation 'junit:junit:4.13.1'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+}
+
+javafx {
+    version = "18"
+    modules = [ 'javafx.controls', 'javafx.graphics', 'javafx.fxml', 'javafx.media' ]
+}
+
