@@ -49,6 +49,30 @@ public class MapController {
     // take as input the map,
     // produce a map with door edited so that object can be reached.
 
+//navigate through locations from start to dest
+//for each
+//retrieve from map store as room for editing
+// Room c = myMap.roomAt(Location current)
+// Room n = myMap.roomat(Location next)
+
+//subprob1 - where are you moveing next
+// logic to get correct door location by how you are moving (if next is +- x or y);
+// save as Direction[] doorLocations (UP<DOWN<LEFT<RIGHT)) -> turn to strings or change input of function below)
+
+//subprob2 = call to room door logic at those location with the stored direction
+// c.DoorCheck(String[] doorLocations, c)
+// need to add logic to get reverse of direction for use here.
+// n.DoorCheck(mirror(doorLocations), n)
+
+//store back in map
+//myMap.replaceRoom(current, c);
+//                    (next, n);
+
+
+// Algo for door placment
+// take as input the map,
+// produce a map with door edited so that object can be reached.
+
 
     public Room getRoomAt(final Location theCoordinates){
         return myMap.getRoomAt(theCoordinates);
