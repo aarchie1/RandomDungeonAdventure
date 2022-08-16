@@ -57,7 +57,7 @@ public class DevConsole {
             System.out.println("Hero has WON! CONGRATS!");
         }
 
-        //System.out.println(myGame.showFullMap()); Not Currently Working
+        System.out.println(myGame.showFullMap()); //Not Currently Working
         // end game stuff
     }
 

@@ -106,7 +106,11 @@ class BasicMap implements RADSMap {
      * @return
      */
     @Override
-    public String fullMap(final int theI) {
+    public String fullMap(int theI) {
+
+        if (theI < 3) {
+            theI =3;
+        }
         int rowOffset = -theI;
         int columnOffset = -theI;
         String[][] arr = new String[2*Math.abs(theI)][2*Math.abs(theI)];

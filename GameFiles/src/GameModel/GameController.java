@@ -9,7 +9,6 @@ import RoomModel.RoomController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * This Class will control and consolidate all the game models into the game logic
@@ -44,6 +43,8 @@ public class GameController {
      */
     private Location myCurrentLocation;
 
+    private boolean noClip;
+
 
     /**
      * The constructor creates a new GameController
@@ -55,7 +56,8 @@ public class GameController {
         myREntity = new EntityController();
         theStart = new Location(0,0);
         myCurrentLocation = new Location(0,0);
-        myMap.setLocal(theStart);
+        noClip = false;
+        myMap.exploredUpdate(theStart);
         myCreatures.createHero("thief");
     }
 
@@ -178,6 +180,7 @@ public class GameController {
             }
             case GODMODE -> {
                 myCreatures.setGodMode();
+                noClip = true;
                 return "DEVCOMMAND ACTIVATED... GODMODE";
             }
             default -> {
@@ -214,6 +217,9 @@ public class GameController {
 
 
     private boolean checkForDoor(Directions theNext) {
+            if (noClip) {
+                return noClip;
+            }
         return showCurrentRoom().contains(DoorFactory.getDoor(theNext.toString()).toString());
     }
 
@@ -298,19 +304,13 @@ public class GameController {
      * @return
      */
     public boolean hasWon() {
-        String currentRoom = showCurrentRoom();
-        String[] roomSplit = currentRoom.split(" ");
-        ArrayList<String> roomList = new ArrayList<String>(
-                Arrays.asList(roomSplit));
-        for(String s: roomList){
-            if (s.equals("EXIT")){
-                if (myCreatures.getMyHeroObjectives() == 4){
-                    myMap.setLocal(myCurrentLocation);
-                    return true;
-                }
+        if(showCurrentRoom().contains("EXIT")){
+            if (myCreatures.getMyHeroObjectives() == 4){
+                return true;
             }
         }
         return false;
+
     }
 
     public boolean hasLost(){

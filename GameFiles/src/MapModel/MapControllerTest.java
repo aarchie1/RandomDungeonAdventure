@@ -5,8 +5,6 @@ import RoomModel.Room;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class MapControllerTest {
     MapController m = new MapController();
     @BeforeEach
@@ -25,13 +23,14 @@ class MapControllerTest {
     @Test
     void getFullMap() {
         System.out.println(m.getFullMap());
+        Location l = new Location(0,0);
         for (int i = 0; i < 5; i++){
-            m.setLocal(new Location(i,0));
+            l = new Location(i,0);
+            m.getRoomAt(l);
             System.out.println(m.getFullMap());
         }
         for (int i = 0; i < 5; i++){
-            m.setLocal(new Location(0,i));
-            System.out.println(m.getRoomAt(m.myLocal));
+            System.out.println(m.getRoomAt(new Location(0,i)));
         }
         System.out.println(m.getFullMap());
     }
