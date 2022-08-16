@@ -50,4 +50,5 @@ public class RoomFactory implements EntityFactory {
                 .with(new ViewController())
                 .build();
     }
+
 }
