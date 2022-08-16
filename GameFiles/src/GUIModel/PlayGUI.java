@@ -72,7 +72,7 @@ public class PlayGUI extends GUIController implements ActionListener {
 
     private void placeTile() throws IOException {
         // Tile Icon
-        URL tileURL = this.getClass().getResource("/Sprites/tile.png");
+        URL tileURL = this.getClass().getResource("/resources/tile.png");
         ImageIcon tileIcon = new ImageIcon(tileURL);
         JLabel tileLabel = new JLabel(tileIcon);
 
@@ -82,7 +82,7 @@ public class PlayGUI extends GUIController implements ActionListener {
 
     private void placeUpWall() throws IOException {
         // Wall Icon
-        URL upWallURL = this.getClass().getResource("/Sprites/upWall.png");
+        URL upWallURL = this.getClass().getResource("/resources/upWall.png");
         ImageIcon upWallIcon = new ImageIcon(upWallURL);
         JLabel upWallLabel = new JLabel(upWallIcon);
 
