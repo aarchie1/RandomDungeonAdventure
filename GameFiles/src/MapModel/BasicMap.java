@@ -9,6 +9,7 @@ import RoomModel.RoomController;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 
 
 /**
@@ -182,7 +183,8 @@ class BasicMap implements RADSMap {
     }
 
     private void route() {
-        for(Location l : myMap.keySet()) {
+        Set<Location> keys = Set.copyOf(myMap.keySet());
+        for(Location l : keys) {
             walker(new Location(0,0), l);
         }
     }
@@ -192,40 +194,37 @@ class BasicMap implements RADSMap {
      * This method goes through the first 6 locations in our map when it is located
      * For each room between the starting location and the other 5, this will travel the
      * other path between the start and other location
-     * @param current
      * @param target
      * @return
      */
-    private void walker(Location current, Location target) {
+    private void walker(final Location theCurrent,final Location target) {
         // if current location is not equal to target then do body
-        if(!current.equals(target)) {
-            // variables created
-            Directions d;
-            Room r1;
-            Room r2;
-            Location next = null;
-
-            // iterate through each key
-            if(current.getMyX() < target.getMyX()) {
+        Location current = theCurrent;
+        Directions d;
+        Location next = null;
+        while (current.compare(current,target) != 0) {
+            if(current.getMyY() < target.getMyY()) {
                 d = Directions.RIGHT;
                 next = Directions.nextLocation(d,current);
-            } else if (current.getMyX() > target.getMyX()) {
+            } else if (current.getMyY() > target.getMyY()) {
                 d = Directions.LEFT;
                 next = Directions.nextLocation(d,current);
-            } else if (current.getMyY() < target.getMyY()) {
-                d = Directions.UP;
-                next = Directions.nextLocation(d,current);
-            } else {
+            } else if (current.getMyX() < target.getMyX()) {
                 d = Directions.DOWN;
                 next = Directions.nextLocation(d,current);
+            } else {
+                d = Directions.UP;
+                next = Directions.nextLocation(d,current);
             }
-
-            r1 = getRoomAt(current);
-            r2 = getRoomAt(next);
-            replaceRoom(current,myRoomControl.doorCheck(d,r1));
-            replaceRoom(next,myRoomControl.doorCheck(Directions.reverse(d),r2));
-            walker(next,target);
+            assignDoors(d, current);
+            assignDoors(Directions.reverse(d), next);
+            current = next;
         }
-
     }
+    private void assignDoors(Directions d,Location local ){
+        Room r = getRoomAt(local);
+        r = myRoomControl.doorCheck(d,r);
+        replaceRoom(local, r);
+    }
+
 }

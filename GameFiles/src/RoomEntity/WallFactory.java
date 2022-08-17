@@ -46,9 +46,6 @@ public enum WallFactory implements RoomEntity {
         return this.toString();
     }
 
-    @Override
-    public String toString() {
-        return getMyName();
-    }
+
 }
 

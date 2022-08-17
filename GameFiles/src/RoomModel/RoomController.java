@@ -81,7 +81,7 @@ public class RoomController {
     // call on the RoomEntity controller to get those room objects and add them to the room.
 
     public Room doorCheck(final Directions doorLocations, final Room theCurrent) {
-        BasicRoom update = new BasicRoom();
+        Room update = theCurrent;
         String wall = WallFactory.getWall(doorLocations).toString();
         if (theCurrent.toString().contains(wall)) {
             update.removeEntity(wall);
