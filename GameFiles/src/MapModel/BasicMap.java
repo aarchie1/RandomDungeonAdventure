@@ -1,6 +1,8 @@
 package MapModel;
 
+import GameModel.Directions;
 import GameModel.Location;
+import RoomModel.BasicRoom;
 import RoomModel.Room;
 import RoomModel.RoomController;
 
@@ -47,20 +49,27 @@ class BasicMap implements RADSMap {
     }
 
     private void placeStartingRooms(){
+        // Set Locations for OBJECTIVES and EXIT
         replaceRoom(myCoordinate, myRoomControl.startRoom());
-        int numObjectives = 5;
-        for (int i = 0; i < numObjectives; i++){
-            Location l = keyCheck();
-            while (myMap.containsKey(l)){
-                l = keyCheck();
-            }
-            if (i == numObjectives-1){
-                replaceRoom(l, myRoomControl.generateRoom("EXIT"));
-            } else{
-                replaceRoom(l, myRoomControl.generateRoom("OBJECTIVE"));
-            }
-
-        }
+        replaceRoom(new Location(4,4), myRoomControl.generateRoom("OBJECTIVE"));
+        replaceRoom(new Location(1,2), myRoomControl.generateRoom("OBJECTIVE"));
+        replaceRoom(new Location(-2,-1), myRoomControl.generateRoom("OBJECTIVE"));
+        replaceRoom(new Location(3,-2), myRoomControl.generateRoom("OBJECTIVE"));
+        replaceRoom(new Location(0,-1), myRoomControl.generateRoom("EXIT"));
+        route();
+//        int numObjectives = 5;
+//        for (int i = 0; i < numObjectives; i++){
+//            Location l = keyCheck();
+//            while (myMap.containsKey(l)){
+//                l = keyCheck();
+//            }
+//            if (i == numObjectives-1){
+//                replaceRoom(l, myRoomControl.generateRoom("EXIT"));
+//            } else{
+//                replaceRoom(l, myRoomControl.generateRoom("OBJECTIVE"));
+//            }
+//
+//        }
     }
 
     private Location keyCheck(){
@@ -172,4 +181,51 @@ class BasicMap implements RADSMap {
         return sb.toString();
     }
 
+    private void route() {
+        for(Location l : myMap.keySet()) {
+            walker(new Location(0,0), l);
+        }
+    }
+
+
+    /**
+     * This method goes through the first 6 locations in our map when it is located
+     * For each room between the starting location and the other 5, this will travel the
+     * other path between the start and other location
+     * @param current
+     * @param target
+     * @return
+     */
+    private void walker(Location current, Location target) {
+        // if current location is not equal to target then do body
+        if(!current.equals(target)) {
+            // variables created
+            Directions d;
+            Room r1;
+            Room r2;
+            Location next = null;
+
+            // iterate through each key
+            if(current.getMyX() < target.getMyX()) {
+                d = Directions.RIGHT;
+                next = Directions.nextLocation(d,current);
+            } else if (current.getMyX() > target.getMyX()) {
+                d = Directions.LEFT;
+                next = Directions.nextLocation(d,current);
+            } else if (current.getMyY() < target.getMyY()) {
+                d = Directions.UP;
+                next = Directions.nextLocation(d,current);
+            } else {
+                d = Directions.DOWN;
+                next = Directions.nextLocation(d,current);
+            }
+
+            r1 = getRoomAt(current);
+            r2 = getRoomAt(next);
+            replaceRoom(current,myRoomControl.doorCheck(d,r1));
+            replaceRoom(next,myRoomControl.doorCheck(Directions.reverse(d),r2));
+            walker(next,target);
+        }
+
+    }
 }

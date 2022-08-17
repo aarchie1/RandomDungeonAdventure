@@ -53,7 +53,7 @@ public enum Directions {
     /**
      *
      */
-    static Location nextLocation(final Directions d, final Location current){
+    public static Location nextLocation(final Directions d, final Location current){
         if ((d != null)) {
             return switch (d) {
                 case UP -> new Location(current.getMyX() - 1, current.getMyY());
