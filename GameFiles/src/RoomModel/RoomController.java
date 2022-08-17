@@ -87,8 +87,6 @@ public class RoomController {
             update.removeEntity(wall);
             update.addEntity(DoorFactory.getDoor(doorLocations).toString());
         }
-
-
         return update;
     }
 }

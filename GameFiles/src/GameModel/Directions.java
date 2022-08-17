@@ -66,5 +66,14 @@ public enum Directions {
         return current;
     }
 
+    public static Directions reverse (Directions d) {
+        return switch (d) {
+            case RIGHT -> LEFT;
+            case LEFT -> RIGHT;
+            case UP -> DOWN;
+            case DOWN -> UP;
+        };
+    }
+
 
 }
