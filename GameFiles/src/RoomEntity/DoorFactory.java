@@ -33,6 +33,15 @@ public enum DoorFactory implements RoomEntity {
             case RIGHT -> DOORRIGHT;
         };
     }
+    public static DoorFactory getDoor(Directions d) {
+        return switch (d) {
+            case UP -> DOORUP;
+            case DOWN -> DOORDOWN;
+            case LEFT -> DOORLEFT;
+            case RIGHT -> DOORRIGHT;
+        };
+    }
+
 
     /**
      * This Switch spawns one of our doors when called on
@@ -51,5 +60,10 @@ public enum DoorFactory implements RoomEntity {
     @Override
     public String getMyName() {
         return this.toString();
+    }
+
+    @Override
+    public String toString() {
+        return getMyName();
     }
 }
