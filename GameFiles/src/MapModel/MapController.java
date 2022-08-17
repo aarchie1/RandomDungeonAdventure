@@ -24,8 +24,6 @@ import RoomModel.RoomController;
 public class MapController {
     int explored;
     RADSMap myMap;
-    Location myLocal;
-
     RoomController myRoom ;
 
     /**
@@ -34,54 +32,21 @@ public class MapController {
     public MapController(){
         explored = 0;
         myMap = new BasicMap();
-        myLocal = new Location(0,0);
         myRoom = new RoomController();
     }
 
     /**
-     *
+     * porivate update room count when move
      * @param theLocation
      */
-    public void setLocal(final Location theLocation) {
-        myLocal = theLocation;
+    public void exploredUpdate(final Location theLocation) {
         if (Math.abs(theLocation.getMyX()) > explored){
             explored = theLocation.getMyX();;
         }
         if (Math.abs(theLocation.getMyY()) > explored){
             explored = theLocation.getMyY();
         }
-        myMap.generateRoom(myLocal);
     }
-
-    //navigate through locations from start to dest
-    //for each
-    //retrieve from map store as room for editing
-    // Room c = myMap.roomAt(Location current)
-    // Room n = myMap.roomat(Location next)
-
-    //subprob1 - where are you moveing next
-    // logic to get correct door location by how you are moving (if next is +- x or y);
-    // save as Direction[] doorLocations (UP<DOWN<LEFT<RIGHT)) -> turn to strings or change input of function below)
-
-    //subprob2 = call to room door logic at those location with the stored direction
-    // c.DoorCheck(String[] doorLocations, c)
-    // need to add logic to get reverse of direction for use here.
-    // n.DoorCheck(mirror(doorLocations), n)
-
-    //store back in map
-    //myMap.replaceRoom(current, c);
-    //                    (next, n);
-
-
-    // Algo for door placment
-    // take as input the map,
-    // produce a map with door edited so that object can be reached.
-    /*
-
-
-
-     */
-
 
 
     /**
@@ -90,6 +55,7 @@ public class MapController {
      * @return
      */
     public Room getRoomAt(final Location theCoordinates){
+        exploredUpdate(theCoordinates);
         return myMap.getRoomAt(theCoordinates);
     }
 

@@ -18,6 +18,15 @@ public enum WallFactory implements RoomEntity {
             default -> null;
         };
     }
+    public static WallFactory getWall(final Directions d) {
+        return switch (d) {
+            case UP -> WALLUP;
+            case DOWN -> WALLDOWN;
+            case LEFT -> WALLLEFT;
+            case RIGHT -> WALLRIGHT;
+            default -> null;
+        };
+    }
 
     static Wall spawnWall(WallFactory theWall) {
         Wall newWall = null;
@@ -36,5 +45,7 @@ public enum WallFactory implements RoomEntity {
     public String getMyName() {
         return this.toString();
     }
+
+
 }
 

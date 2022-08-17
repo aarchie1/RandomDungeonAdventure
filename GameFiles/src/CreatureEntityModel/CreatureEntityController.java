@@ -107,6 +107,8 @@ public class CreatureEntityController {
 
 
     public void setGodMode(){
+        myHero.setMyVisionPotions(9999999);
+        myHero.setMyHealthPotions(9999999);
         myHero.setMyHitPoints(99999999);
     }
 

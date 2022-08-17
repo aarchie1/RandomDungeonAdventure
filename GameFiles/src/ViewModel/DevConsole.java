@@ -1,7 +1,9 @@
 package ViewModel;
 
+import GameModel.Directions;
 import GameModel.GameController;
 import GameModel.PlayerActions;
+import RoomEntity.EntityController;
 
 import java.util.Scanner;
 
@@ -55,7 +57,7 @@ public class DevConsole {
             System.out.println("Hero has WON! CONGRATS!");
         }
 
-        //System.out.println(myGame.showFullMap()); Not Currently Working
+        System.out.println(myGame.showFullMap()); //Not Currently Working
         // end game stuff
     }
 
@@ -63,7 +65,13 @@ public class DevConsole {
         System.out.println("Please input w, a, s, or d");
         // take player inputs
         String in = s.nextLine();
-        myGame.moveLocal(in);
+        Directions choice = Directions.getInputDirection(in);
+        if (choice != null){
+           System.out.println(myGame.moveLocal(choice));
+        } else {
+            System.out.println("Not a valid move!");
+        }
+
     }
 
 

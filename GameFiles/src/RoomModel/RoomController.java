@@ -1,8 +1,10 @@
 package RoomModel;
 
 
+import GameModel.Directions;
+import RoomEntity.DoorFactory;
 import RoomEntity.EntityController;
-import RoomEntity.RoomEntity;
+import RoomEntity.WallFactory;
 
 import java.util.ArrayList;
 
@@ -78,12 +80,13 @@ public class RoomController {
     // take input from the map which indicate where doors should be in the room -
     // call on the RoomEntity controller to get those room objects and add them to the room.
 
-    public Room doorCheck(final String[] doorLocations, final Room theCurrent) {
-        ArrayList<RoomEntity> arr = myEntityEditor.LoadContents(theCurrent.getMyEntities());
-        for (String s : doorLocations) {
-            arr = myEntityEditor.addDoor(arr, s);
+    public Room doorCheck(final Directions doorLocations, final Room theCurrent) {
+        Room update = theCurrent;
+        String wall = WallFactory.getWall(doorLocations).toString();
+        if (theCurrent.toString().contains(wall)) {
+            update.removeEntity(wall);
+            update.addEntity(DoorFactory.getDoor(doorLocations).toString());
         }
-        BasicRoom update = new BasicRoom(myEntityEditor.getContents(arr));
         return update;
     }
 }

@@ -9,7 +9,7 @@ public enum DoorFactory implements RoomEntity {
     DOORRIGHT;
 
 
-    static DoorFactory getDoor(final String s){
+    public static DoorFactory getDoor(final String s) {
         DoorFactory df;
         switch (s) {
             case "DOORUP" -> {
@@ -19,7 +19,7 @@ public enum DoorFactory implements RoomEntity {
                 return DOORDOWN;
             }
             case "DOORLEFT" -> {
-                return  DOORLEFT;
+                return DOORLEFT;
             }
             case "DOORRIGHT" -> {
                 return DOORRIGHT;
@@ -34,12 +34,23 @@ public enum DoorFactory implements RoomEntity {
         };
     }
 
+    public static DoorFactory getDoor(Directions d) {
+        return switch (d) {
+            case UP -> DOORUP;
+            case DOWN -> DOORDOWN;
+            case LEFT -> DOORLEFT;
+            case RIGHT -> DOORRIGHT;
+        };
+    }
+
+
     /**
      * This Switch spawns one of our doors when called on
+     *
      * @param theDoor the door type that you want
      * @return a door RoomEntity
      */
-    static Door spawnDoor(DoorFactory theDoor){
+    static Door spawnDoor(DoorFactory theDoor) {
         return switch (theDoor) {
             case DOORUP -> new Door("DOORUP");
             case DOORDOWN -> new Door("DOORDOWN");

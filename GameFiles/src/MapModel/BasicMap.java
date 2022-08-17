@@ -1,12 +1,12 @@
 package MapModel;
 
+import GameModel.Directions;
 import GameModel.Location;
+import RoomModel.BasicRoom;
 import RoomModel.Room;
 import RoomModel.RoomController;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 
 /**
@@ -47,11 +47,21 @@ class BasicMap implements RADSMap {
     }
 
     private void placeStartingRooms(){
+        // Set Locations for OBJECTIVES and EXIT
+
         replaceRoom(myCoordinate, myRoomControl.startRoom());
+        /*
+        replaceRoom(new Location(4,4), myRoomControl.generateRoom("OBJECTIVE"));
+        replaceRoom(new Location(1,2), myRoomControl.generateRoom("OBJECTIVE"));
+        replaceRoom(new Location(-2,-1), myRoomControl.generateRoom("OBJECTIVE"));
+        replaceRoom(new Location(3,-2), myRoomControl.generateRoom("OBJECTIVE"));
+        replaceRoom(new Location(0,-1), myRoomControl.generateRoom("EXIT"));
+
+         */
         int numObjectives = 5;
         for (int i = 0; i < numObjectives; i++){
-            Location l = keyCheck();
-            while (myMap.containsKey(l)){
+          Location l = keyCheck();
+          while (myMap.containsKey(l)){
                 l = keyCheck();
             }
             if (i == numObjectives-1){
@@ -59,8 +69,9 @@ class BasicMap implements RADSMap {
             } else{
                 replaceRoom(l, myRoomControl.generateRoom("OBJECTIVE"));
             }
-
+        route();
         }
+
     }
 
     private Location keyCheck(){
@@ -106,7 +117,11 @@ class BasicMap implements RADSMap {
      * @return
      */
     @Override
-    public String fullMap(final int theI) {
+    public String fullMap(int theI) {
+
+        if (theI < 3) {
+            theI =3;
+        }
         int rowOffset = -theI;
         int columnOffset = -theI;
         String[][] arr = new String[2*Math.abs(theI)][2*Math.abs(theI)];
@@ -124,9 +139,6 @@ class BasicMap implements RADSMap {
 
         return Arrays.deepToString(arr).replace("], ", "]\n");
     }
-
-
-
 
     /**
      * This Method is used to return a Room out of the map
@@ -156,7 +168,7 @@ class BasicMap implements RADSMap {
     @Override
     public String localMap(Location theLocation) {
         Location l;
-        int sizeOfVisionOutput = 2;
+        int sizeOfVisionOutput = 1;
         StringBuilder sb = new StringBuilder();
         for (int i = -sizeOfVisionOutput; i <= sizeOfVisionOutput; i++){
             for (int j = -sizeOfVisionOutput; j <= sizeOfVisionOutput; j++){
@@ -169,6 +181,55 @@ class BasicMap implements RADSMap {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    private void route() {
+        Set<Location> keys = new HashSet<>();
+        for (Location l : myMap.keySet()){
+            keys.add(l);
+        }
+
+        for(Location l : keys) {
+            walker(new Location(0,0), l);
+        }
+    }
+
+
+    /**
+     * This method goes through the first 6 locations in our map when it is located
+     * For each room between the starting location and the other 5, this will travel the
+     * other path between the start and other location
+     * @param target
+     * @return
+     */
+    private void walker(final Location theCurrent,final Location target) {
+        // if current location is not equal to target then do body
+        Location current = theCurrent;
+        Directions d;
+        Location next = null;
+        while (current.compare(current,target) != 0) {
+            if(current.getMyY() < target.getMyY()) {
+                d = Directions.RIGHT;
+                next = Directions.nextLocation(d,current);
+            } else if (current.getMyY() > target.getMyY()) {
+                d = Directions.LEFT;
+                next = Directions.nextLocation(d,current);
+            } else if (current.getMyX() < target.getMyX()) {
+                d = Directions.DOWN;
+                next = Directions.nextLocation(d,current);
+            } else {
+                d = Directions.UP;
+                next = Directions.nextLocation(d,current);
+            }
+            assignDoors(d, current);
+            assignDoors(Directions.reverse(d), next);
+            current = next;
+        }
+    }
+    private void assignDoors(Directions d,Location local ){
+        Room r = getRoomAt(local);
+        r = myRoomControl.doorCheck(d,r);
+        replaceRoom(local, r);
     }
 
 }
