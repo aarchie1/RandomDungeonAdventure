@@ -6,10 +6,7 @@ import RoomModel.BasicRoom;
 import RoomModel.Room;
 import RoomModel.RoomController;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -51,26 +48,30 @@ class BasicMap implements RADSMap {
 
     private void placeStartingRooms(){
         // Set Locations for OBJECTIVES and EXIT
+
         replaceRoom(myCoordinate, myRoomControl.startRoom());
+        /*
         replaceRoom(new Location(4,4), myRoomControl.generateRoom("OBJECTIVE"));
         replaceRoom(new Location(1,2), myRoomControl.generateRoom("OBJECTIVE"));
         replaceRoom(new Location(-2,-1), myRoomControl.generateRoom("OBJECTIVE"));
         replaceRoom(new Location(3,-2), myRoomControl.generateRoom("OBJECTIVE"));
         replaceRoom(new Location(0,-1), myRoomControl.generateRoom("EXIT"));
+
+         */
+        int numObjectives = 5;
+        for (int i = 0; i < numObjectives; i++){
+          Location l = keyCheck();
+          while (myMap.containsKey(l)){
+                l = keyCheck();
+            }
+            if (i == numObjectives-1){
+                replaceRoom(l, myRoomControl.generateRoom("EXIT"));
+            } else{
+                replaceRoom(l, myRoomControl.generateRoom("OBJECTIVE"));
+            }
         route();
-//        int numObjectives = 5;
-//        for (int i = 0; i < numObjectives; i++){
-//            Location l = keyCheck();
-//            while (myMap.containsKey(l)){
-//                l = keyCheck();
-//            }
-//            if (i == numObjectives-1){
-//                replaceRoom(l, myRoomControl.generateRoom("EXIT"));
-//            } else{
-//                replaceRoom(l, myRoomControl.generateRoom("OBJECTIVE"));
-//            }
-//
-//        }
+        }
+
     }
 
     private Location keyCheck(){
@@ -167,7 +168,7 @@ class BasicMap implements RADSMap {
     @Override
     public String localMap(Location theLocation) {
         Location l;
-        int sizeOfVisionOutput = 2;
+        int sizeOfVisionOutput = 1;
         StringBuilder sb = new StringBuilder();
         for (int i = -sizeOfVisionOutput; i <= sizeOfVisionOutput; i++){
             for (int j = -sizeOfVisionOutput; j <= sizeOfVisionOutput; j++){
@@ -183,7 +184,11 @@ class BasicMap implements RADSMap {
     }
 
     private void route() {
-        Set<Location> keys = Set.copyOf(myMap.keySet());
+        Set<Location> keys = new HashSet<>();
+        for (Location l : myMap.keySet()){
+            keys.add(l);
+        }
+
         for(Location l : keys) {
             walker(new Location(0,0), l);
         }
