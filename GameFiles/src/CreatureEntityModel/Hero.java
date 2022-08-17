@@ -106,6 +106,10 @@ public class Hero extends DungeonCharacter {
         return myObjectives;
     }
 
+    public void setMyObjectives() {
+        myObjectives++;
+    }
+
     ArrayList<String> getMyItems() {
         return myItems;
     }
