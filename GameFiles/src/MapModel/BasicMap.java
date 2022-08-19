@@ -168,7 +168,7 @@ class BasicMap implements RADSMap {
     @Override
     public String localMap(Location theLocation) {
         Location l;
-        int sizeOfVisionOutput = 2;
+        int sizeOfVisionOutput = 1;
         StringBuilder sb = new StringBuilder();
         for (int i = -sizeOfVisionOutput; i <= sizeOfVisionOutput; i++){
             for (int j = -sizeOfVisionOutput; j <= sizeOfVisionOutput; j++){
